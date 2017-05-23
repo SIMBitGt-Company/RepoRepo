@@ -818,10 +818,26 @@
 														</a>
 													</center>
 												</td>
+												    <td width="20%"
+    {{if var_do==True:}}
+        data-step="{{step_count+=1}}{{=step_count}}" data-intro="Al seleccionar esta opcion podra crear una nueva actividad de tipo quiz"
+    {{pass}}
+    >
+        <center>
+            <!--a class="btn" href="{{=URL('quiz', 'take_quiz', vars=dict( project = course.academic_course_assignation.assignation.id, period=periodo.id))}}" style="height:32px; width:32px;"-->
+            <a  href="#">
+                <img src="{{=URL('static','images')}}/academic_control/quiz.png" height="32" width="32">
+            </a><br>
+            <!--a href="{{=URL('quiz', 'take_quiz', vars=dict( project = course.academic_course_assignation.assignation.id, period=periodo.id))}}"-->
+            <a  href="#">
+                Evaluaciones2
+            </a>
+        </center>
+    </td>
 												{{pass}}
 											
-											</tr>
-										{{include 'activity_control/quiz_module2.html'}}
+													</tr>
+										
 										</table>
 									</td>
 								</tr>
