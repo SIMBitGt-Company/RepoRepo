@@ -1,0 +1,58 @@
+{{extend 'template.html'}}
+<div>
+    <a href="{{=URL('activity_control', 'General_report_activities', vars=dict(project = project.id, period = year.id, type="class"))}}" class="btn" ><i class="icon-arrow-left"></i> {{=T('Back')}}</a>
+</div>
+<h2>
+    {{=T('Course Requeriment')}} <a href="#myModal" role="button" class="btn btn-primary"data-toggle="modal"><span class="icon-white icon-question-sign"></span></a>
+    <br>
+    <small>
+        {{=project.name}} - {{=T(year.period.name)}} {{=str(year.yearp)}}
+    </small>
+</h2>
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog"
+aria-labelledby="myModalLabel" aria-hidden="true">
+
+  <!--Inicia el boton de ayuda y el contenido de la ayuda-->
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal"
+aria-hidden="true">×</button>
+      <h3 id="myModalLabel">
+          <span class="icon-question-sign"></span>
+          {{=T('Help')}} {{=T('Course Requeriment')}}
+      </h3>
+  </div>
+  <div class="modal-body">
+    <div class="well">
+        <p>
+            {{=T('Within this space you can create, edit or delete a requirement to apply to the course.')}}
+        </p>
+        <p>
+            {{=T('Created to be a requirement, all students this course is applied and only students who have passed the requirement will pass the course.')}}
+        </p>
+        <p>
+            {{=T('Sample requirements:')}}
+            <br>
+            *) {{=T('ISE')}}
+            <br>
+            *) {{=T('SQM')}}
+            <br>
+            *) {{=T('SA')}}
+            <br>
+            *) {{=T('Accounting Lab')}}
+        </p>
+    </div>
+  </div>
+  <!--Termina el boton de ayuda y su contenido-->
+
+  <div class="modal-footer">
+      <button class="btn" data-dismiss="modal"
+aria-hidden="true">{{=T('Close')}}</button>
+  </div>
+</div>
+{{=grid}}
+
+
+<script type="text/javascript">
+  jQuery('#course_requirement_teacher_permition__label').empty();
+  jQuery('#course_requirement_teacher_permition__label').append('<b>{{=T('Teacher Permition')}}</b><div class=\"alert alert-warning\">{{=T('When yoy active this option the academic tutors')}}<br>{{=T('can manage the requeriment')}}</div>');
+</script>

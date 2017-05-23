@@ -1,0 +1,104 @@
+#cerodas: Tesis
+@auth.requires_login()
+@auth.requires_membership('Super-Administrator')
+def status():
+    grid = SQLFORM.grid(db.tesis_status, maxtextlength = 75)
+    return locals()
+
+
+@auth.requires_login()
+@auth.requires_membership('Super-Administrator')
+def modality():
+    grid = SQLFORM.grid(db.tesis_modality, maxtextlength = 75)
+    return locals()
+
+
+
+@auth.requires_login()
+@auth.requires_membership('Super-Administrator')
+def research_areas():
+    grid = SQLFORM.grid(db.tesis_research_areas, maxtextlength = 75)
+    return locals()
+
+def recursive_child(FILA):
+    espacios = '&emsp;';
+    retornocadena = '<b><li>&#187;&emsp;'+ FILA.name.upper() + '</li></b>';
+    childs = db(db.tesis_research_areas.parent_research_area == FILA.id).select(db.tesis_research_areas.ALL);
+    if (childs):
+        espacios = espacios + '&emsp;';
+        for hijos in childs:
+            retornocadena = '<b><li>' +espacios+ '&#187;&emsp;'+ str(hijos.name) + '</li></b>';
+        pass
+    return retornocadena
+
+
+def makeHTML():
+    PrimerNivel = db(db.tesis_research_areas.parent_research_area == None).select(db.tesis_research_areas.ALL);
+    if (PrimerNivel):
+        html = '<ul>'
+        for row in PrimerNivel:
+            html = html + recursive_child(row);
+        html = html + '</ul>'
+    else:
+        html = '<h3>No existen datos</h3>'
+
+    return html
+
+
+@auth.requires_login()
+@auth.requires_membership('Super-Administrator')
+def tutor():
+    grid = SQLFORM.grid(db.tesis_tutor)
+    return locals()
+
+
+
+@auth.requires_login()
+@auth.requires_membership('Super-Administrator')
+def adviser():
+    grid = SQLFORM.grid(db.tesis_adviser)
+    return locals()
+
+@auth.requires_login()
+@auth.requires_membership('Super-Administrator')
+def asign_topics():
+    grid = SQLFORM.grid(db.tesis_asigned_topics, maxtextlength = 75, searchable=False, )
+    return locals()
+
+
+def sqlform_grid_topics():
+    #ESTUDIANTES
+    queryS = db.tesis_asigned_topics.student==db.auth_user.username;
+    orderbyS=(db.auth_user.username);
+
+    db.auth_user.username.label = 'Carnet';
+    db.auth_user.first_name.label = 'Nombres';
+    db.auth_user.last_name.label = 'Apellidos';
+
+    fieldsS = [db.auth_user.username,
+        db.auth_user.first_name,
+        db.auth_user.last_name,
+        db.auth_user.email,
+        db.auth_user.phone,
+        db.tesis_asigned_topics.status,
+        db.tesis_asigned_topics.tutor,
+        db.tesis_asigned_topics.adviser,
+        db.tesis_asigned_topics.topic_name,
+        db.tesis_asigned_topics.topic_modality,
+        db.tesis_asigned_topics.topic_area,
+        db.tesis_asigned_topics.topic_description,
+        db.tesis_asigned_topics.topic_protocol,
+        db.tesis_asigned_topics.file1,
+        db.tesis_asigned_topics.topic_date_approval,
+        db.tesis_asigned_topics.topic_date_validity,
+        db.tesis_asigned_topics.topic_date_reactivation
+ ]
+    sqlform_grid_topics = SQLFORM.grid( query = queryS, fields =fieldsS , orderby = orderbyS, searchable=True, sortable=True, paginate=20, deletable=False, editable=False, create=False, details=False, search_widget='default', _class="web2py_grid", formname='grid1', maxtextlength = 100 );
+
+    return sqlform_grid_topics
+
+@auth.requires_login()
+@auth.requires_membership('Super-Administrator')
+def reports():
+    
+    return dict()

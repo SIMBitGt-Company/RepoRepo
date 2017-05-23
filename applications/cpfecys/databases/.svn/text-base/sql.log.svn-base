@@ -1,0 +1,23 @@
+timestamp: 2015-09-02T17:54:30.592976
+CREATE TABLE auth_user(
+    id INT AUTO_INCREMENT NOT NULL,
+    first_name VARCHAR(128),
+    last_name VARCHAR(128),
+    email VARCHAR(512),
+    username VARCHAR(128),
+    password VARCHAR(512),
+    registration_key VARCHAR(512),
+    reset_password_key VARCHAR(512),
+    registration_id VARCHAR(512),
+    phone VARCHAR(16) NOT NULL,
+    home_address VARCHAR(500) NOT NULL,
+    working CHAR(1),
+    company_name VARCHAR(200),
+    work_address VARCHAR(500),
+    work_phone VARCHAR(500),
+    uv_token VARCHAR(64),
+    data_updated CHAR(1),
+    load_alerted CHAR(1),
+    photo VARCHAR(512),
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;

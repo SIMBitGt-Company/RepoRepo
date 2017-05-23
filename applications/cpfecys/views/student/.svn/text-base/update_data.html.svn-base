@@ -1,0 +1,27 @@
+{{extend 'template.html'}}
+
+<div class="span6">
+    <div class="hero-unit">
+    <h2>{{=T("Please Update your Data before proceed")}}</h2>
+        {{=form}}
+    </div>
+</div>
+<script>
+	$('#update_data').click(function(){
+		if($('#working').prop('checked'))
+		{
+			if($('#work_address').val() == "" && 
+				$('#company_name').val() == "" &&
+				$('#work_phone').val() == "")
+			{
+				alert("{{=T('Please fill working information fields')}}");
+				return false;	
+			}
+		}
+		if($('#home_address').val() == "")
+		{
+			alert("{{=T('Please fill home address field')}}");
+			return false;	
+		}
+	});
+</script>

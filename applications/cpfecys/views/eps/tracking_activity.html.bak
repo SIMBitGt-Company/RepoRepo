@@ -1,0 +1,39 @@
+{{extend 'template.html'}}
+<h1>{{=T('Validación de Actividades Digitales')}}</h1>
+<div class="tabbable">
+{{=form}}
+{{if rowsActivity:}}
+    <ul class="nav nav-tabs">
+      {{for item in rowsActivity:}}
+            {{if request.args:}}
+                {{if str(request.args[2]) == str(item.id):}}
+                        <li class="active" title="{{=str(item.description)}}">
+                          <a href="{{=URL(args=[request.vars.modality, request.vars.period, item.id])}}">
+                              {{=str(item.name)}}
+                          </a>
+                        </li>
+                {{else:}}
+                        <li title="{{=str(item.description)}}">
+                          <a href="{{=URL(args=[request.vars.modality, request.vars.period, item.id])}}">
+                              {{=str(item.name)}}
+                          </a>
+                        </li>
+                {{pass}}
+            {{else:}}
+                <li title="{{=str(item.description)}}">
+                  <a href="{{=URL(args=[request.vars.modality, request.vars.period, item.id])}}">
+                      {{=str(item.name)}}
+                  </a>
+                </li>
+            {{pass}}
+      {{pass}}
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" >
+            {{if form1:}}
+            {{=form1}}
+            {{pass}}
+        </div>
+    </div>
+{{pass}}   
+</div>

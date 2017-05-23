@@ -1,0 +1,58 @@
+(dp1
+S'evaluator'
+p2
+(dp3
+S'length'
+p4
+I512
+sS'unique'
+p5
+I00
+sS'sortable'
+p6
+I3
+sS'sql'
+p7
+S'INT, INDEX evaluator__idx (evaluator), FOREIGN KEY (evaluator) REFERENCES auth_user (id) ON DELETE CASCADE'
+p8
+sS'notnull'
+p9
+I01
+sS'type'
+p10
+S'reference auth_user'
+p11
+ssS'evaluation_result'
+p12
+(dp13
+g4
+I512
+sg5
+I00
+sg6
+I2
+sg7
+S'INT, INDEX evaluation_result__idx (evaluation_result), FOREIGN KEY (evaluation_result) REFERENCES evaluation_result (id) ON DELETE CASCADE'
+p14
+sg9
+I01
+sg10
+S'reference evaluation_result'
+p15
+ssS'id'
+p16
+(dp17
+g4
+I512
+sg5
+I00
+sg6
+I1
+sg7
+S'INT AUTO_INCREMENT NOT NULL'
+p18
+sg9
+I00
+sg10
+g16
+ss.

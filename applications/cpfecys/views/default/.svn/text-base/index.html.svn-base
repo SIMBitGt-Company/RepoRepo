@@ -1,0 +1,231 @@
+{{extend 'template.html'}}
+
+<!-- Carousel
+    ================================================== -->
+ <div id="myCarousel" class="carousel slide">
+      <div class="carousel-inner">
+        <div class="item active">
+          <img src="/cpfecys/static/images/home-images/sl-4.jpg" alt="">
+          <div class="container">
+            <div class="carousel-caption">
+			  <div class="ja-ss-desc" style="position: static;width: 90%">
+						<h3>Escuela de Ciencias y Sistemas</h3>
+						<p>Facultad de Ingeniería - USAC</p>
+				</div>
+            </div>
+          </div>
+        </div>
+		{{contadorF=0}}
+        {{for notification in range(len(front_notification)-1, -1, -1):}}
+            {{contadorF+=1}}
+			{{if front_notification[notification].visible:}}
+                {{if front_notification[notification].promoted:}}
+					<div class="item">
+					  {{if front_notification[notification].image_file is None or front_notification[notification].image_file == '': }}
+					  <img src="/cpfecys/static/images/home-images/slide-02.jpg" alt="">
+					  {{else:}}
+					  <img src="{{= URL('default/download', front_notification[notification].image_file)}}" alt="Notification" title="Notification">
+					  {{pass}}
+					  <div class="container">
+						<div class="carousel-caption">
+						  <h1>{{=front_notification[notification].name}}</h1>
+						  <p class="lead">{{=MARKMIN(front_notification[notification].content_text[:150], markmin_settings)}}</p>
+						  <a class="btn btn-large btn-primary" href="{{=URL('default', 'notification', vars=dict(notification = front_notification[notification].id))}}"">Ver</a>
+						</div>
+					  </div>
+					</div>
+				{{else:}}
+					<div class="item">
+					  {{if front_notification[notification].image_file is None or front_notification[notification].image_file == '': }}
+					  <img src="/cpfecys/static/images/home-images/slide-02.jpg" alt="">
+					  {{else:}}
+					  <img src="{{= URL('default/download', front_notification[notification].image_file)}}" alt="Sample image" title="Sample image">
+					  {{pass}}
+					  <div class="container">
+						<div class="carousel-caption">
+						  <h1>{{=front_notification[notification].name}}</h1>
+						  <p class="lead">{{=MARKMIN(front_notification[notification].content_text[:150], markmin_settings)}}</p>
+						  <a class="btn btn-large btn-primary" href="{{=URL('default', 'notification', vars=dict(notification = front_notification[notification].id))}}"">Ver</a>
+						</div>
+					  </div>
+					</div>
+				{{pass}}
+            {{pass}}
+		{{pass}}
+      </div>
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+      <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
+    </div>
+ <!-- /.carousel -->
+
+
+<div id="ja-topsl1" class="wrap ">
+	<div class="main clearfix">
+		<!-- SPOTLIGHT -->
+		<div class="ja-box column ja-box-full" style="width: 100%;">
+			<div class="ja-moduletable moduletable  clearfix" id="Mod109">
+				<div class="ja-box-ct clearfix">
+					<div class="custom">
+						<div class="department-list">
+							<ul class="department-list">
+								<li class="icon-1">
+									<a href="{{=URL('default', 'resources',vars = dict(r = 10))}}" title="Horarios del semestre">Horarios</a>
+									<span class="department-name">Horarios</span>
+								</li>
+								<li class="icon-2">
+									<a href="{{=URL('default', 'events')}}" title="Eventos de la Escuela">Eventos</a>
+									<span class="department-name">Eventos</span>
+								</li>
+								<li class="icon-3">
+									<a href="{{=URL('default', 'resources',vars = dict(r = 13))}}" title="Programas de curso">Programas</a>
+									<span class="department-name">Programas</span>
+								</li>
+								<li class="icon-4">
+									<a href="https://www.ingenieria.usac.edu.gt/" title="Enlace a la pagina de USAC">Universidad</a>
+									<span class="department-name">Universidad</span>
+								</li>
+								<li class="icon-5">
+									<a href="/index.php/finance" title="Sample">Finance</a>
+									<span class="department-name">Finance</span>
+								</li>
+								<li class="icon-5">
+									<a href="/index.php/finance" title="Sample">Finance</a>
+									<span class="department-name">Finance</span>
+								</li>
+								<li class="icon-6">
+									<a href="https://www.facebook.com/ecysFIUSAC" title="Siguenos en --Facebook---">Facebook</a>
+									<span class="department-name">Facebook</span>
+								</li>
+								<li class="icon-7">
+									<a href="" title="Siguenos en Twitter">Twitter</a>
+									<span class="department-name">Twitter</span>
+								</li>
+								<li class="icon-8">
+									<a href="" title="Siguenos en nuestro canal de Youtube">Youtube</a>
+									<span class="department-name">Youtube</span>
+								</li>								
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>	
+		</div>		
+	</div>
+</div>
+
+
+
+
+{{for art in db(db.magazine).select(orderby=~db.magazine.id, limitby=(0, 1)):}}
+	<div class="ja-box column ja-box-left">
+		<div class="ja-moduletable moduletable clearfix" id="Mod97">
+			<h4><span>{{=art.name}}</span></h4>
+			<div class="ja-box-ct clearfix">
+				<div class="custom">
+					<div class="inner-div">
+						<img src="{{= URL('default/download', art.image_file)}}" alt="Sample image" title="Sample image">
+						<p style="text-align:left; width:80%">{{=art.content_text[:150]}}</p>
+						<p class="readmore"><a href="{{=art.url}}" title="Read more">Read more</a></p>
+					</div>
+				</div>
+			</div>
+	    </div>	
+	</div>
+{{pass}}
+
+{{for art in db(db.magazine).select(orderby=~db.magazine.id, limitby=(1, 2)):}}
+	<div class="ja-box column ja-box-center">
+		<div class="ja-moduletable moduletable clearfix" id="Mod98">
+			<h4><span>{{=art.name}}</span></h4>
+			<div class="ja-box-ct clearfix">
+				<div class="custom">
+					<div class="inner-div">
+						<img src="{{= URL('default/download', art.image_file)}}" alt="Sample image" title="Sample image">
+						<p style="text-align:left; width:80%">{{=art.content_text[:150]}}</p>
+						<p class="readmore"><a href="{{=art.url}}" title="Read more">Read more</a></p>
+					</div>
+				</div>
+			</div>
+	    </div>	
+	</div>
+{{pass}}
+
+{{for art in db(db.magazine).select(orderby=~db.magazine.id, limitby=(2, 3)):}}
+	<div class="ja-box column ja-box-center">
+		<div class="ja-moduletable moduletable clearfix" id="Mod99">
+			<h4><span>{{=art.name}}</span></h4>
+			<div class="ja-box-ct clearfix">
+				<div class="custom">
+					<div class="inner-div">
+						<img src="{{= URL('default/download', art.image_file)}}" alt="Sample image" title="Sample image">
+						<p style="text-align:left; width:80%">{{=art.content_text[:150]}}</p>
+						<p class="readmore"><a href="{{=art.url}}" title="Read more">Read more</a></p>
+					</div>
+				</div>
+			</div>
+	    </div>	
+	</div>
+{{pass}}
+
+{{for art in db(db.magazine).select(orderby=~db.magazine.id, limitby=(3, 4)):}}
+	<div class="ja-box column ja-box-right">
+		<div class="ja-moduletable moduletable clearfix" id="Mod100">
+			<h4><span>{{=art.name}}</span></h4>
+			<div class="ja-box-ct clearfix">
+				<div class="custom">
+					<div class="inner-div">
+						<img src="{{= URL('default/download', art.image_file)}}" alt="Sample image" title="Sample image">
+						<p style="text-align:left; width:80%">{{=art.content_text[:150]}}</p>
+						<p class="readmore"><a href="{{=art.url}}" title="Read more">Read more</a></p>
+					</div>
+				</div>
+			</div>
+	    </div>	
+	</div>
+{{pass}}
+
+<script type="text/javascript" src="{{=URL('static','markitup')}}/sets/markmin/set.js"></script>
+<link rel="stylesheet" type="text/css" href="{{=URL('static','markitup')}}/sets/markmin/style.css"/>
+<script type="text/javascript">
+jQuery( document ).ready(function($) {
+    jQuery(".mostrar").click(function(){
+		var qValor = jQuery(this).html();
+		var qId = jQuery(this).attr("data-id");
+		if(qValor == "mas"){
+			jQuery(this).html("menos");
+			jQuery("#data-" + qId + " .less").fadeOut(1);//.css("display","none");//
+			jQuery("#data-" + qId + " .all").fadeIn(100);//.css("display","block");//
+		}else{
+			jQuery(this).html("mas");
+			jQuery("#data-" + qId + " .less").fadeIn(1);//.css("display","block");//
+			jQuery("#data-" + qId + " .all").fadeOut(100);//.css("display","none");//
+		}
+	});
+});
+</script>
+
+{{if auth.has_membership('Academic') or auth.has_membership('Student'):}}
+   
+    {{review = db((db.photo_review.user_id == auth.user.id)).select().first()
+    if review is None:}}
+        <script>
+            alert("{{=T('Your photo has not been reviewed. Please contact an academic tutor to be accepted.')}}");
+        </script>
+    {{else:
+        if review.accepted == False:
+            }}
+            <script>
+                alert("¡{{=T('Photo Rejected')}}, {{=T('please enter a new photo')}}!\n{{=T('Remember that photography is for academic use; therefore must be commensurate with the seriousness of the case, otherwise it will be blocked.')}}");
+            </script>
+        {{pass
+    pass
+    }}
+            
+{{pass}}
+<script>
+      !function ($) {
+        $(function(){
+          $('#myCarousel').carousel()
+        })
+      }(window.jQuery)
+</script>   

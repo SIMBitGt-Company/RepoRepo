@@ -1,0 +1,4 @@
+{{extend 'template.html'}}
+<a href="{{=URL('asign_students')}}" class="btn" ><i class="icon-arrow-left"></i> {{=T('Back to Assignation')}}</a>
+<h2>{{=T('Carga Masiva - Asignación de Estudiantes')}} </h2>
+{{=form}}

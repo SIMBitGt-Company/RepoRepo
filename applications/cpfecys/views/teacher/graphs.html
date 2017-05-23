@@ -1,0 +1,167 @@
+{{extend 'template.html'}}
+<a onclick="window.history.back()" class="btn" ><i class="icon-arrow-left"></i> Back</a>
+<h2>
+    {{=T('Final Practice Students')}} <small>"{{=current_project.project.name}}"</small>
+</h2>
+
+<div class="tabbable"> <!-- Only required for left/right tabs -->
+  <ul class="nav nav-tabs">
+      <li><a href="#setuptab" data-toggle="tab">{{=T('Other Periods')}}</a></li>
+    {{for item in periods_before:}}
+      <li><a href="{{=URL(vars=dict(year_period=item.id,
+                   project = current_project.project.id))}}">
+          {{if item.period == cpfecys.first_period.id:}}
+          {{=str(item.yearp) + ' - ' + T(cpfecys.first_period_name)}}
+          {{else:}}
+          {{=str(item.yearp) + ' - ' + T(cpfecys.second_period_name)}}
+          {{pass}}
+      </a></li>
+    {{pass}}
+      <li class="active"><a href="#data{{=currentyear_period.id}}" data-toggle="tab">
+          {{=str(currentyear_period.yearp) + ' - ' + current_period_name }}
+      </a></li>
+    {{for item in periods_after:}}
+      <li><a href="{{=URL(vars=dict(year_period=item.id,
+                   project = current_project.project.id))}}">
+          {{if item.period == cpfecys.first_period.id:}}
+          {{=str(item.yearp) + ' - ' + T(cpfecys.first_period_name)}}
+          {{else:}}
+          {{=str(item.yearp) + ' - ' + T(cpfecys.second_period_name)}}
+          {{pass}}
+      </a></li>
+    {{pass}}
+  </ul>
+  <div class="tab-content">
+      <div class="tab-pane" id="setuptab">
+          <form>
+              <select name="year_period">
+                  {{for item in other_periods:}}
+                  {{if item.period == cpfecys.first_period.id:}}
+                  <option value="{{=item.id}}">{{=str(item.yearp) + ' - ' + T(cpfecys.first_period_name) }}</option>
+                  {{else:}}
+                  <option value="{{=item.id}}">{{=str(item.yearp) + ' - ' + T(cpfecys.second_period_name) }}</option>
+                  {{pass}}
+                  {{pass}}
+              </select>
+              <input type="submit" value="{{=T('go')}}" >
+          </form>
+      </div>
+      <div class="tab-pane active" id="data{{=currentyear_period.id}}">
+          <h2>
+              {{=T('Course Progress')}}
+          </h2>
+          <!-- I need All reports that belong to this semester and course. Arrange them by owner. Display them -->
+          {{categories = []}}
+          {{for item in current_reports:}}
+          {{itm = item.report.report_restriction}}
+          {{if not itm in categories:}}
+          {{categories.append(itm)}}
+          {{pass}}
+          {{pass}}
+          <div id="course-progress">
+              <script type="text/javascript" src="{{=URL('static','js')}}/highcharts/js/highcharts.js">
+              </script>
+              <script type="text/javascript" src="{{=URL('static','js')}}/highcharts/js/modules/data.js">
+              </script>
+              <script type="text/javascript" src="{{=URL('static','js')}}/highcharts/js/modules/exporting.js">
+              </script>
+              {{inc_vars = dict(id = 'chart01',
+              categories_title = T('Students In Course'),
+              categories_subtitle = current_project.project.name,
+              categories = categories,
+              category_display = lambda x: x.name,
+              values = current_reports,
+              values_display = values_display,
+              values_title = T('Students')) }}
+              {{include 'include/display-line-chart.html'}}
+              <!-- -->
+              {{categories = []}}
+              {{for item in report_activities:}}
+              {{itm = str(item.log_metrics.metrics_type.name) + ":" + str(item.log_metrics.created) }}
+              {{if not itm in categories:}}
+              {{categories.append(itm)}}
+              {{pass}}
+              {{pass}}
+              <!-- -->
+               {{inc_vars = dict(id = 'chart02',
+              categories_title = T('Activities in Course'),
+              categories_subtitle = current_project.project.name,
+              categories = categories,
+              category_display = lambda x: x,
+              values = report_activities,
+              values_display = values_display_activities,
+              values_title = T('Average Score')) }}
+              {{include 'include/display-line-chart.html'}}
+          </div>
+          <div style="width:100%" id="graphbars"></div>
+      </div>
+  </div>
+</div>
+<hr />
+{{if request.is_local:}}
+{{=response.toolbar()}}
+{{pass}}
+<script type="text/javascript">
+$(function () {
+    $('#graphbars').highcharts({
+        chart: {
+            type: 'column',
+            margin: [ 50, 50, 100, 80]
+        },
+        title: {
+            text: '{{=T("Promedio de curso y laboratorio")}}'
+        },
+        subtitle: {
+            text: '{{=current_project.project.name}}',
+        x: -20
+        },
+        xAxis: {
+            categories: [
+                {{for a in avg:}}
+                '{{=a[0]}}',
+                {{pass}}
+            ],
+            labels: {
+                align: 'right',
+                style: {
+                    fontSize: '12px',
+                    fontFamily: 'Verdana, sans-serif'
+                }
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: '{{=T("Promedio")}}'
+            }
+        },
+        legend: {
+            enabled: false
+        },
+        tooltip: {
+            pointFormat: '{{=T("Promedio")}}: <b>{point.y:.1f}</b>',
+        },
+        series: [{
+            name: '{{=T("Promedio")}}',
+            data: [
+                    {{for a in avg:}}
+                        {{=a[1]}},
+                    {{pass}}
+                   ],
+            dataLabels: {
+                enabled: true,
+                rotation: -90,
+                color: '#FFFFFF',
+                align: 'right',
+                x: 4,
+                y: 10,
+                style: {
+                    fontSize: '13px',
+                    fontFamily: 'Verdana, sans-serif',
+                    textShadow: '0 0 3px black'
+                }
+            }
+        }]
+    });
+});
+</script>

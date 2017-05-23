@@ -1,0 +1,179 @@
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/repoDTT/!svn/ver/102/trunk/cpfecys/controllers
+END
+admin.py
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/repoDTT/!svn/ver/97/trunk/cpfecys/controllers/admin.py
+END
+appadmin.py
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/controllers/appadmin.py
+END
+teacher_reports.py
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/controllers/teacher_reports.py
+END
+management_reports.py
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/controllers/management_reports.py
+END
+magazine.py
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/controllers/magazine.py
+END
+activity_control.py
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/repoDTT/!svn/ver/76/trunk/cpfecys/controllers/activity_control.py
+END
+notification_student.py
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/repoDTT/!svn/ver/33/trunk/cpfecys/controllers/notification_student.py
+END
+student_academic.py
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/repoDTT/!svn/ver/90/trunk/cpfecys/controllers/student_academic.py
+END
+admin_academic.py
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/controllers/admin_academic.py
+END
+abstract.py
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/controllers/abstract.py
+END
+library.py
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/repoDTT/!svn/ver/87/trunk/cpfecys/controllers/library.py
+END
+school_reports.py
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/controllers/school_reports.py
+END
+audit.py
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/controllers/audit.py
+END
+evaluation.py
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/repoDTT/!svn/ver/76/trunk/cpfecys/controllers/evaluation.py
+END
+report_management.py
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/controllers/report_management.py
+END
+mailer.py
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/controllers/mailer.py
+END
+teacher.py
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/repoDTT/!svn/ver/76/trunk/cpfecys/controllers/teacher.py
+END
+dsi.py
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/repoDTT/!svn/ver/34/trunk/cpfecys/controllers/dsi.py
+END
+default.py.bak
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/repoDTT/!svn/ver/87/trunk/cpfecys/controllers/default.py.bak
+END
+certificate.py
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/controllers/certificate.py
+END
+eps.py.bak
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/repoDTT/!svn/ver/13/trunk/cpfecys/controllers/eps.py.bak
+END
+tesis.py.bak
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/repoDTT/!svn/ver/11/trunk/cpfecys/controllers/tesis.py.bak
+END
+default.py
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/repoDTT/!svn/ver/87/trunk/cpfecys/controllers/default.py
+END
+eps.py.1
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/repoDTT/!svn/ver/13/trunk/cpfecys/controllers/eps.py.1
+END
+notification.py
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/controllers/notification.py
+END
+student.py
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/repoDTT/!svn/ver/102/trunk/cpfecys/controllers/student.py
+END
+tesis.py.1
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/repoDTT/!svn/ver/11/trunk/cpfecys/controllers/tesis.py.1
+END
+eps.py
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/repoDTT/!svn/ver/13/trunk/cpfecys/controllers/eps.py
+END
+tesis.py
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/repoDTT/!svn/ver/11/trunk/cpfecys/controllers/tesis.py
+END

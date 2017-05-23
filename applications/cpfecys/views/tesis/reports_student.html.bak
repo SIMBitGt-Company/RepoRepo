@@ -1,0 +1,12 @@
+{{extend 'template.html'}}
+<h1>{{=T('Consulta de Temas de Tesis')}}</h1>
+{{=form}}
+<hr />
+<table width= "100%"; border = "1">
+    <tr>
+        <td width = "33%"><b>TEMA DE TESIS</b></td>
+        <td width = "25%"><b>ASESOR</b></td>
+        <td width = "29%"><b>TUTOR</b></td>
+    </tr>
+</table>
+{{=grid}}

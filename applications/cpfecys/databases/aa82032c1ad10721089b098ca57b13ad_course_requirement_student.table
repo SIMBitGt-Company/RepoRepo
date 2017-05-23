@@ -1,0 +1,58 @@
+(dp1
+S'requirement'
+p2
+(dp3
+S'length'
+p4
+I512
+sS'unique'
+p5
+I00
+sS'sortable'
+p6
+I3
+sS'sql'
+p7
+S'INT, INDEX requirement__idx (requirement), FOREIGN KEY (requirement) REFERENCES course_requirement (id) ON DELETE CASCADE'
+p8
+sS'notnull'
+p9
+I01
+sS'type'
+p10
+S'reference course_requirement'
+p11
+ssS'id'
+p12
+(dp13
+g4
+I512
+sg5
+I00
+sg6
+I1
+sg7
+S'INT AUTO_INCREMENT NOT NULL'
+p14
+sg9
+I00
+sg10
+g12
+ssS'carnet'
+p15
+(dp16
+g4
+I512
+sg5
+I00
+sg6
+I2
+sg7
+S'INT, INDEX carnet__idx (carnet), FOREIGN KEY (carnet) REFERENCES academic (id) ON DELETE CASCADE'
+p17
+sg9
+I01
+sg10
+S'reference academic'
+p18
+ss.

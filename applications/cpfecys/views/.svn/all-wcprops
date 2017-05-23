@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/repoDTT/!svn/ver/107/trunk/cpfecys/views
+END
+generic.html
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/generic.html
+END
+layout.html
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/layout.html
+END
+generic.rss
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/generic.rss
+END
+generic.json
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/generic.json
+END
+generic.pdf
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/generic.pdf
+END
+generic.jsonp
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/generic.jsonp
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/__init__.py
+END
+generic.map
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/generic.map
+END
+generic.ics
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/generic.ics
+END
+generic.load
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/generic.load
+END
+generic.xml
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/generic.xml
+END
+appadmin.html
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/appadmin.html
+END
+web2py_ajax.html
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/web2py_ajax.html
+END
+template.html
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/repoDTT/!svn/ver/76/trunk/cpfecys/views/template.html
+END

@@ -1,0 +1,99 @@
+(dp1
+S'project'
+p2
+(dp3
+S'sortable'
+p4
+I5
+sS'sql'
+p5
+S'INT, INDEX project__idx (project), FOREIGN KEY (project) REFERENCES project (id) ON DELETE CASCADE'
+p6
+sS'length'
+p7
+I512
+sS'notnull'
+p8
+I01
+sS'unique'
+p9
+I00
+sS'type'
+p10
+S'reference project'
+p11
+ssS'repository_evaluation'
+p12
+(dp13
+g4
+I2
+sg5
+S'INT, INDEX repository_evaluation__idx (repository_evaluation), FOREIGN KEY (repository_evaluation) REFERENCES repository_evaluation (id) ON DELETE CASCADE'
+p14
+sg7
+I512
+sg8
+I01
+sg9
+I00
+sg10
+S'reference repository_evaluation'
+p15
+ssS'id'
+p16
+(dp17
+g4
+I1
+sg5
+S'INT AUTO_INCREMENT NOT NULL'
+p18
+sg7
+I512
+sg8
+I00
+sg9
+I00
+sg10
+S'id'
+p19
+ssS'evaluated'
+p20
+(dp21
+g4
+I3
+sg5
+S'INT, INDEX evaluated__idx (evaluated), FOREIGN KEY (evaluated) REFERENCES auth_user (id) ON DELETE CASCADE'
+p22
+sg7
+I512
+sg8
+I01
+sg9
+I00
+sg10
+S'reference auth_user'
+p23
+ssS'period'
+p24
+(dp25
+S'length'
+p26
+I512
+sS'unique'
+p27
+I00
+sS'sortable'
+p28
+I4
+sS'sql'
+p29
+S'INT, INDEX period__idx (period), FOREIGN KEY (period) REFERENCES period_year (id) ON DELETE CASCADE'
+p30
+sS'notnull'
+p31
+I01
+sS'type'
+p32
+S'reference period_year'
+p33
+ss.

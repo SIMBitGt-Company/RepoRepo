@@ -1,0 +1,780 @@
+{{extend 'template.html'}}
+{{step_count = 0}}
+
+<div class="row-fluid">
+	{{if auth.has_membership('Super-Administrator') or (auth.has_membership('Ecys-Administrator') & ecys_var == True):}}
+    <div  style="overflow:auto;" class="well">
+    {{else:}}
+    	<div  style="overflow:auto;">
+    {{pass}}
+		
+		<table >
+			<tr>
+				<td width="30%">
+				</td>
+				<td>					
+											
+				</td>
+			</tr>
+		</table>
+        
+		<center>
+			{{if auth.has_membership('Super-Administrator') or (auth.has_membership('Ecys-Administrator') & ecys_var == True):}}
+		    <h2>{{=T('Academic Control')}}
+				<br>
+				<small>{{=T(periodo.period.name)}} {{=str(periodo.yearp)}}</small>
+	        </h2>
+		    {{else:}}
+		    <h2>{{=T('My Courses')}}
+		    	{{if (auth.has_membership('Super-Administrator') == False )and (auth.has_membership('Ecys-Administrator') == False) :}}
+		    	<a onclick="javascript:introJs().setOptions({ 'skipLabel': '{{=T('Skip')}}', 'nextLabel': '{{=T('Next')}}', 'prevLabel': '{{=T('Previous')}}', 'doneLabel': '{{=T('Exit')}}' }).start();" href='javascript:void(0);' class="btn btn-primary" >
+				  <span class="icon-white icon-question-sign"></span>
+				</a>
+				{{pass}}
+				<br>
+				<small>{{=T(periodo.period.name)}} {{=str(periodo.yearp)}}</small>
+	        </h2>
+		    {{pass}}
+        
+    	</center>
+        
+        
+		<center>
+		    <table class="table-responsive">
+		        <tr>
+		        	
+		        	<td>
+		        		{{if (auth.has_membership('Teacher') and ecys_var == False) and (str(periodo.id) == str(currentyear_period.id)):}}
+		          		<ul class="dropdown"  class="close" aria-hidden="true"  style="height:10px;">
+						  	<a class="btn " class="dropdown-toggle" data-toggle="dropdown" style="height:32px; width:32px;">
+								<img src="{{=URL('static','images')}}/academic_control/seo47.png" height="32px" width="32px">
+							</a>
+						  	
+							<ul class="dropdown-menu">  
+								<li> 
+									<a  tabindex="-1" href="{{=URL('teacher_reports', 'grades_management')}}" id="menu_create_activity">
+										{{=T('Report management grades')}}
+									</a>
+								</li>
+								<li> 
+									<a  tabindex="-1" href="{{=URL('teacher_reports','validate_laboratory_management')}}" id="menu_create_activity">
+										{{=T('Management Reports Laboratory Revalidations')}}
+									</a>
+								</li>
+								<li> 
+									<a  tabindex="-1" href="{{=URL('teacher_reports','laboratory_replacing_management')}}" id="menu_create_activity">
+										{{=T('Report Equivalence Management Laboratory')}}
+									</a>
+								</li>
+
+							</ul>
+						</ul>
+						{{pass}}
+		          	</td>
+		          	
+					<td>
+						<br>
+						<div data-step="{{step_count+=1}}{{=step_count}}" data-intro="En esta sección podrá seleccionar el semestre que desea visualizar.">
+						<form class="form-inline" 
+						action="{{=URL('activity_control','courses_avg')}}" 
+						method='get'>
+							<select name="period">
+							{{for period in periods:}}
+								{{if str(period.id) == str(periodo.id):}}
+									{{var_sel="selected='selected'"}}
+								{{else:}}
+									{{var_sel=''}}
+								{{pass}}
+							  <option value="{{=period.id}}" {{=var_sel}}>
+							  {{=T(period.period.name)}}-{{=period.yearp}}
+							  </option>
+							{{pass}}
+							</select>
+							<input class="btn" type="submit" value="{{=T('Go')}}">
+						</form>	
+						</div>
+					</td>
+					{{if (auth.has_membership('Teacher') and ecys_var == False) or auth.has_membership('Student') or auth.has_membership('Academic') :}}
+					<td width="65%">
+					{{else:}}
+					<td width="70%">
+						<div align="right" width="100%">
+							<table class="table-bordered" width="100%">
+								
+									<td>
+										<small>
+											<br>
+											<center>
+												<font style="white-space:nowrap;"> 
+													<span class="label label-success">&nbsp;&nbsp;&nbsp;</span>													
+														{{=T('Notes above average')}}
+												</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+												<font style="white-space:nowrap;"> 
+													<span class="label label-warning">&nbsp;&nbsp;&nbsp;</span> 
+														{{=T('Notes on the average')}}
+												</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+												<font style="white-space:nowrap;">
+													<span class="label label-important">&nbsp;&nbsp;&nbsp;</span> 
+														{{=T('Notes Below Average')}}
+												</font>
+											</center>
+										</small>
+									</td>
+								</tr>
+							</table>
+						</div>
+		          	{{pass}}
+					</td>
+		        </tr>
+		    </table>
+		<table>
+	{{if (auth.has_membership('Teacher') and ecys_var == False) or auth.has_membership('Super-Administrator') or auth.has_membership('Ecys-Administrator'):}}
+		{{if auth.has_membership('Super-Administrator') or (auth.has_membership('Ecys-Administrator') & ecys_var == True):}}
+		<table class="table table-striped table-bordered">
+			<thead>
+				<tr bgcolor="#F2F2F2">
+					<th width="50%">{{=T('Course')}}<br><br></th>
+					<th width="20%"><center>{{=T('Section')}}<br><br></center></th>
+					<th width="10%" style="white-space:inherit;"><center>{{=T('Course Average')}}</center></th>
+					<th width="10%" style="white-space:inherit;"><center>{{=T('Laboratory Average')}}</center></th>
+					<th width="10%"><center>{{=T('Grades Management')}}<br><br></center></th>
+					{{if periodo == period:}}
+					<th width="10%"><center>{{=T('Asignación de estudiantes')}}<br><br></center></th>
+					{{pass}}
+				</tr>
+			</thead>
+		{{pass}}
+			<tbody>
+				{{var_do = True}}
+				{{var_admin = False}}
+				{{if auth.has_membership('Super-Administrator') or (auth.has_membership('Ecys-Administrator') & ecys_var == True):}}
+					{{comparation = T(period.period.name)+" "+str(period.yearp)}}
+					{{controlP = db((db.student_control_period.period_name==comparation)).select().first()}}
+					{{var_admin = True}}
+				{{pass}}
+				
+				{{for course in coursesAdmin:}}
+				<tr>
+					{{if var_admin==False:}}
+					<td>
+						<div class="navbar"
+						{{if var_do==True:}}
+							data-step="{{step_count+=1}}{{=step_count}}" data-intro="En esta sección se le muestra el nombre del curso impartido."
+						{{pass}}
+						>
+							<div class="navbar-inner">
+								<a style="cursor:pointer;" onclick="click_project_{{=course.user_project.project}}()"><center><h4>{{=split_name(course.user_project.project.name)}}</h4></center></a>
+								<script type="text/javascript">
+									function click_project_{{=course.user_project.project}}(){
+										$("#div_course_{{=course.user_project.project}}").toggle(300);
+									}
+								</script>
+							</div>
+						</div>
+						<div class="well" id="div_course_{{=course.user_project.project}}">
+						<table>
+							<tr>
+								<td width="35%"
+									{{if var_do==True:}}
+										data-step="{{step_count+=1}}{{=step_count}}" data-intro="Podrá visualizar la información general del curso."
+									{{pass}}
+								>
+									<br>
+									<b>{{=T('Section')}}:</b> {{=split_section(course.user_project.project.name)}}
+									<br>
+									
+					{{else:}}
+									
+									<td>{{=split_name(course[1])}}</td>
+									<td>{{=split_section(course[1])}}</td>
+									<td>
+										<center>
+										{{if course[2] < float(controlP.min_average):}}		
+											<span class = "label label-important">
+												{{=round(course[2],2)}}
+											</span>		
+										{{elif course[2]>=float(controlP.min_average) and course[2] <= float(controlP.max_average):}}
+											<span class = "label label-warning">
+												{{=round(course[2],2)}}
+											</span>
+										{{else:}}
+											<span class = "label label-success">
+												{{=round(course[2],2)}}
+											</span>
+										{{pass}}
+										</center>
+									</td>
+									<td>
+										<center>
+										{{if course[3] < float(controlP.min_average):}}
+											<span class = "label label-important">
+												{{=round(course[3],2)}}
+											</span>	
+										{{elif course[3] >= float(controlP.min_average) and course[3] <= float(controlP.max_average):}}
+											<span class = "label label-warning">
+												{{=round(course[3],2)}}
+											</span>
+										{{else:}}
+											<span class = "label label-success">
+												{{=round(course[3],2)}}
+											</span>
+										{{pass}}
+										</center>
+									</td>
+
+					{{pass}}
+							</td>
+
+					{{if var_admin==True:}}
+
+					<td>
+						<center>
+							<a title="{{=T('Grades Management')}}" class="btn" href="{{=URL('activity_control', 'students_control', vars=dict(project = course[0], period=periodo.id))}}">
+								<img src="{{=URL('static','images')}}/academic_control/time3.png" height="32" width="32">
+							</a>
+						</center>
+					</td>
+					{{if periodo == period:}}
+					<td>
+						<center>
+							<a title="{{=T('Asignación')}}" class="btn" href="{{=URL('student_academic', 'academic_assignation', vars=dict(project = course[0], year_period=periodo.id))}}">
+								<img src="{{=URL('static','images')}}/academic_control/users6.png" height="32" width="32">
+							</a>
+						</center>
+					</td>
+					{{pass}}
+					{{else:}}
+					<td colspan="4">
+						<table>
+							<tr>
+								<td width="20%"
+								{{if var_do==True:}}
+									data-step="{{step_count+=1}}{{=step_count}}" data-intro="Esta opción le permite gestionar la asignación de los estudiantes a la sección del curso en el periodo seleccionado."
+								{{pass}}
+								>
+									<center>
+										{{assignation_var = db((db.user_project.assigned_user==auth.user.id)&\
+					                        ((db.user_project.period <= periodo.id) & \
+					                        ((db.user_project.period + db.user_project.periods) > periodo.id))&\
+					                        (db.user_project.project==course.user_project.project)).select(db.user_project.ALL).first()}}
+										<a class="btn" href="{{=URL('student_academic', 'academic_assignation', vars=dict(assignation = assignation_var.id, year_period = str(periodo.id)))}}" style="height:32px; width:32px;">
+											<img src="{{=URL('static','images')}}/academic_control/users6.png" height="32" width="32">							
+										</a><br>
+										<a href="{{=URL('student_academic', 'academic_assignation', vars=dict(assignation = assignation_var.id, year_period = str(periodo.id)))}}">
+											{{=T('List of Students')}}	
+										</a>
+									</center>
+								</td>
+								<td width="20%"
+								{{if var_do==True:}}
+									data-step="{{step_count+=1}}{{=step_count}}" data-intro="Esta opción le permite gestionar la ponderación, planificación y notas de los estudiantes asignados al curso."
+								{{pass}}
+								>
+									<center>
+										<a class="btn" href="{{=URL('activity_control', 'students_control', vars=dict( project = course.user_project.project, period=periodo.id))}}" style="height:32px; width:32px;">
+											<img src="{{=URL('static','images')}}/academic_control/time3.png" height="32" width="32">
+										</a><br>
+										<a href="{{=URL('activity_control', 'students_control', vars=dict( project = course.user_project.project, period=periodo.id))}}">
+											{{=T('Grades Management')}}
+										</a>
+									</center>
+								</td>
+								<td width="20%"
+								{{if var_do==True:}}
+									data-step="{{step_count+=1}}{{=step_count}}" data-intro="Al seleccionar esta opción podrá enviarles avisos a los estudiantes asignados al curso."
+								{{pass}}
+								>
+									<center>
+										<a class="btn" href="{{=URL('notification', 'teacher_mail_notifications', vars=dict(assignation = assignation_var.id, period = periodo.id ))}}" style="height:32px; width:32px;">
+											<img src="{{=URL('static','images')}}/academic_control/send4.png" height="32" width="32">
+										</a><br>
+										<a href="{{=URL('notification', 'teacher_mail_notifications', vars=dict(assignation = assignation_var.id, period = periodo.id))}}">
+											{{=T('Send Notice')}}
+										</a>
+									</center>
+								</td>
+								<td width="20%"
+								{{if var_do==True:}}
+									data-step="{{step_count+=1}}{{=step_count}}" data-intro="En esta opción podrá visualizar los avisos que ha enviado con anterioridad, así como los avisos enviados por los tutores académicos dentro del curso."
+								{{pass}}
+								>
+									<center>
+										<a class="btn" href="{{=URL('notification', 'teacher_register_mail_notifications', vars=dict( project = course.user_project.project, period=periodo.id, type = 'course_list'))}}" style="height:32px; width:32px;">
+											<img src="{{=URL('static','images')}}/academic_control/envelope33.png" height="32" width="32">
+										</a><br>
+										<a  href="{{=URL('notification', 'teacher_register_mail_notifications', vars=dict( project = course.user_project.project, period=periodo.id, type = 'course_list'))}}">
+											{{=T('Register Notices')}}
+										</a>
+									</center>
+								</td>
+								<td width="20%"
+								{{if var_do==True:}}
+									data-step="{{step_count+=1}}{{=step_count}}" data-intro="En esta opción podrá gestionar documentos los cuales podrán ser visualizados por los estudiantes asignados al curso."
+								{{pass}}
+								>
+									<center>
+										
+										<a class="btn" href="{{=URL('library', 'file_managers', vars=dict( pro = assignation_var.id, tipo='3', semester = periodo.id))}}" style="height:32px; width:32px;">
+											<img src="{{=URL('static','images')}}/academic_control/file96.png" height="32" width="32">
+										</a><br>
+										<a  href="{{=URL('library', 'file_managers', vars=dict( pro = assignation_var.id, tipo='3', semester = periodo.id))}}">
+											{{=T('Library')}}
+										</a>
+									</center>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<br>
+								</td>
+							</tr>
+							<tr>
+								<td width="20%"
+								{{if var_do==True:}}
+									data-step="{{step_count+=1}}{{=step_count}}" data-intro="Al seleccionar esta opción podrá visualizar los tutores académicos asignados al curso y su proceso de práctica final."
+								{{pass}}
+								>
+									<center>										
+										<a class="btn" href="{{=URL('teacher', 'students', vars=dict( project = course.user_project.project, year_period=periodo.id))}}" style="height:32px; width:32px;">
+											<img src="{{=URL('static','images')}}/academic_control/teacher35.png" height="32" width="32">							
+										</a><br>
+										<a href="{{=URL('teacher', 'students', vars=dict( project = course.user_project.project, year_period=periodo.id))}}">
+											{{=T('Show Students')}}	
+										</a>
+									</center>
+								</td>
+								<td width="20%"
+								{{if var_do==True:}}
+									data-step="{{step_count+=1}}{{=step_count}}" data-intro="En esta sección podrá visualizar las gráficas del proceso del curso."
+								{{pass}}
+								>
+									<center>
+										<a class="btn" href="{{=URL('teacher', 'graphs', vars=dict( project = course.user_project.project, year_period=periodo.id))}}" style="height:32px; width:32px;">
+											<img src="{{=URL('static','images')}}/academic_control/ascending24.png" height="32" width="32">
+										</a><br>
+										<a href="{{=URL('teacher', 'graphs', vars=dict( project = course.user_project.project, year_period=periodo.id))}}">
+											{{=T('Show Statistics')}}
+										</a>
+									</center>
+								</td>
+								{{if str(periodo.id) == str(currentyear_period.id):}}
+								<td width="20%"
+								{{if var_do==True:}}
+									data-step="{{step_count+=1}}{{=step_count}}" data-intro="Esta opción le permite visualizar el listado de reportes pendientes de calificar en relación al curso."
+								{{pass}}
+								>
+									{{
+									tempReports=[]
+									var_count_report = 00
+									my_projects = db((db.user_project.assigned_user == auth.user.id)&(db.project.id == db.user_project.project)).select()
+							        for project in my_projects:
+							            for assignation in project.project.user_project.select():
+							            	if assignation.project.id == course.user_project.project:
+							            		teacher_var =db((db.user_project.project == assignation.project)&
+								                        (db.user_project.assigned_user == db.auth_user.id)&
+								                        (db.auth_membership.user_id == db.auth_user.id)&
+								                        (db.auth_membership.group_id == db.auth_group.id)&
+								                        (db.auth_group.role == 'Teacher')).select().last()
+								                if teacher_var is not None:
+								                    if teacher_var.user_project.assigned_user == auth.user.id:
+										                q=((assignation.report((db.report.status == db.report_status.id)&((db.report_status.name == 'Grading')|(db.report_status.name == 'EnabledForTeacher')))))
+										                for report in q.select():
+										                	tempReports.append(report.report.id)
+										                	var_count_report+=1
+										                pass
+										            pass
+										        pass
+								            pass
+							            pass
+							        pass
+							        for report in db(db.report.id.belongs(tempReports)).select():							        	
+							        pass
+									}}
+									<center>
+										<a class="btn" href="{{=URL('teacher', 'todo_reports', vars=dict(project = course.user_project.project, type='list'))}}" style="height:32px; width:32px;">
+											<img src="{{=URL('static','images')}}/academic_control/business175.png" height="32" width="32">
+										</a><br>
+										<a href="{{=URL('teacher', 'todo_reports', vars=dict(project = course.user_project.project, type='list'))}}">
+											{{=T('Grade Pending Reports')}} ({{=var_count_report}})
+										</a>
+									</center>
+								</td>
+								<td width="20%"
+								{{if var_do==True:}}
+									data-step="{{step_count+=1}}{{=step_count}}" data-intro="Al seleccionar esta opción podrá visualizar las solicitudes de cambio de ponderación, actividades y notas."
+								{{pass}}
+								>
+									{{var_count = 0
+									var_count = var_count + db((db.request_change_weighting.status=='pending')&(db.request_change_weighting.period==current_year_period().id)&(db.request_change_weighting.project==course.user_project.project)).count()
+						            var_count = var_count + db((db.requestchange_activity.status=='pending')&(db.requestchange_activity.semester==current_year_period().id)&(db.requestchange_activity.course==course.user_project.project)).count()
+						            var_count = var_count + db((db.request_change_grades.status=='pending')&(db.request_change_grades.period==current_year_period().id)&(db.request_change_grades.project==course.user_project.project)).count()
+
+									}}
+									<center>
+										<a class="btn" href="{{=URL('activity_control', 'courses_list_request', vars=dict( project = course.user_project.project, period=periodo.id, type = 'course_list'))}}" style="height:32px; width:32px;">
+											<img src="{{=URL('static','images')}}/academic_control/research.png" height="32" width="32">
+										</a><br>
+										<a  href="{{=URL('activity_control', 'courses_list_request', vars=dict(project = course.user_project.project, type='list'))}}">
+											{{=T('Request Control')}} ({{=var_count}})
+										</a>
+									</center>
+								</td>
+								{{pass}}
+								<td width="20%"
+								{{if var_do==True:}}
+									data-step="{{step_count+=1}}{{=step_count}}" data-intro="Al seleccionar esta opción podrá realizar las evaluaciones 360 que esten activas."
+								{{pass}}
+								>
+									
+									<center>
+										<a class="btn" href="{{=URL('evaluation', 'evaluation_list', vars=dict( project = course.user_project.project, period=periodo.id))}}" style="height:32px; width:32px;">
+											<img src="{{=URL('static','images')}}/academic_control/verification5.png" height="32" width="32">
+										</a><br>
+										<a  href="{{=URL('evaluation', 'evaluation_list', vars=dict(project = course.user_project.project, period=periodo.id))}}">
+											{{=T('Performance Evaluations')}} 360
+										</a>
+									</center>
+								</td>
+							</tr>
+						</table>
+					</td>
+					{{pass}}
+				{{if (auth.has_membership('Teacher') and ecys_var == False):}}
+				</table></div></td>
+				{{pass}}
+				</tr>
+				{{var_do = False}}
+				{{pass}}
+			</tbody>
+			
+		</table>
+		{{else:}}
+			{{if countcoursesAdminT>0:}}
+				<table >		
+					{{var_do=True}}		
+						{{for course in coursesAdmin:}}
+						<td>
+						<div class="navbar" 
+						{{if var_do==True:}}
+							data-step="{{step_count+=1}}{{=step_count}}" data-intro="En esta sección se le muestra el nombre del curso al que se encuentra asignado como tutor académico."
+						{{pass}}
+						>
+							<div class="navbar-inner" >
+								<a style="cursor:pointer;" onclick="click_project_student_{{=course.user_project.project}}()"><center><h4>{{=split_name(course.user_project.project.name)}}</h4></center></a>
+								<script type="text/javascript">
+									function click_project_student_{{=course.user_project.project}}(){
+										$("#div_course_student_{{=course.user_project.project}}").toggle(300);
+									}
+								</script>
+							</div>
+
+						</div>
+						<div class="well" id="div_course_student_{{=course.user_project.project}}">
+						<table>
+							<tr>
+								<td width="35%"
+								{{if var_do==True:}}
+									data-step="{{step_count+=1}}{{=step_count}}" data-intro="Podrá visualizar la información general del curso. La sección del curso y el tipo de membresía asociada"
+								{{pass}}
+								>
+									<br>
+									<b>{{=T('Section')}}:</b> {{=split_section(course.user_project.project.name)}}
+									<br>
+									<b>{{=T('Membership')}}:</b> {{=T('Rol Student')}}
+									
+									
+								</td>
+							
+							<td colspan="4">
+								<table>
+									<tr>
+										<td width="20%"
+										{{if var_do==True:}}
+											data-step="{{step_count+=1}}{{=step_count}}" data-intro="Esta opción le permite gestionar la asignación de los estudiantes a la sección del curso en el periodo seleccionado."
+										{{pass}}
+										>
+											{{assignation_var = db((db.user_project.assigned_user==auth.user.id)&\
+					                        ((db.user_project.period <= periodo.id) & \
+					                        ((db.user_project.period + db.user_project.periods) > periodo.id))&\
+					                        (db.user_project.project==course.user_project.project)).select(db.user_project.ALL).first()}}
+											<center>
+												<a class="btn" href="{{=URL('student_academic', 'academic_assignation', vars=dict(assignation = assignation_var.id, year_period = str(periodo.id)))}}" style="height:32px; width:32px;">
+													<img src="{{=URL('static','images')}}/academic_control/users6.png" height="32" width="32">							
+												</a><br>
+												<a href="{{=URL('student_academic', 'academic_assignation', vars=dict(assignation = assignation_var.id, year_period = str(periodo.id)))}}">
+													{{=T('List of Students')}}	
+												</a>
+											</center>
+										</td>
+										<td width="20%"
+										{{if var_do==True:}}
+											data-step="{{step_count+=1}}{{=step_count}}" data-intro="Esta opción le permite gestionar la ponderación, planificación y notas de los estudiantes asignados al curso."
+										{{pass}}
+										>
+											<center>
+												<a class="btn" href="{{=URL('activity_control', 'students_control', vars=dict( project = course.user_project.project, period=periodo.id))}}" style="height:32px; width:32px;">
+													<img src="{{=URL('static','images')}}/academic_control/time3.png" height="32" width="32">
+												</a><br>
+												<a href="{{=URL('activity_control', 'students_control', vars=dict( project = course.user_project.project, period=periodo.id))}}">
+													{{=T('Grades Management')}}
+												</a>
+											</center>
+										</td>
+										<td width="20%"
+										{{if var_do==True:}}
+											data-step="{{step_count+=1}}{{=step_count}}" data-intro="Al seleccionar esta opción podrá enviarles avisos a los estudiantes asignados al curso."
+										{{pass}}
+										>
+											<center>
+												<a class="btn" href="{{=URL('notification', 'mail_notifications', vars=dict( assignation = assignation_var.id, period = periodo.id))}}" style="height:32px; width:32px;">
+													<img src="{{=URL('static','images')}}/academic_control/send4.png" height="32" width="32">
+												</a><br>
+												<a href="{{=URL('notification', 'mail_notifications', vars=dict( assignation = assignation_var.id, period = periodo.id))}}">
+													{{=T('Send Notice')}}
+												</a>
+											</center>
+										</td>
+										<td width="20%"
+										{{if var_do==True:}}
+											data-step="{{step_count+=1}}{{=step_count}}" data-intro="En esta opción podrá visualizar los avisos que ha enviado con anterioridad. "
+										{{pass}}
+										>
+											<center>
+												<a class="btn" href="{{=URL('notification', 'register_mail_notifications', vars=dict( project = course.user_project.project, period=periodo.id, type = 'course_list'))}}" style="height:32px; width:32px;">
+													<img src="{{=URL('static','images')}}/academic_control/envelope33.png" height="32" width="32">
+												</a><br>
+												<a  href="{{=URL('notification', 'register_mail_notifications', vars=dict( project = course.user_project.project, period=periodo.id, type = 'course_list'))}}">
+													{{=T('Register Notices')}}
+												</a>
+											</center>
+										</td>
+										<td width="20%"
+										{{if var_do==True:}}
+											data-step="{{step_count+=1}}{{=step_count}}" data-intro="En esta opción podrá gestionar documentos los cuales podrán ser visualizados por los estudiantes asignados al curso."
+										{{pass}}
+										>
+											<center>
+												
+												<a class="btn" href="{{=URL('library', 'file_managers', vars=dict( pro = assignation_var.id, tipo='3', semester = periodo.id))}}" style="height:32px; width:32px;">
+													<img src="{{=URL('static','images')}}/academic_control/file96.png" height="32" width="32">
+												</a><br>
+												<a  href="{{=URL('library', 'file_managers', vars=dict( pro = assignation_var.id, tipo='3', semester = periodo.id))}}">
+													{{=T('Library')}}
+												</a>
+											</center>
+										</td>
+									</tr>
+									<tr>
+										<td width="20%"
+										{{if var_do==True:}}
+											data-step="{{step_count+=1}}{{=step_count}}" data-intro="Al seleccionar esta opción podrá gestionar los eventos en relación al curso que podrán ser visualizados por todos los usuarios del sistema."
+										{{pass}}
+										>
+											<center>
+												<a class="btn" href="{{=URL('default', 'event_editor', vars=dict( assignation = assignation_var.id))}}" style="height:32px; width:32px;">
+													<img src="{{=URL('static','images')}}/academic_control/add98.png" height="32" width="32">
+												</a><br>
+												<a  href="{{=URL('default', 'event_editor', vars=dict( assignation = assignation_var.id))}}">
+													{{=T('Manage events')}}
+												</a>
+											</center>
+										</td>
+										<td width="20%"
+										{{if var_do==True:}}
+											data-step="{{step_count+=1}}{{=step_count}}" data-intro="En esta sección podrá visualizar las gráficas del proceso del curso."
+										{{pass}}
+										>
+											<center>
+												<a class="btn" href="{{=URL('activity_control', 'graphs', vars=dict( project = course.user_project.project, year_period=periodo.id))}}" style="height:32px; width:32px;">
+													<img src="{{=URL('static','images')}}/academic_control/ascending24.png" height="32" width="32">
+												</a><br>
+												<a href="{{=URL('activity_control', 'graphs', vars=dict( project = course.user_project.project, year_period=periodo.id))}}">
+													{{=T('Show Statistics')}}
+												</a>
+											</center>
+										</td>
+										<td width="20%"
+										{{if var_do==True:}}
+											data-step="{{step_count+=1}}{{=step_count}}" data-intro="Al seleccionar esta opción podrá realizar las evaluaciones 360 que esten activas."
+										{{pass}}
+										>
+											
+											<center>
+												<a class="btn" href="{{=URL('evaluation', 'evaluation_list', vars=dict( project = course.user_project.project, period=periodo.id))}}" style="height:32px; width:32px;">
+													<img src="{{=URL('static','images')}}/academic_control/verification5.png" height="32" width="32">
+												</a><br>
+												<a  href="{{=URL('evaluation', 'evaluation_list', vars=dict(project = course.user_project.project, period=periodo.id))}}">
+													{{=T('Performance Evaluations')}} 360
+												</a>
+											</center>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+					</td>
+				</tr>
+						{{var_do=False}}
+						{{pass}}
+							
+						
+				
+			</table>
+			{{pass}}
+
+			
+			{{if coursesStudentT>0:}}
+				<table >
+					{{var_do=True}}
+					{{for course in coursesStudent:}}
+						<tr>
+							<td>
+							<div class="navbar"
+							{{if var_do==True:}}
+								data-step="{{step_count+=1}}{{=step_count}}" data-intro="En esta sección se le muestra el nombre del curso al que se encuentra asignado."
+							{{pass}}
+							>
+								<div class="navbar-inner">
+									<a style="cursor:pointer;" onclick="click_project_academic_{{=course.academic_course_assignation.assignation}}()"><center><h4>{{=split_name(course.academic_course_assignation.assignation.name)}}</h4></center></a>
+									<script type="text/javascript">
+										function click_project_academic_{{=course.academic_course_assignation.assignation}}(){
+											$("#div_course_academic_{{=course.academic_course_assignation.assignation}}").toggle(300);
+										}
+									</script>
+								</div>
+							</div>
+							<div class="well" style="background-color:#FAFAFA;" id="div_course_academic_{{=course.academic_course_assignation.assignation}}">
+							<table>
+								<tr>
+									<td width="45%"
+									{{if var_do==True:}}
+										data-step="{{step_count+=1}}{{=step_count}}" data-intro="En esta sección podrá visualizar la información general del curso. La sección del curso y el tipo de membresía asociada."
+									{{pass}}
+									>
+										<br>
+										<b>{{=T('Section')}}:</b> {{=split_section(course.academic_course_assignation.assignation.name)}}
+										<br>
+										<b>{{=T('Membership')}}:</b> {{=T('Student')}}
+									</td>						
+
+									<td colspan="4">
+										<table>
+											<tr>										
+												<td width="20%"
+												{{if var_do==True:}}
+													data-step="{{step_count+=1}}{{=step_count}}" data-intro="Esta opción le permite visualizar la ponderación, planificación y las notas obtenidas en cada una de las actividades."
+												{{pass}}
+												>
+													
+													<center>
+														<a class="btn" href="{{=URL('activity_control', 'students_control', vars=dict( project = course.academic_course_assignation.assignation.id, period=periodo.id))}}" style="height:32px; width:32px;">
+															<img src="{{=URL('static','images')}}/academic_control/time3.png" height="32" width="32">
+														</a><br>
+														<a href="{{=URL('activity_control', 'students_control', vars=dict( project = course.academic_course_assignation.assignation.id, period=periodo.id))}}">
+															{{=T('View my Grades')}}
+														</a>
+													</center>
+												</td>
+												{{if auth.has_membership('Academic'):}}
+												<td width="20%"
+												{{if var_do==True:}}
+													data-step="{{step_count+=1}}{{=step_count}}" data-intro="Esta opción le permitirá enviarle mensajes tanto al catedrático como al tutor académico."
+												{{pass}}
+												>
+													
+													<center>
+														<a class="btn" href="{{=URL('notification_student', 'send_mail', vars=dict( project = course.academic_course_assignation.assignation.id, semester_id=periodo.id))}}" style="height:32px; width:32px;">
+															<img src="{{=URL('static','images')}}/academic_control/send9.png" height="32" width="32">
+														</a><br>
+														<a href="{{=URL('notification_student', 'send_mail', vars=dict( project = course.academic_course_assignation.assignation.id, semester_id=periodo.id))}}">
+															{{=T('Send Message')}}
+														</a>
+													</center>
+												</td>
+												<td width="20%"
+												{{if var_do==True:}}
+													data-step="{{step_count+=1}}{{=step_count}}" data-intro="En esta opción podrá visualizar los mensajes que ha enviado con anterioridad."
+												{{pass}}
+												>
+													
+													<center>
+														<a class="btn" href="{{=URL('notification_student', 'sent_mails', vars=dict( project = course.academic_course_assignation.assignation.id, period=periodo.id, type='acadmic_control'))}}" style="height:32px; width:32px;">
+															<img src="{{=URL('static','images')}}/academic_control/envelope33.png" height="32" width="32">
+														</a><br>
+														<a href="{{=URL('notification_student', 'sent_mails', vars=dict( project = course.academic_course_assignation.assignation.id, period=periodo.id, type='acadmic_control'))}}">
+															{{=T('Sent Messages')}}
+														</a>
+													</center>
+												</td>
+												<td width="20%"
+												{{if var_do==True:}}
+													data-step="{{step_count+=1}}{{=step_count}}" data-intro="En esta opción podrá visualizar los documentos compartidos por los catedráticos y tutores académicos."
+												{{pass}}
+												>
+													<center>
+														<a class="btn" href="{{=URL('library', 'file_managers', vars=dict( pro = course.academic_course_assignation.assignation.id, semester = periodo.id, tipo = '5'))}}" style="height:32px; width:32px;">
+															<img src="{{=URL('static','images')}}/academic_control/file96.png" height="32" width="32">
+														</a><br>
+														<a  href="{{=URL('library', 'file_managers', vars=dict( pro = course.academic_course_assignation.assignation.id, semester = periodo.id, tipo = '5'))}}">
+															{{=T('Library')}}
+														</a>
+													</center>
+												</td>
+												<td width="20%"
+												{{if var_do==True:}}
+													data-step="{{step_count+=1}}{{=step_count}}" data-intro="En esta sección podrá visualizar las gráficas del proceso del curso."
+												{{pass}}
+												>
+													<center>
+														<a class="btn" href="{{=URL('activity_control', 'graphs', vars=dict( project = course.academic_course_assignation.assignation.id, year_period=periodo.id))}}" style="height:32px; width:32px;">
+															<img src="{{=URL('static','images')}}/academic_control/ascending24.png" height="32" width="32">
+														</a><br>
+														<a href="{{=URL('activity_control', 'graphs', vars=dict( project = course.academic_course_assignation.assignation.id, year_period=periodo.id))}}">
+															{{=T('Show Statistics')}}
+														</a>
+													</center>
+												</td>
+												<td width="20%"
+												{{if var_do==True:}}
+													data-step="{{step_count+=1}}{{=step_count}}" data-intro="Al seleccionar esta opción podrá realizar las evaluaciones 360 que esten activas."
+												{{pass}}
+												>
+													
+													<center>
+														<a class="btn" href="{{=URL('evaluation', 'evaluation_list', vars=dict( project = course.academic_course_assignation.assignation.id, period=periodo.id))}}" style="height:32px; width:32px;">
+															<img src="{{=URL('static','images')}}/academic_control/verification5.png" height="32" width="32">
+														</a><br>
+														<a  href="{{=URL('evaluation', 'evaluation_list', vars=dict(project = course.academic_course_assignation.assignation.id, period=periodo.id))}}">
+															{{=T('Performance Evaluations')}} 360
+														</a>
+													</center>
+												</td>
+												{{pass}}
+											</tr>
+										</table>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					{{var_do=False}}
+					{{pass}}
+				</table>
+			{{pass}}
+
+			{{if countcoursesAdminT==0 and coursesStudentT==0:}}
+				<center><h3>No tiene asignaciones</h3></center>
+			{{pass}}
+		{{pass}}
+	</div>
+</div>
+{{if (auth.has_membership('Super-Administrator') == False )and (auth.has_membership('Ecys-Administrator') == False) :}}
+	{{if visited is None:}}
+	<script type="text/javascript">
+	      var introguide = introJs().setOptions({ 'skipLabel': '{{=T('Skip')}}', 'nextLabel': '{{=T('Next')}}', 'prevLabel': '{{=T('Previous')}}', 'doneLabel': '{{=T('Exit')}}' });
+	      introguide.start(); 
+	  </script>
+	    {{db.page_visited.insert(user_id = auth.user.id, page_name ='courses_avg')}}
+	{{pass}}
+{{pass}}

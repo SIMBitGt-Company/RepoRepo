@@ -1,0 +1,174 @@
+{{extend 'template.html'}}
+<div class="row-fluid">
+    <div class="well span12" style="overflow:auto;">
+    <h1>{{=T(actual_period.period.name)}} - {{=actual_period.yearp}}</h1>
+        <table id="general-report" class="table-striped table-hover table-bordered" style="align:0 auto;">
+        <tr> 
+          <td>
+          <form class="form-inline" 
+          action="{{=URL('admin','general_report')}}" 
+            method='get'>
+            <a onclick="window.history.back()" class="btn" ><i class="icon-arrow-left"></i> {{=T('Back')}}</a>
+             <select name="period">
+                {{for period in periods:}}
+                  <option value="{{=period.id}}" 
+                  {{if period.id == actual_period.period.id:}}
+                  selected
+                  {{pass}}
+                  >
+                  {{=T(period.period.name)}} - {{=period.yearp}}
+                  </option>
+                {{pass}}
+            </select>
+            <input class="btn" type="submit" value="{{=T('Filter')}}">
+          </form>
+          </td>
+        </tr>
+        </table>
+        <a class="btn btn-success pull-right"
+           onclick="tableToExcel('general-report','');">
+            <i class="icon-download icon-white"></i>
+            {{=T('Excel (XLS)')}}
+        </a>
+		<table id="general-report" class="table table-bordered">
+			<thead>
+				<tr>
+					<th rowspan="2">
+						{{=T('Course Name')}}
+					</th>
+					<th rowspan="2">
+                        {{=T('Teacher Name')}}
+                    </th>
+                    <th colspan="3">
+                        {{=T('Course Results')}}
+                    </th>
+                    <th colspan="3">
+                        {{=T('Laboratory Results')}}
+                    </th>
+                    <th colspan="5">
+                        {{=T('Mid terms')}}
+                    </th>
+                    <th rowspan="2">
+                        {{=T('Final')}}
+                    </th>
+                    <th colspan="2">
+                        {{=T('Recovery')}}
+                    </th>
+                    <th colspan="3">
+                        {{=T('Desertion')}}
+                    </th>
+				</tr>
+                <tr>
+                    <th>{{=T('Approved')}}</th>
+                    <th>{{=T('Failed')}}</th>
+                    <th>{{=T('Mean')}}</th>
+                    <th>{{=T('Approved')}}</th>
+                    <th>{{=T('Failed')}}</th>
+                    <th>{{=T('Mean')}}</th>
+                    <th>{{=T('Assigned')}}</th>
+                    <th>{{=T('Mid term')}} 1</th>
+                    <th>{{=T('Mid term')}} 2</th>
+                    <th>{{=T('Mid term')}} 3</th>
+                    <th>{{=T('Assistance')}}</th>
+                    <th>{{=T('Recovery term')}} 1</th>
+                    <th>{{=T('Recovery term')}} 2</th>
+                    <th>{{=T('Started')}}</th>
+                    <th>{{=T('Gone')}}</th>
+                    <th>{{=T('Stayed')}}</th>
+
+                </tr>
+			</thead>
+            <tbody>
+            {{for area in areas:}}
+            <tr>
+                <td colspan="2">
+                <strong>{{=area.name}}</strong>
+                </td>
+                <td colspan="17"></td>
+
+            </tr>
+            {{for project in get_projects(area.id):}}
+                <tr>
+                <td>{{=project.name}}</td>
+                {{rows = get_teacher(project.id)}}
+                {{if rows != None:}}
+                    <td>
+                    {{for teacher in rows:}}
+                    {{=teacher.assigned_user.first_name.lower()}}
+                    {{=teacher.assigned_user.last_name.lower()}}
+                    {{pass}}
+                    </td>
+                {{else:}}
+                    <td>{{=T('Pending')}}</td>
+                {{pass}}
+                {{final_report, metrics, parcial_1, parcial_2, parcial_3, \
+                    final, primera_r, segunda_r = get_final_report(project.id,actual_period)}}
+                {{if final_report != None and metrics != None:}}
+                <td>
+                    {{=metrics.curso_aprobados or ''}}
+                </td>
+                <td>
+                    {{=metrics.curso_reprobados or ''}}
+                </td>
+                <td>
+                    {{=metrics.curso_promedio or ''}}
+                </td>
+                <td>
+                    {{=metrics.lab_aprobados or ''}}
+                </td>
+                <td>
+                    {{=metrics.lab_reprobados or ''}}
+                </td>
+                <td>
+                    {{=metrics.lab_promedio or ''}}
+                </td>
+                <td>{{=metrics.curso_asignados_actas or ''}}</td>
+                <td>
+                {{if parcial_1 != None:}}
+                    {{=parcial_1.media}}
+                {{pass}}
+                </td>
+                <td>
+                {{if parcial_2 != None:}}
+                    {{=parcial_2.media}}
+                {{pass}}
+                </td>
+                <td>
+                {{if parcial_3 != None:}}
+                    {{=parcial_3.media}}
+                {{pass}}
+                </td>
+                <td>
+                    {{=metrics.curso_en_final}}
+                </td>
+                <td>
+                {{if final != None:}}
+                    {{=final.media}}
+                {{pass}}
+                </td>
+                <td>
+                {{if primera_r != None:}}
+                    {{=primera_r.media}}
+                {{pass}}
+                </td>
+                <td>
+                {{if segunda_r != None:}}
+                    {{=segunda_r.media}}
+                {{pass}}
+                </td>
+                <td>{{=final_report.desertion_started}}</td>
+                <td>{{=final_report.desertion_gone}}</td>
+                <td>{{=final_report.desertion_continued}}</td>
+                {{else:}}
+                <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                <td></td><td></td><td></td>
+                {{pass}}
+                </tr>
+            {{pass}}
+            {{pass}}
+            </tbody>
+			
+		</table>
+	</div>
+</div>

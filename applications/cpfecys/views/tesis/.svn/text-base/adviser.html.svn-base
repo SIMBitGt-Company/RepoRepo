@@ -1,0 +1,3 @@
+{{extend 'template.html'}}
+<h1>{{=T('Administración de Asesores')}}</h1>
+{{=grid}}

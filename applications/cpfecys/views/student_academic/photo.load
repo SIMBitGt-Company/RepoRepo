@@ -1,0 +1,98 @@
+{{if request.vars['option'] is None:}}
+	{{try:}}
+		{{photo = db(db.auth_user.id==request.vars['id_user']).select(db.auth_user.photo).first().photo}}
+		<!--<img id="img_img" src="{{=URL('default/download', photo)}}" alt="No photo" > -->
+
+		{{var_query=db(db.auth_user.id==request.vars['id_user']).select().first()}}
+		{{if photo is not None:}}
+			
+			<img id="img_img" src="{{= URL('default/download', var_query.photo)}}" alt="No photo" height="50%" width="40%">
+			<br>
+			{{review = db((db.photo_review.user_id == request.vars['id_user'])).select().first()
+			if review is None:
+			    }}<font color="blue"> {{=T('Pending Photo')}}</font>
+			{{else:
+			    if review.accepted == True:
+			        }}<font color="green">{{=T('Photo Accepted')}}</font>
+			    {{else:
+			    	}}<font color="red">{{=T('Photo Rejected')}}</font>
+			    {{pass
+			pass
+			}}
+		{{else:}}
+			<font color="blue">{{=T('Photo not uploaded')}}</font>
+		{{pass}}
+		
+		<h3>
+		{{= var_query.username}} - {{= var_query.first_name}} {{= var_query.last_name}}
+		<br>
+		<small>{{=var_query.email}}</small>
+		</h3>
+		<div id='div_action'>
+		</div>
+		<script>
+			function click_acept() {
+				$("#div_action").load("{{=URL('student_academic', 'photo.load', vars=dict(option = 'accept', id_user = request.vars['id_user']))}}");
+				{{if auth.has_membership('Super-Administrator') == False:}}
+					location.reload();
+				{{pass}}
+			}
+			function click_reject() {				
+				$("#div_action").load("{{=URL('student_academic', 'photo.load', vars=dict(option = 'reject', id_user = request.vars['id_user']))}}");
+				{{if auth.has_membership('Super-Administrator') == False:}}
+					location.reload();
+				{{pass}}
+			}
+		</script>
+		{{if photo is not None:}}
+			<a class="btn btn-success" onclick="click_acept()">{{=T('Accept Photo')}}</a>
+			<a class="btn btn-danger" onclick="click_reject()">{{=T('Reject Photo')}}</a>
+		{{pass}}
+	{{except:}}
+		{{None}}
+	{{pass}}
+{{elif request.vars['option'] == 'accept':}}
+	{{
+		try:
+			review = db((db.photo_review.user_id == request.vars['id_user'])).select().first()
+			if review is None:
+				db.photo_review.insert(user_id = request.vars['id_user'], accepted = True, photo = db(db.auth_user.id==request.vars['id_user']).select(db.auth_user.photo).first().photo)
+			else:
+				db(db.photo_review.id==review.id).update(accepted=True)
+			pass
+			response.flash = T('Photo has been accepted')
+		except:
+			None
+		pass
+		
+	}}
+	{{if auth.has_membership('Super-Administrator'):}}
+		<script>
+			$(document).ready(function(){
+				location.reload(); 
+			}); 
+		</script>
+	{{pass}}
+{{elif request.vars['option'] == 'reject':}}
+	{{
+		try:
+			review = db((db.photo_review.user_id == request.vars['id_user'])).select().first()
+			if review is None:
+				db.photo_review.insert(user_id = request.vars['id_user'], accepted = False, photo = db(db.auth_user.id==request.vars['id_user']).select(db.auth_user.photo).first().photo )
+			else:
+				db(db.photo_review.id==review.id).update(accepted=False)
+			pass
+			response.flash = T('Photo has been rejected')
+		except:
+			None
+		pass
+		
+	}}
+	{{if auth.has_membership('Super-Administrator'):}}
+		<script>
+			$(document).ready(function(){
+				location.reload(); 
+			}); 
+		</script>
+	{{pass}}
+{{pass}}

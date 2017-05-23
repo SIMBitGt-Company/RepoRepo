@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/school_reports
+END
+general_period.html
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/school_reports/general_period.html
+END
+general_period_export.html
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/school_reports/general_period_export.html
+END
+general_information.html
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/school_reports/general_information.html
+END
+general_information_export.html
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/school_reports/general_information_export.html
+END
+historic_course.html
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/school_reports/historic_course.html
+END
+historic_course_export.html
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/school_reports/historic_course_export.html
+END
+percentage_change_grades.html
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/school_reports/percentage_change_grades.html
+END
+percentage_change_grades_export.html
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/school_reports/percentage_change_grades_export.html
+END

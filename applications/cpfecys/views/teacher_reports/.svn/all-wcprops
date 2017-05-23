@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/teacher_reports
+END
+laboratory_replacing_management.html
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/teacher_reports/laboratory_replacing_management.html
+END
+laboratory_replacing_management_export.html
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/teacher_reports/laboratory_replacing_management_export.html
+END
+grades_management.html
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/teacher_reports/grades_management.html
+END
+grades_management_export.html
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/teacher_reports/grades_management_export.html
+END
+validate_laboratory_management.html
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/teacher_reports/validate_laboratory_management.html
+END
+validate_laboratory_management_export.html
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/teacher_reports/validate_laboratory_management_export.html
+END

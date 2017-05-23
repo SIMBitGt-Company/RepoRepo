@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/repoDTT/!svn/ver/100/trunk/cpfecys/models
+END
+chamilo.py
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/repoDTT/!svn/ver/34/trunk/cpfecys/models/chamilo.py
+END
+scheduler.py
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/repoDTT/!svn/ver/100/trunk/cpfecys/models/scheduler.py
+END
+menu.py
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/repoDTT/!svn/ver/87/trunk/cpfecys/models/menu.py
+END
+db.py
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/repoDTT/!svn/ver/76/trunk/cpfecys/models/db.py
+END

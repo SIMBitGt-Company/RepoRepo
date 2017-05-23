@@ -1,0 +1,263 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/repoDTT/!svn/ver/76/trunk/cpfecys/views/admin
+END
+manage_items_periods.html
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/admin/manage_items_periods.html
+END
+report_requirements.html
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/admin/report_requirements.html
+END
+assignation_freeze.html
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/admin/assignation_freeze.html
+END
+report_filter.html
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/repoDTT/!svn/ver/50/trunk/cpfecys/views/admin/report_filter.html
+END
+links.html
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/admin/links.html
+END
+mail_log.html
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/admin/mail_log.html
+END
+report_restrictions.html
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/repoDTT/!svn/ver/76/trunk/cpfecys/views/admin/report_restrictions.html
+END
+report_filter_pending.html
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/admin/report_filter_pending.html
+END
+roles.html
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/admin/roles.html
+END
+anomaly_periods.html
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/admin/anomaly_periods.html
+END
+delivered_download.html
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/admin/delivered_download.html
+END
+users.html
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/admin/users.html
+END
+delivered_download_restrictions.html
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/admin/delivered_download_restrictions.html
+END
+assignations.html
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/repoDTT/!svn/ver/76/trunk/cpfecys/views/admin/assignations.html
+END
+report_filter_never_delivered.html
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/admin/report_filter_never_delivered.html
+END
+parameters.html
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/admin/parameters.html
+END
+notifications_manager.html
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/admin/notifications_manager.html
+END
+anomalies_list.html
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/admin/anomalies_list.html
+END
+report_view.html
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/admin/report_view.html
+END
+general_report.html
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/admin/general_report.html
+END
+course_report_exception.html
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/admin/course_report_exception.html
+END
+courses_list.html
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/admin/courses_list.html
+END
+courses_report.html
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/admin/courses_report.html
+END
+teacher_assignation_upload.html
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/repoDTT/!svn/ver/76/trunk/cpfecys/views/admin/teacher_assignation_upload.html
+END
+user_mail_update.html
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/admin/user_mail_update.html
+END
+assignation_upload.html
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/repoDTT/!svn/ver/76/trunk/cpfecys/views/admin/assignation_upload.html
+END
+assign_items.html
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/admin/assign_items.html
+END
+delivered_download_button.html
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/admin/delivered_download_button.html
+END
+items_grid.html
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/admin/items_grid.html
+END
+projects.html
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/admin/projects.html
+END
+manage_items.html
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/admin/manage_items.html
+END
+active_teachers.html
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/repoDTT/!svn/ver/76/trunk/cpfecys/views/admin/active_teachers.html
+END
+scheduler_activity.html
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/admin/scheduler_activity.html
+END
+areas.html
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/admin/areas.html
+END
+files_manager.html
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/admin/files_manager.html
+END
+anomaly_show.html
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/admin/anomaly_show.html
+END
+courses_report_detail.html
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/admin/courses_report_detail.html
+END
+final_practice.html
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/repoDTT/!svn/ver/76/trunk/cpfecys/views/admin/final_practice.html
+END
+delivered.html
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/admin/delivered.html
+END
+manage_items_areas.html
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/admin/manage_items_areas.html
+END
+report_list.html
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/repoDTT/!svn/ver/50/trunk/cpfecys/views/admin/report_list.html
+END
+mail_notifications.html
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/repoDTT/!svn/ver/76/trunk/cpfecys/views/admin/mail_notifications.html
+END
+items_manager.html
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/admin/items_manager.html
+END

@@ -1,0 +1,75 @@
+(dp1
+S'question_repository'
+p2
+(dp3
+S'length'
+p4
+I512
+sS'unique'
+p5
+I00
+sS'sortable'
+p6
+I3
+sS'sql'
+p7
+S'INT, INDEX question_repository__idx (question_repository), FOREIGN KEY (question_repository) REFERENCES question_repository (id) ON DELETE CASCADE'
+p8
+sS'notnull'
+p9
+I01
+sS'type'
+p10
+S'reference question_repository'
+p11
+ssS'answer'
+p12
+(dp13
+g4
+I32768
+sg5
+I00
+sg6
+I4
+sg7
+S'LONGTEXT NOT NULL'
+p14
+sg9
+I01
+sg10
+S'text'
+p15
+ssS'evaluation_result'
+p16
+(dp17
+g4
+I512
+sg5
+I00
+sg6
+I2
+sg7
+S'INT, INDEX evaluation_result__idx (evaluation_result), FOREIGN KEY (evaluation_result) REFERENCES evaluation_result (id) ON DELETE CASCADE'
+p18
+sg9
+I01
+sg10
+S'reference evaluation_result'
+p19
+ssS'id'
+p20
+(dp21
+g4
+I512
+sg5
+I00
+sg6
+I1
+sg7
+S'INT AUTO_INCREMENT NOT NULL'
+p22
+sg9
+I00
+sg10
+g20
+ss.

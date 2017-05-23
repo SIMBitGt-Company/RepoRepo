@@ -1,0 +1,26 @@
+{{extend 'template.html'}}
+<h1>{{=T('Areas de Investigación de Tesis')}}</h1>
+
+<div class="tabbable">
+    <ul class="nav nav-tabs">
+            <li class="active">
+                <a href="#data{{=1}}" data-toggle="tab">
+                    Administración
+                </a>
+            </li>
+            <li>
+                <a href="#data{{=2}}" data-toggle="tab">
+                    Vista
+                </a>
+            </li>
+     </ul>
+    <div class="tab-content">
+        <div  class="tab-pane active" id="data{{=1}}">
+                {{=grid}}
+        </div>
+        <div  class="tab-pane" id="data{{=2}}">
+                {{=makeHTML}}
+            </h1>
+        </div>
+    </div>
+</div>

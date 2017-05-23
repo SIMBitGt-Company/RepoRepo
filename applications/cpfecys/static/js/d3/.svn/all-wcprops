@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/repoDTT/!svn/ver/50/trunk/cpfecys/static/js/d3
+END
+d3.js
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/repoDTT/!svn/ver/50/trunk/cpfecys/static/js/d3/d3.js
+END
+LICENSE
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/repoDTT/!svn/ver/50/trunk/cpfecys/static/js/d3/LICENSE
+END
+d3.min.js
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/repoDTT/!svn/ver/50/trunk/cpfecys/static/js/d3/d3.min.js
+END

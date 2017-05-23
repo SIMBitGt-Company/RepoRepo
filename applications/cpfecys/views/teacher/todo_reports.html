@@ -1,0 +1,73 @@
+{{extend 'template.html'}}
+
+<h1>{{=T('Grade Pending Reports')}}</h1>
+<div class="well">
+    <a onclick="window.history.back()" class="btn" >
+    <i class="icon-arrow-left"></i>
+    {{=T('Back')}} 
+    </a>
+    <table class="table table-striped table-bordered" 
+    style="width:100%;">
+        <thead>
+            <tr>            
+                <th>{{=T("Carnet")}}</th>
+                <th>{{=T("First Name")}}</th>
+                <th>{{=T("Last Name")}}</th>
+                <th>{{=T("Project")}}</th>
+                <th>{{=T("Report")}}</th>
+                <th>{{=T("Delivery Date")}}</th>
+                <th>{{=T("Times Graded")}}</th>
+                <th>{{=T("Date Last Grading")}}</th>
+                <th>{{=T("Actions")}}</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        {{tempReports=[]}}
+        {{var_count_report = 0}}
+        {{for project in my_projects:}}
+            {{#if (str(project.project.id)==request.vars['project'])or(request.vars['type']!=None):}}
+                {{for assignation in project.project.user_project.select():}}
+                {{teacher_var=db((db.user_project.project == assignation.project)&
+                (db.user_project.assigned_user == db.auth_user.id)&
+                (db.auth_membership.user_id == db.auth_user.id)&
+                (db.auth_membership.group_id == db.auth_group.id)&
+                (db.auth_group.role == 'Teacher')).select().last()}}                
+                    {{if teacher_var is not None:}}                        
+                        {{if teacher_var.user_project.assigned_user == auth.user.id:}}
+                        {{q=((assignation.report((db.report.status == db.report_status.id)&((db.report_status.name == 'Grading')|(db.report_status.name == 'EnabledForTeacher')))))}}
+                            {{for report in q.select():}}
+                            {{tempReports.append(report.report.id)}}                            
+                            {{var_count_report+=1}}
+                            {{pass}}
+                        {{pass}}
+                    {{pass}}
+                {{pass}}
+            {{pass}}
+        {{pass}}
+        
+        {{for report in db(db.report.id.belongs(tempReports)).select():}}               
+        
+        <tr>            
+            <td>{{=report.assignation.assigned_user.username}}</td>
+            <td>{{=report.assignation.assigned_user.first_name}}</td>
+            <td>{{=report.assignation.assigned_user.last_name}}</td>
+            <td>{{=report.assignation.project.name}}</td>
+            <td>{{=report.report_restriction.name}}</td>
+            <td>{{=report.created}}</td>
+            <td>{{=report.times_graded or 0}}</td>
+            <td>{{=report.score_date or T('Never')}}</td>            
+            <td>
+                <a class="btn" href="{{=URL('teacher', \
+                'report/view', vars=dict(report=report.id))}}"> 
+                <span class="icon-eye-open"></span>
+                {{=T('View Report')}} 
+                </a>
+            </td>
+        </tr>        
+        {{pass}}                        
+        </tbody>
+
+    </table>    
+</div>
+

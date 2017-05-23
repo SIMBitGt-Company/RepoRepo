@@ -1,0 +1,395 @@
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/repoDTT/!svn/ver/76/trunk/cpfecys/views/activity_control
+END
+course_limit_exception.html
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/repoDTT/!svn/ver/76/trunk/cpfecys/views/activity_control/course_limit_exception.html
+END
+grades_management_n4.load
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/activity_control/grades_management_n4.load
+END
+partials.html
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/activity_control/partials.html
+END
+validate_laboratory_management.html
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/activity_control/validate_laboratory_management.html
+END
+validate_laboratory_management_n3.html
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/activity_control/validate_laboratory_management_n3.html
+END
+validate_laboratory_management_export.html
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/activity_control/validate_laboratory_management_export.html
+END
+control_weighting.html
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/repoDTT/!svn/ver/76/trunk/cpfecys/views/activity_control/control_weighting.html
+END
+weighting.html
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/repoDTT/!svn/ver/76/trunk/cpfecys/views/activity_control/weighting.html
+END
+courses_list_request.html
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/repoDTT/!svn/ver/76/trunk/cpfecys/views/activity_control/courses_list_request.html
+END
+laboratory_replacing_management_level_export.html
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/activity_control/laboratory_replacing_management_level_export.html
+END
+student_control_period.html
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/activity_control/student_control_period.html
+END
+grades_management_level_export.html
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/activity_control/grades_management_level_export.html
+END
+control_students_modals2.html
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/activity_control/control_students_modals2.html
+END
+laboratory_replacing_management_n4.html
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/activity_control/laboratory_replacing_management_n4.html
+END
+grades_management_n2.html
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/activity_control/grades_management_n2.html
+END
+request_change_weighting.html
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/activity_control/request_change_weighting.html
+END
+laboratory_replacing.html
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/activity_control/laboratory_replacing.html
+END
+grades.html
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/activity_control/grades.html
+END
+request_change_activity.html
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/activity_control/request_change_activity.html
+END
+solve_request_change_weighting.html
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/activity_control/solve_request_change_weighting.html
+END
+course_laboratory_exception.html
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/repoDTT/!svn/ver/76/trunk/cpfecys/views/activity_control/course_laboratory_exception.html
+END
+management_activity_without_metric.html
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/activity_control/management_activity_without_metric.html
+END
+courses_avg.html
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/repoDTT/!svn/ver/41/trunk/cpfecys/views/activity_control/courses_avg.html
+END
+solve_request_change_activity.html
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/activity_control/solve_request_change_activity.html
+END
+control_activity_without_metric.html
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/repoDTT/!svn/ver/76/trunk/cpfecys/views/activity_control/control_activity_without_metric.html
+END
+validate_laboratory_management_n4.html
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/activity_control/validate_laboratory_management_n4.html
+END
+course_first_recovery_test.html
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/activity_control/course_first_recovery_test.html
+END
+activity_category.html
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/activity_control/activity_category.html
+END
+Course_Format_Technical_School.html
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/activity_control/Course_Format_Technical_School.html
+END
+general_report_activities_load.html
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/activity_control/general_report_activities_load.html
+END
+General_report_activities.html
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/activity_control/General_report_activities.html
+END
+control_activity.html
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/repoDTT/!svn/ver/76/trunk/cpfecys/views/activity_control/control_activity.html
+END
+activity.html
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/repoDTT/!svn/ver/76/trunk/cpfecys/views/activity_control/activity.html
+END
+general_report_activities_export.html
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/activity_control/general_report_activities_export.html
+END
+weighting_request.html
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/activity_control/weighting_request.html
+END
+control_students_grades.html
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/activity_control/control_students_grades.html
+END
+semaphore.load
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/activity_control/semaphore.load
+END
+grades_management_n3.html
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/activity_control/grades_management_n3.html
+END
+request_change_weighting_load.html
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/activity_control/request_change_weighting_load.html
+END
+grades_management_export.html
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/activity_control/grades_management_export.html
+END
+activityRequest.html
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/activity_control/activityRequest.html
+END
+course_second_recovery_test.html
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/activity_control/course_second_recovery_test.html
+END
+grades_management_n2.load
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/activity_control/grades_management_n2.load
+END
+grades_request.html
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/repoDTT/!svn/ver/50/trunk/cpfecys/views/activity_control/grades_request.html
+END
+solve_request_change_grades.html
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/activity_control/solve_request_change_grades.html
+END
+laboratory_replacing_management_n2.html
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/activity_control/laboratory_replacing_management_n2.html
+END
+laboratory_replacing_management.html
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/activity_control/laboratory_replacing_management.html
+END
+grades_management_n4.html
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/activity_control/grades_management_n4.html
+END
+students_control.html
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/repoDTT/!svn/ver/76/trunk/cpfecys/views/activity_control/students_control.html
+END
+validate_laboratory_management_level_export.html
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/activity_control/validate_laboratory_management_level_export.html
+END
+grades_management_n3.load
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/activity_control/grades_management_n3.load
+END
+courses_list.html
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/repoDTT/!svn/ver/76/trunk/cpfecys/views/activity_control/courses_list.html
+END
+course_requirement.html
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/activity_control/course_requirement.html
+END
+validate_laboratory_management_n2.html
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/activity_control/validate_laboratory_management_n2.html
+END
+graphs.html
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/repoDTT/!svn/ver/41/trunk/cpfecys/views/activity_control/graphs.html
+END
+validate_laboratory.html
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/activity_control/validate_laboratory.html
+END
+management_approval_students_requirement.html
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/activity_control/management_approval_students_requirement.html
+END
+students_control_full.html
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/activity_control/students_control_full.html
+END
+laboratory_replacing_management_n3.html
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/activity_control/laboratory_replacing_management_n3.html
+END
+laboratory_replacing_management_export.html
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/activity_control/laboratory_replacing_management_export.html
+END
+grades_management.html
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/activity_control/grades_management.html
+END
+management_assigned_activity.html
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/activity_control/management_assigned_activity.html
+END
+control_students_modals.html
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/activity_control/control_students_modals.html
+END
+control_assigned_activity.html
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/activity_control/control_assigned_activity.html
+END
+requestchangeactivity.html
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/activity_control/requestchangeactivity.html
+END

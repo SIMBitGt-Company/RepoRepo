@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/static/intro_js
+END
+introjs.css
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/static/intro_js/introjs.css
+END
+.spmignore
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/static/intro_js/.spmignore
+END
+package.json
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/static/intro_js/package.json
+END
+.gitignore
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/static/intro_js/.gitignore
+END
+bower.json
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/static/intro_js/bower.json
+END
+intro.js
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/static/intro_js/intro.js
+END
+component.json
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/static/intro_js/component.json
+END
+README.md
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/static/intro_js/README.md
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/static/intro_js/Makefile
+END
+introjs-rtl.css
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/static/intro_js/introjs-rtl.css
+END

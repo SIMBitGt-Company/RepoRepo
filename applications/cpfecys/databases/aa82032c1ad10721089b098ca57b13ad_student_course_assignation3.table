@@ -1,0 +1,92 @@
+(dp1
+S'semester'
+p2
+(dp3
+S'length'
+p4
+I512
+sS'unique'
+p5
+I00
+sS'sortable'
+p6
+I3
+sS'sql'
+p7
+S'INT, INDEX semester__idx (semester), FOREIGN KEY (semester) REFERENCES period_year (id) ON DELETE CASCADE'
+p8
+sS'notnull'
+p9
+I01
+sS'type'
+p10
+S'reference period_year'
+p11
+ssS'laboratorio'
+p12
+(dp13
+g4
+I512
+sg5
+I00
+sg6
+I5
+sg7
+S'CHAR(1) NOT NULL'
+p14
+sg9
+I01
+sg10
+S'boolean'
+p15
+ssS'assignation'
+p16
+(dp17
+g4
+I512
+sg5
+I00
+sg6
+I4
+sg7
+S'INT, INDEX assignation__idx (assignation), FOREIGN KEY (assignation) REFERENCES user_project (id) ON DELETE CASCADE'
+p18
+sg9
+I01
+sg10
+S'reference user_project'
+p19
+ssS'id'
+p20
+(dp21
+g4
+I512
+sg5
+I00
+sg6
+I1
+sg7
+S'INT AUTO_INCREMENT NOT NULL'
+p22
+sg9
+I00
+sg10
+g20
+ssS'carnet'
+p23
+(dp24
+g4
+I512
+sg5
+I00
+sg6
+I2
+sg7
+S'INT, INDEX carnet__idx (carnet), FOREIGN KEY (carnet) REFERENCES students3 (id) ON DELETE CASCADE'
+p25
+sg9
+I01
+sg10
+S'reference students3'
+p26
+ss.

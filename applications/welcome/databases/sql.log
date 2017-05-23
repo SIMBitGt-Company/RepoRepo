@@ -1,0 +1,266 @@
+timestamp: 2014-01-28T20:19:38.173448
+CREATE TABLE auth_user(
+    id INT AUTO_INCREMENT NOT NULL,
+    first_name VARCHAR(128),
+    last_name VARCHAR(128),
+    email VARCHAR(512),
+    username VARCHAR(128),
+    password VARCHAR(512),
+    registration_key VARCHAR(512),
+    reset_password_key VARCHAR(512),
+    registration_id VARCHAR(512),
+    phone VARCHAR(16),
+    working CHAR(1),
+    work_address VARCHAR(255),
+    uv_token VARCHAR(64),
+    data_updated CHAR(1),
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2014-01-28T20:19:38.189590
+CREATE TABLE auth_group(
+    id INT AUTO_INCREMENT NOT NULL,
+    role VARCHAR(512),
+    description LONGTEXT,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2014-01-28T20:19:38.201591
+CREATE TABLE auth_membership(
+    id INT AUTO_INCREMENT NOT NULL,
+    user_id INT, INDEX user_id__idx (user_id), FOREIGN KEY (user_id) REFERENCES auth_user (id) ON DELETE CASCADE,
+    group_id INT, INDEX group_id__idx (group_id), FOREIGN KEY (group_id) REFERENCES auth_group (id) ON DELETE CASCADE,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2014-01-28T20:19:38.217321
+CREATE TABLE auth_permission(
+    id INT AUTO_INCREMENT NOT NULL,
+    group_id INT, INDEX group_id__idx (group_id), FOREIGN KEY (group_id) REFERENCES auth_group (id) ON DELETE CASCADE,
+    name VARCHAR(512),
+    table_name VARCHAR(512),
+    record_id INT,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2014-01-28T20:19:38.234646
+CREATE TABLE auth_event(
+    id INT AUTO_INCREMENT NOT NULL,
+    time_stamp DATETIME,
+    client_ip VARCHAR(512),
+    user_id INT, INDEX user_id__idx (user_id), FOREIGN KEY (user_id) REFERENCES auth_user (id) ON DELETE CASCADE,
+    origin VARCHAR(512),
+    description LONGTEXT,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2014-01-28T20:19:38.247395
+CREATE TABLE auth_cas(
+    id INT AUTO_INCREMENT NOT NULL,
+    user_id INT, INDEX user_id__idx (user_id), FOREIGN KEY (user_id) REFERENCES auth_user (id) ON DELETE CASCADE,
+    created_on DATETIME,
+    service VARCHAR(512),
+    ticket VARCHAR(512),
+    renew CHAR(1),
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2014-01-28T20:19:38.258525
+CREATE TABLE area_level(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(512),
+    description LONGTEXT,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2014-01-28T20:19:38.270896
+CREATE TABLE project(
+    id INT AUTO_INCREMENT NOT NULL,
+    project_id VARCHAR(255) UNIQUE,
+    name VARCHAR(512),
+    area_level INT, INDEX area_level__idx (area_level), FOREIGN KEY (area_level) REFERENCES area_level (id) ON DELETE CASCADE,
+    description LONGTEXT,
+    physical_location LONGTEXT,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2014-01-28T20:19:38.300871
+CREATE TABLE period(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) UNIQUE,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2014-01-28T20:19:38.310172
+CREATE TABLE period_year(
+    id INT AUTO_INCREMENT NOT NULL,
+    yearp INT,
+    period INT, INDEX period__idx (period), FOREIGN KEY (period) REFERENCES period (id) ON DELETE CASCADE,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2014-01-28T20:19:38.335178
+CREATE TABLE user_project(
+    id INT AUTO_INCREMENT NOT NULL,
+    assigned_user INT, INDEX assigned_user__idx (assigned_user), FOREIGN KEY (assigned_user) REFERENCES auth_user (id) ON DELETE CASCADE,
+    project INT, INDEX project__idx (project), FOREIGN KEY (project) REFERENCES project (id) ON DELETE CASCADE,
+    period INT, INDEX period__idx (period), FOREIGN KEY (period) REFERENCES period_year (id) ON DELETE CASCADE,
+    pro_bono CHAR(1),
+    periods INT,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2014-01-28T20:19:38.355430
+CREATE TABLE link(
+    id INT AUTO_INCREMENT NOT NULL,
+    url LONGTEXT NOT NULL,
+    blank CHAR(1),
+    url_text LONGTEXT NOT NULL,
+    visible CHAR(1) NOT NULL,
+    is_public CHAR(1),
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2014-01-28T20:19:38.364224
+CREATE TABLE front_notification(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(512) NOT NULL,
+    content_text LONGTEXT,
+    url VARCHAR(512),
+    visible CHAR(1),
+    is_public CHAR(1),
+    file_data VARCHAR(512),
+    promoted CHAR(1),
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2014-01-28T20:19:38.381401
+CREATE TABLE uploaded_file(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(512) NOT NULL,
+    visible CHAR(1),
+    file_data VARCHAR(512),
+    is_public CHAR(1),
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2014-01-28T20:19:38.388684
+CREATE TABLE file_access(
+    id INT AUTO_INCREMENT NOT NULL,
+    user_role INT, INDEX user_role__idx (user_role), FOREIGN KEY (user_role) REFERENCES auth_group (id) ON DELETE CASCADE,
+    uploaded_file INT, INDEX uploaded_file__idx (uploaded_file), FOREIGN KEY (uploaded_file) REFERENCES uploaded_file (id) ON DELETE CASCADE,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2014-01-28T20:19:38.408285
+CREATE TABLE link_access(
+    id INT AUTO_INCREMENT NOT NULL,
+    user_role INT, INDEX user_role__idx (user_role), FOREIGN KEY (user_role) REFERENCES auth_group (id) ON DELETE CASCADE,
+    link INT, INDEX link__idx (link), FOREIGN KEY (link) REFERENCES link (id) ON DELETE CASCADE,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2014-01-28T20:19:38.426204
+CREATE TABLE notification_access(
+    id INT AUTO_INCREMENT NOT NULL,
+    user_role INT, INDEX user_role__idx (user_role), FOREIGN KEY (user_role) REFERENCES auth_group (id) ON DELETE CASCADE,
+    front_notification INT, INDEX front_notification__idx (front_notification), FOREIGN KEY (front_notification) REFERENCES front_notification (id) ON DELETE CASCADE,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2014-01-28T20:19:38.445667
+CREATE TABLE report_restriction(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(512),
+    start_date DATE,
+    end_date DATE,
+    is_enabled CHAR(1),
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2014-01-28T20:19:38.461484
+CREATE TABLE report_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(512) NOT NULL,
+    description VARCHAR(512) NOT NULL,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2014-01-28T20:19:38.470933
+CREATE TABLE report(
+    id INT AUTO_INCREMENT NOT NULL,
+    created DATE,
+    assignation INT, INDEX assignation__idx (assignation), FOREIGN KEY (assignation) REFERENCES user_project (id) ON DELETE CASCADE,
+    report_restriction INT, INDEX report_restriction__idx (report_restriction), FOREIGN KEY (report_restriction) REFERENCES report_restriction (id) ON DELETE CASCADE,
+    score INT,
+    status INT, INDEX status__idx (status), FOREIGN KEY (status) REFERENCES report_status (id) ON DELETE CASCADE,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2014-01-28T20:19:38.492322
+CREATE TABLE log_type(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(512) NOT NULL,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2014-01-28T20:19:38.510529
+CREATE TABLE log_entry(
+    id INT AUTO_INCREMENT NOT NULL,
+    log_type INT, INDEX log_type__idx (log_type), FOREIGN KEY (log_type) REFERENCES log_type (id) ON DELETE CASCADE,
+    entry_date DATE NOT NULL,
+    description LONGTEXT NOT NULL,
+    report INT, INDEX report__idx (report), FOREIGN KEY (report) REFERENCES report (id) ON DELETE CASCADE,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2014-01-28T20:19:38.528336
+CREATE TABLE item_type(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(512) NOT NULL,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2014-01-28T20:19:38.538581
+CREATE TABLE item_restriction(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(512),
+    is_enabled CHAR(1),
+    permanent CHAR(1),
+    teacher_only CHAR(1) NOT NULL,
+    admin_only CHAR(1) NOT NULL,
+    item_type INT, INDEX item_type__idx (item_type), FOREIGN KEY (item_type) REFERENCES item_type (id) ON DELETE CASCADE,
+    period INT, INDEX period__idx (period), FOREIGN KEY (period) REFERENCES period_year (id) ON DELETE CASCADE,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2014-01-28T20:19:38.557180
+CREATE TABLE item_restriction_area(
+    id INT AUTO_INCREMENT NOT NULL,
+    area_level INT, INDEX area_level__idx (area_level), FOREIGN KEY (area_level) REFERENCES area_level (id) ON DELETE CASCADE,
+    item_restriction INT, INDEX item_restriction__idx (item_restriction), FOREIGN KEY (item_restriction) REFERENCES item_restriction (id) ON DELETE CASCADE,
+    is_enabled CHAR(1),
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2014-01-28T20:19:38.579164
+CREATE TABLE item_restriction_exception(
+    id INT AUTO_INCREMENT NOT NULL,
+    project INT, INDEX project__idx (project), FOREIGN KEY (project) REFERENCES project (id) ON DELETE CASCADE,
+    item_restriction INT, INDEX item_restriction__idx (item_restriction), FOREIGN KEY (item_restriction) REFERENCES item_restriction (id) ON DELETE CASCADE,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2014-01-28T20:19:38.601606
+CREATE TABLE item(
+    id INT AUTO_INCREMENT NOT NULL,
+    is_active CHAR(1),
+    description LONGTEXT,
+    uploaded_file VARCHAR(512),
+    done_activity CHAR(1),
+    created INT, INDEX created__idx (created), FOREIGN KEY (created) REFERENCES period_year (id) ON DELETE CASCADE,
+    item_restriction INT, INDEX item_restriction__idx (item_restriction), FOREIGN KEY (item_restriction) REFERENCES item_restriction (id) ON DELETE CASCADE,
+    assignation INT, INDEX assignation__idx (assignation), FOREIGN KEY (assignation) REFERENCES user_project (id) ON DELETE CASCADE,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!

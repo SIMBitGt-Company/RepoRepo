@@ -1,0 +1,466 @@
+# -*- coding: utf-8 -*-
+# this file is released under public domain and you can use without limitations
+
+#########################################################################
+## This is a sample controller
+## - index is the default action of any application
+## - user is required for authentication and authorization
+## - download is for downloading files uploaded in the db (does streaming)
+## - call exposes all registered services (none by default)
+#########################################################################
+
+def events():
+    #emarquez
+    period = request.vars['period'] or False
+    cyearperiod = cpfecys.current_year_period()
+
+    #emarquez
+    if period:
+        cyearperiod = db(db.period_year.id == int(period)).select().first()
+
+
+    return dict(year = cyearperiod.yearp, semester = cyearperiod.period.name,
+                 thing = db((db.public_event.semester == cyearperiod.id)&
+                            (db.public_event.assignation != None)&
+                            (db.public_event.assignation == db.user_project.id)&
+                            (db.user_project.project == db.project.id) \
+                            ).select(orderby=db.project.name))
+
+@auth.requires_login()
+def event_editor():
+    assignation = request.vars['assignation']
+    #check assignation belongs to this user
+    import cpfecys
+    check =  db((db.user_project.assigned_user==auth.user.id)&\
+            (db.user_project.id == assignation)&\
+            ((db.user_project.period <= cpfecys.current_year_period().id) & \
+            ((db.user_project.period + db.user_project.periods) > cpfecys.current_year_period().id))).select(db.user_project.ALL).first()
+
+    if (check is None):
+        redirect(URL('default','index'))
+
+    cyearperiod = cpfecys.current_year_period()
+    db.public_event.semester.default = cyearperiod.id
+    db.public_event.semester.writable = False
+    db.public_event.semester.readable = False
+    db.public_event.assignation.default = check.id
+    db.public_event.assignation.writable = False
+    db.public_event.assignation.readable = False
+    db.public_event_schedule.public_event.readable = False
+    db.public_event_schedule.public_event.writable = False
+    query = (db.public_event.assignation == check.id)
+    return dict(year = cyearperiod.yearp, semester = cyearperiod.period.name,name = check.project.name,grid = SQLFORM.smartgrid(db.public_event, constraints = {'public_event' : query}))
+
+def index():
+    """
+    example action using the internationalization operator T and flash
+    rendered by views/default/index.html or views/generic.html
+
+    if you need a simple wiki simple replace the two lines below with:
+    return auth.wiki()
+    """
+    if auth.user != None:
+        groups = db((db.auth_membership.user_id==auth.user.id)& \
+                        (db.auth_group.id==db.auth_membership.group_id)). \
+                        select(db.auth_group.ALL)
+        front_notification = \
+        db(db.front_notification.is_public==True).select()| \
+        db((db.front_notification.id== \
+            db.notification_access.front_notification)& \
+        (db.notification_access.user_role.belongs(groups))
+            ).select(db.front_notification.ALL)
+    else:
+        front_notification = db(db.front_notification.is_public == True).select()
+    return dict(front_notification=front_notification,
+        markmin_settings = cpfecys.get_markmin,)
+
+def links():
+    """ This url shows all important links published by admin
+    user.
+    """
+    links = []
+    if auth.user != None:
+        links = db(db.link).select()
+        groups = db((db.auth_membership.user_id==auth.user.id)& \
+                        (db.auth_group.id==db.auth_membership.group_id)). \
+                        select(db.auth_group.ALL)
+        links = db((db.link.id == db.link_access.link)& \
+                   (db.link_access.user_role.belongs(groups))).select(db.link.ALL)
+    public_links = db(db.link.is_public == True).select()
+    return dict(links=links, public_links=public_links)
+
+def files():
+    """ This url shows all published files published by admin"""
+    if auth.user != None:
+        groups = db((db.auth_membership.user_id==auth.user.id)&\
+                        (db.auth_group.id==db.auth_membership.group_id)).\
+                        select(db.auth_group.ALL)
+        files = db((db.uploaded_file.id == db.file_access.uploaded_file)&\
+                   (db.file_access.user_role.belongs(groups)))\
+                       .select(db.uploaded_file.ALL)
+    else:
+        files = db(db.uploaded_file.is_public == True).select()
+    return dict(files=files)
+
+
+def user():
+    """
+    exposes:
+    http://..../[app]/default/user/login
+    http://..../[app]/default/user/logout
+    http://..../[app]/default/user/register
+    http://..../[app]/default/user/profile
+    http://..../[app]/default/user/retrieve_password
+    http://..../[app]/default/user/change_password
+    http://..../[app]/default/user/manage_users (requires membership in
+    use @auth.requires_login()
+        @auth.requires_membership('group name')
+        @auth.requires_permission('read','table name',record_id)
+    to decorate functions that need access control
+    """
+    if request.args(0) == 'profile':
+        if ((auth.has_membership('Super-Administrator') == False) & (auth.has_membership('Teacher') == False) & (auth.has_membership('Ecys-Administrator') == False)):
+            db.auth_user.first_name.writable = False
+            db.auth_user.last_name.writable = False
+            db.auth_user.username.writable = False
+
+            db.auth_user.email.writable = False
+
+            import cpfecys
+            currentyear_period = cpfecys.current_year_period()
+
+            for date_var in db((db.student_control_period.period_name==T(str(currentyear_period.period.name))+" "+str(currentyear_period.yearp))).select():
+                var_date_finish = date_var.date_finish
+                from datetime import datetime
+                if datetime.now() > date_var.date_start and datetime.now() < var_date_finish:
+                    db.auth_user.email.writable = True
+                pass
+            pass
+
+            db.auth_user.photo.writable = True
+            review = db((db.photo_review.user_id == auth.user.id)).select().first()
+            if review is not None:
+                if review.accepted == True:
+                    db.auth_user.photo.writable = False
+                pass
+            pass
+        pass
+        if (auth.has_membership('Teacher')):
+            if str(request.vars["edit_foto"]) == "True":
+                db.auth_user.photo.writable = True
+            else:
+                db.auth_user.photo.writable = False
+            db.auth_user.username.writable = False
+    pass
+    return dict(form=auth())
+
+#CERODAS 1:  Function to validated if the user has update data or not
+def GetUserUpdateData():
+    if request.vars['Username'] != '':
+        row = db(db.auth_user.username==request.vars['Username']).select().first()
+        if row != None:
+            #obtengo el grupo del usuario: si estudiante aplica  sino  no aplica metodo
+            group_id_Student = db(db.auth_group.role == 'Student').select().first()
+            group_id_RegularStudent = db(db.auth_group.role == "Academic").select().first()
+            #si no hay informacion de los grupos se devuelve -1
+            if group_id_Student is None:
+                group_id_Student = -1
+            if group_id_RegularStudent is None:
+                group_id_RegularStudent = -1
+            #se verifica si el usuario pertenece a algun grupo de estudiantes
+            Student = db((row.id==db.auth_membership.user_id) & ((db.auth_membership.group_id==group_id_Student) | (db.auth_membership.group_id==group_id_RegularStudent))).select().first()
+            if Student is None:
+                is_Student = False
+            else:
+                is_Student = True
+            #si es estudiante se aplica el nuevo metodo de lo contrario si no es estudiante se pasa por el procedimiento normal
+            if is_Student:
+                UserInfo = row.data_updated
+                if UserInfo is None:
+                    session.username = request.vars['Username'];
+                    redirect(URL('first_request_password'))
+                else:
+                    session.username = request.vars['Username'];
+                    session.flash = ('Usuario verificado correctamente, puede proceder a solicitar su password via email.')
+                    redirect(URL('user', args=('request_reset_password'), vars=dict(message='UPDATED')))
+            else:
+                session.username = request.vars['Username'];
+                session.flash = ('Usuario verificado correctamente, puede proceder a solicitar su password via email.')
+                redirect(URL('user', args=('request_reset_password'), vars=dict(message='UPDATED')))
+        else:
+            session.flash = T('Invalid username')
+            redirect(URL('user', args=('request_reset_password'), vars=dict(message='NOT_RESULT')))
+    else:
+           session.flash = T('Username') + ' ' + T('Cannot be empty')
+           redirect(URL('user', args=('request_reset_password'), vars=dict(message='NOT_DATA')))
+
+#CERODAS 1: Copy from WEBSERVICE check_user from check_user in controller student_academic
+#Changes: Not valid user logon
+def check_student(check_carnet):
+    svp=db(db.validate_student).select().first()
+    if svp is not None:
+        try:
+            #CONSUME THE WEBSERVICE
+            from gluon.contrib.pysimplesoap.client import SoapClient
+            from gluon.contrib.pysimplesoap.client import SimpleXMLElement
+            client = SoapClient(
+                location = svp.supplier,
+                action = svp.supplier+"/"+svp.action_service,
+                namespace = svp.supplier,
+                soap_ns=svp.type_service, trace = True, ns = False)
+
+            import cpfecys
+            year = cpfecys.current_year_period()
+            sent="<"+svp.send+">"
+            for svpf in db(db.validate_student_parameters).select():
+                sent +="<"+svpf.parameter_name_validate+">"+svpf.parameter_value_validate+"</"+svpf.parameter_name_validate+">"
+            sent += "<CARNET>"+str(check_carnet)+"</CARNET><CICLO>"+str(year.yearp)+"</CICLO></"+svp.send+">"
+            back = client.call(svp.action_service,xmlDatos=sent)
+
+            #PREPARE FOR RETURNED XML WEB SERVICE
+            xml = back.as_xml()
+            xml=xml.replace('&lt;','<')
+            xml=xml.replace('&gt;','>')
+            inicio = xml.find("<"+svp.receive+">")
+            final = xml.find("</"+svp.receive+">")
+            xml = xml[inicio:(final+17)]
+            import xml.etree.ElementTree as ET
+            root = ET.fromstring(xml)
+            xml = SimpleXMLElement(xml)
+
+            #VARIABLE TO CHECK THE CORRECT FUNCTIONING
+            CARNET = xml.CARNET
+            NOMBRES = xml.NOMBRES
+            APELLIDOS= xml.APELLIDOS
+            CORREO = xml.CORREO
+
+            #Unicode Nombres
+            try:
+                str(NOMBRES)
+            except:
+                apellidos_var = unicode(NOMBRES).split(' ')
+                appellidos_return = None
+                for apellido in apellidos_var:
+                    try:
+                        if appellidos_return is None:
+                            appellidos_return = str(apellido)
+                        else:
+                            appellidos_return = appellidos_return + " " + str(apellido)
+                    except:
+                        try:
+
+                            temp = unicode(apellido).encode('utf-8').replace('Ã¡','á').replace('Ã©','é').replace('Ã­','í').replace('Ã³','ó').replace('Ãº','ú').replace('Ã±','ñ').replace('Ã','Á').replace('Ã‰','É').replace('Ã','Í').replace('Ã“','Ó').replace('Ãš','Ú').replace('Ã‘','Ñ').replace('Ã¼‘','ü')
+                        except:
+                            None
+
+                        apellido = temp
+                        if appellidos_return is None:
+                            appellidos_return = str(apellido)
+                        else:
+                            appellidos_return = appellidos_return + " " + str(apellido)
+                NOMBRES = appellidos_return
+            #Unicode APELLIDOS
+            try:
+                str(APELLIDOS)
+            except:
+                apellidos_var = unicode(APELLIDOS).split(' ')
+                appellidos_return = None
+                for apellido in apellidos_var:
+                    try:
+                        if appellidos_return is None:
+                            appellidos_return = str(apellido)
+                        else:
+                            appellidos_return = appellidos_return + " " + str(apellido)
+                    except:
+                        try:
+                            temp = unicode(apellido).encode('utf-8').replace('Ã¡','á').replace('Ã©','é').replace('Ã­','í').replace('Ã³','ó').replace('Ãº','ú').replace('Ã±','ñ').replace('Ã','Á').replace('Ã‰','É').replace('Ã','Í').replace('Ã“','Ó').replace('Ãš','Ú').replace('Ã‘','Ñ').replace('Ã¼‘','ü')
+                        except:
+                            None
+
+                        apellido = temp
+                        if appellidos_return is None:
+                            appellidos_return = str(apellido)
+                        else:
+                            appellidos_return = appellidos_return + " " + str(apellido)
+                APELLIDOS = appellidos_return
+
+            if (CARNET is None or CARNET=='') and (NOMBRES is None or NOMBRES=='') and (APELLIDOS is None or APELLIDOS=='') and (CORREO is None or CORREO==''):
+                return dict(flag=False,error=False,message=T('The record was removed because the user is not registered to the academic cycle'))
+            else:
+                isStuden=False
+                for c in root.findall('CARRERA'):
+                    if c.find('UNIDAD').text=="08" and c.find('EXTENSION').text=="00" and (c.find('CARRERA').text=="05" or c.find('CARRERA').text=="09" or c.find('CARRERA').text=="07"):
+                        isStuden=True
+
+                if isStuden==False:
+                    return dict(flag=False,error=False,message=T('The record was removed because students not enrolled in career allowed to use the system'))
+                else:
+                    return dict(flag=True, carnet=int(str(CARNET)), nombres=(NOMBRES), apellidos=(APELLIDOS), correo=str(CORREO),error=False)
+        except:
+            return dict(flag=False,error=True,message=T('Error with web service validation'))
+    else:
+        return dict(flag=False,error=True,message=T('Error with web service validation'))
+
+
+#CERODAS 1: new method from password recovery
+def first_request_password():
+    Mensaje = ''
+    web_service = check_student(session.username)
+    if web_service['flag'] == True:
+        Nombres = web_service['nombres']
+        if Nombres is None:
+            Nombres = ''
+        Apellidos = web_service['apellidos']
+        if Apellidos is None:
+            Apellidos = ''
+        Email = web_service['correo']
+        #Email = 'Carlos8_r@hotmail.com'
+        if Email is None:
+            Email = ''
+        Carnet = web_service['carnet']
+        if Carnet is None:
+            Carnet = ''
+
+        FullName = str(Nombres) + " " + str(Apellidos)
+        if Email == '':
+            MessageHead = "Lastimosamente no existe informacion de tu email en nuestras bases de datos, por lo que debes actualizar tu informacion en Registro y Estadistica."
+        else:
+            #Obtengo la informacion del usuario
+            Usua = db(db.auth_user.username==session.username).select().first()
+            #Seteo el valor del Email obtenido por el webservices
+            Usua.email = Email
+            #Mando el email para recuperacion
+            auth.email_reset_password(Usua)
+            #Construyo el mensaje
+            MessageHead = "Te hemos enviado un email a "
+            MessageMiddle = str(Email)
+            MessageFinal = " , el cual está registrado en el sistema de Registro y Estadística.  Si esta cuenta ya no está activa procede a solicitar tu cambio de correo en Registro y Estadística."
+        return dict(FullName = FullName, MessageHead = MessageHead, MessageMiddle = MessageMiddle,MessageFinal=MessageFinal )
+    else:
+        session.flash = 'Upss!!! Ocurrio un problema con el sistema de Registro y Estadística, intenta nuevamente.'
+        redirect(URL('user', args=('request_reset_password')))
+    pass
+
+@cache.action()
+def download():
+    """
+    allows downloading of uploaded files
+    http://..../[app]/default/download/[filename]
+    """
+    return response.download(request, db)
+
+def download_file():
+    the_file = db(db.uploaded_file.file_data==request.args[0]).select().first()
+    if the_file != None and the_file.visible == True and the_file.is_public == True:
+        return response.download(request, db)
+    else:
+        session.flash = T('Access Forbidden')
+        redirect(URL('default', 'index'))
+
+
+def call():
+    """
+    exposes services. for example:
+    http://..../[app]/default/call/jsonrpc
+    decorate with @services.jsonrpc the functions to expose
+    supports xml, json, xmlrpc, jsonrpc, amfrpc, rss, csv
+    """
+    return service()
+
+
+@auth.requires_signature()
+def data():
+    """
+    http://..../[app]/default/data/tables
+    http://..../[app]/default/data/create/[table]
+    http://..../[app]/default/data/read/[table]/[id]
+    http://..../[app]/default/data/update/[table]/[id]
+    http://..../[app]/default/data/delete/[table]/[id]
+    http://..../[app]/default/data/select/[table]
+    http://..../[app]/default/data/search/[table]
+    but URLs must be signed, i.e. linked with
+      A('table',_href=URL('data/tables',user_signature=True))
+    or with the signed load operator
+      LOAD('default','data.load',args='tables',ajax=True,user_signature=True)
+    """
+    return dict(form=crud())
+
+def zip():
+    files = ['item.uploaded_file.bd4592bbb798c7c6.3235363035372e706466.pdf']
+    return response.zip(request, files, db)
+
+def resources():
+    #Get the selected item_restriction id from parameter
+    item_restriction_id = request.vars['r']
+    #Get the items that belong to current semester
+    import cpfecys
+
+    #emarquez: por default, sigue igual, si envia  parametro d periodo, se cambia
+    parameter_period = request.vars['period'] or False
+
+    period = cpfecys.current_year_period()
+
+    #emarquez
+    if parameter_period:
+        period = db(db.period_year.id == parameter_period).select().first()
+
+
+    def teachers_on_project(project_id):
+        import cpfecys
+        #period = cpfecys.current_year_period()
+        if cpfecys.is_semestre(period.id):
+            return db((db.project.id == project_id)&\
+                    (db.user_project.project == db.project.id)&\
+                    (db.auth_user.id == db.user_project.assigned_user)&\
+                    ((db.user_project.period <= period.id) & ((db.user_project.period + db.user_project.periods) > period.id))&\
+                    (db.auth_membership.user_id == db.auth_user.id)&\
+                    (db.auth_membership.group_id == db.auth_group.id)&\
+                    (db.auth_group.role == 'Teacher')).select()
+        else:
+            return db((db.project.id == project_id)&\
+                    (db.user_project.project == db.project.id)&\
+                    (db.auth_user.id == db.user_project.assigned_user)&\
+                    (db.user_project.period == period.id) &\
+                    (db.auth_membership.user_id == db.auth_user.id)&\
+                    (db.auth_membership.group_id == db.auth_group.id)&\
+                    (db.auth_group.role == 'Teacher')).select()
+
+    def aux_in_courses(project_id):
+        import cpfecys
+        #period = cpfecys.current_year_period()
+        return db((db.project.id == project_id)&\
+                (db.user_project.project == db.project.id)&\
+                (db.auth_user.id == db.user_project.assigned_user)&\
+                ((db.user_project.period <= period.id) & ((db.user_project.period + db.user_project.periods) > period.id))&\
+                (db.auth_membership.user_id == db.auth_user.id)&\
+                (db.auth_membership.group_id == db.auth_group.id)&\
+                (db.auth_group.role == 'Student')).select()
+    return dict(teachers_on_project = teachers_on_project,
+                aux_in_courses = aux_in_courses,
+                semester = period,
+                data = db((db.item.created == period)&
+                          (db.item.item_restriction == item_restriction_id)&
+                          (db.item.item_restriction == db.item_restriction.id)&
+                          (db.item_restriction.is_public == True)&
+                          ((db.item_restriction.period == period)|(db.item_restriction.permanent == True))&
+                          (db.item.assignation == db.user_project.id)&
+                          (db.user_project.project == db.project.id)&
+                          (db.user_project.project == db.project.id)&\
+                        (db.auth_user.id == db.user_project.assigned_user)&\
+                        (db.user_project.assignation_status == None)&\
+                        (db.auth_membership.user_id == db.auth_user.id)&\
+                        (db.auth_membership.group_id == db.auth_group.id)&\
+                        (db.auth_group.role == 'Student')&
+                          (db.item.id > 0)).select(orderby=db.project.name),
+                period =parameter_period)
+
+def about_us():
+    return dict(message="about us")
+
+def notification():
+    notification = request.vars['notification']
+    
+    front_notification = db((db.front_notification.is_public == True)&\
+                              (db.front_notification.id == notification)).select().first()
+        
+    return dict(front_notification=front_notification,markmin_settings = cpfecys.get_markmin)

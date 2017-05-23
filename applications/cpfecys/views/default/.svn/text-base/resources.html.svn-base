@@ -1,0 +1,148 @@
+{{extend 'template.html'}}
+
+<!--emarquez-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">﻿﻿﻿﻿﻿﻿
+
+<form class="form-inline" action="{{=URL('default','resources')}}" method='get'>
+<input id="parameter" name = "r" type="hidden" value= "{{=request.vars['r']}}">
+<input id="chkTipoCurso" name="chkTipoCurso" type="checkbox" checked data-toggle="toggle" data-on="<i class='fa fa-share'></i> Semestres" data-off="<i class='fa fa-reply'></i> Periodos" data-size="mini" >
+<select id="period" name="period">
+</select>
+<input class="btn" type="submit" value="{{=T('Go')}}">
+</form>
+
+<!--fin emarquez-->
+
+
+{{if data.first() is not None:}}
+<h1>{{=data.first().item_restriction.name}} -
+    <small>
+    {{=semester.yearp}}, {{=T(db.period(id = semester.period).name)}}
+    </small>
+</h1>
+{{pass}}
+<table class="table table-striped table-bordered">
+    <thead>
+        <th></th>
+        <th>{{=T('Course Name')}}</th>
+        <th>{{=T('Teacher')}}</th>
+        <th>{{=T('Final Practice Student')}}</th>
+        <th>{{=T('Details')}}</th>
+    </thead>
+    {{counter = 1}}
+    {{lastcourse = None}}
+    <tbody>
+        {{for element in data:}}
+        {{if (not (lastcourse == element.project.name)):}}
+        {{if lastcourse != None:}}
+        </td>
+            {{counter += 1}}
+        </tr>
+        {{pass}}
+        <tr>
+            <td>{{=counter}}</td>
+            <td>{{=element.project.name}}</td>
+            <td>
+                <ul>
+                {{teachers = teachers_on_project(element.project.id)}}
+                {{for teacher in teachers:}}
+                <li>{{=teacher.auth_user.last_name}}, {{=teacher.auth_user.first_name}}</li>
+                {{pass}}
+                </ul>
+            </td>
+            <td>
+                <ul>
+                {{final_practice_students = aux_in_courses(element.project.id)}}
+                {{for aux in final_practice_students:}}
+                <li>{{=aux.auth_user.last_name}}, {{=aux.auth_user.first_name}}</li>
+                {{pass}}
+                </ul>
+            </td>
+            <td>
+            {{pass}}
+            {{if not element.item_restriction.is_unique:}}
+            {{for aux in aux_in_courses(element.project.id):}}
+            <!--emarquez: se filtra tambien por periodo-->
+            {{for element2 in db((db.item.item_restriction == element.item_restriction)&
+                (db.item.assignation == aux.user_project.id)&(db.item.created == semester.id)).select():}}
+            {{if element2.item_restriction.item_type.name == 'File':}}
+                <a href="{{=URL('default','download', args=element2.uploaded_file)}}"
+                   class="btn">
+                    {{=T('Download')}}
+                </a>
+            {{elif element2.item_restriction.item_type.name == 'Schedule':}}
+                {{=element.auth_user.last_name}}, {{=element.auth_user.first_name}}:
+                {{schedule = db(db.item_schedule.item == element2.id).select()}}
+                <ul>
+                {{for s in schedule:}}
+                    <li>{{=T(s.day_of_week.name)}}: {{=s.start_time}} - {{=s.end_time}}, {{=s.physical_location}}</li>
+                {{pass}}
+                </ul>
+            {{pass}}
+            {{pass}}
+            {{pass}}
+            {{else:}}
+            {{if element.item_restriction.item_type.name == 'File':}}
+                <a href="{{=URL('default','download', args=element2.item.uploaded_file)}}"
+                   class="btn">
+                    {{=T('Download')}}
+                </a>
+            {{elif element.item_restriction.item_type.name == 'Schedule':}}
+                <strong>
+                    {{=element.auth_user.last_name}}, {{=element.auth_user.first_name}}:
+                </strong>
+                {{schedule = db(db.item_schedule.item == element.item.id).select()}}
+                <ul>
+                {{for s in schedule:}}
+                    <li>{{=T(s.day_of_week.name)}}: {{=s.start_time}} - {{=s.end_time}}, {{=s.physical_location}}</li>
+                {{pass}}
+                </ul>
+            {{pass}}
+            {{pass}}
+        {{lastcourse = element.project.name}}
+        {{pass}}
+        {{if lastcourse != None:}}
+        </td></tr>
+        {{pass}}
+    </tbody>
+</table>
+
+
+<!--emarquez: javascript-->
+<script type="text/javascript" src="{{=URL('static','js/jquery-ui.js')}}"></script>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+  $('#chkTipoCurso').change(function() {
+    $("#period").effect("highlight" );
+    if($(this).prop('checked'))
+    llenaComboPeriodosSemestres("period");
+    else llenaComboPeriodosVariables("period")
+  });
+
+  var periodo = "{{=request.vars['period']}}"
+  var tipo_periodo = "{{=request.vars['chkTipoCurso']}}"
+
+  //verificar que parametros vienen para setear el chek y el combo
+  if(periodo=="None")
+    {   $('#chkTipoCurso').attr('checked')
+    setTimeout(function(){ llenaComboPeriodosSemestres("period"); $("#period").val(periodo); },1000);
+
+    }
+  else
+  {
+    if(tipo_periodo=="None")
+         {
+        $('#chkTipoCurso').removeAttr('checked')
+        setTimeout(function(){  llenaComboPeriodosVariables("period"); $("#period").val(periodo); },1000);
+       }
+    else{
+        $('#chkTipoCurso').attr('checked')
+        setTimeout(function(){  llenaComboPeriodosSemestres("period"); $("#period").val(periodo); }, 1000);
+        }
+  }
+
+});
+</script>

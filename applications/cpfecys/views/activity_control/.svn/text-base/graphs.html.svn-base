@@ -1,0 +1,80 @@
+{{extend 'template.html'}}
+<script type="text/javascript" src="{{=URL('static','js')}}/highcharts/js/highcharts.js"></script>
+<a onclick="window.history.back()" class="btn" ><i class="icon-arrow-left"></i> Back</a>
+<h2>
+    {{=T('Estadísticas')}} <small>"{{=current_project.name}}"</small>
+    </br>
+    <small>{{=str(currentyear_period.yearp) + ' - ' + T(current_period_name) }}</small>
+</h2>
+  <h2>
+    {{=T('Course Progress')}}
+  </h2>
+          <div style="width:100%" id="graphbars"></div>
+<hr />
+{{if request.is_local:}}
+{{=response.toolbar()}}
+{{pass}}
+<script type="text/javascript">
+$(function () {
+    $('#graphbars').highcharts({
+        chart: {
+            type: 'column',
+            margin: [ 50, 50, 100, 80]
+        },
+        title: {
+            text: '{{=T("Promedio de curso y laboratorio")}}'
+        },
+        subtitle: {
+            text: '{{=current_project.name}}',
+        x: -20
+        },
+        xAxis: {
+            categories: [
+                {{for a in avg:}}
+                '{{=a[0]}}',
+                {{pass}}
+            ],
+            labels: {
+                align: 'right',
+                style: {
+                    fontSize: '12px',
+                    fontFamily: 'Verdana, sans-serif'
+                }
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: '{{=T("Promedio")}}'
+            }
+        },
+        legend: {
+            enabled: false
+        },
+        tooltip: {
+            pointFormat: '{{=T("Promedio")}}: <b>{point.y:.1f}</b>',
+        },
+        series: [{
+            name: '{{=T("Promedio")}}',
+            data: [
+                    {{for a in avg:}}
+                        {{=a[1]}},
+                    {{pass}}
+                   ],
+            dataLabels: {
+                enabled: true,
+                rotation: -90,
+                color: '#FFFFFF',
+                align: 'right',
+                x: 4,
+                y: 10,
+                style: {
+                    fontSize: '13px',
+                    fontFamily: 'Verdana, sans-serif',
+                    textShadow: '0 0 3px black'
+                }
+            }
+        }]
+    });
+});
+</script>

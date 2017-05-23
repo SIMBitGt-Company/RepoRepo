@@ -1,0 +1,631 @@
+{{extend 'template.html'}}
+<h2>{{=T('Final Practice Record')}} <small>{{=auth.user.username}}</small></h2>
+<h3>
+    {{=T('Student Information')}}
+</h3>
+<ul>
+    <li>{{=T('Student')}}: {{=auth.user.username}}</li>
+    <li>{{=T('First Name')}}: {{=auth.user.first_name}}</li>
+    <li>{{=T('Last Name')}}: {{=auth.user.last_name}}</li>
+</ul>
+<h3>
+    {{=T('Assignation History')}}
+</h3>
+<div class="accordion" id="practice_assignation_accordion">
+    <div class="accordion-group">
+        {{assignation_finished = False}}
+        {{total_assignations = 0}}
+        {{for item in assignations:}}
+            {{total_assignations += 1}}
+            {{if not item.user_project.assignation_ignored:}}
+                {{if (item.user_project.assignation_status is not None):}}
+                    {{if (item.user_project.assignation_status.name == 'Successful'):}}
+                        {{assignation_finished = True}}
+                    {{pass}}
+                {{pass}}
+
+            {{pass}}
+        <div class="accordion-heading">
+            <div class="row-fluid">
+                <a class="accordion-toggle"
+                   data-toggle="collapse"
+                   data-parent="#practice_assignation_accordion"
+                   href="#i{{=item.user_project.id}}">
+                    <span class="span6">
+                        <div>
+                            <strong>{{=T('Project Name')}}:</strong>
+                            {{=item.project.name}}
+                        </div>
+                        <div>
+                            <strong>{{=T('Area')}}:</strong>
+                            {{=item.area_level.name}}
+                        </div>
+                    </span>
+                    <span class="span6 right">
+                        <div>
+                            <strong>{{=T('Start')}}:</strong>
+                            {{=item.period_year.yearp}} - {{=T(item.period_year.period.name)}}
+                        </div>
+                        <div>
+                            <strong>{{=T('Length')}}:</strong>
+                            {{=item.user_project.periods}} {{=T('Semesters')}}
+                        </div>
+                        <div>
+                            {{import cpfecys}}
+                            <strong>{{=T('Status')}}:</strong>
+                            {{if cpfecys.assignation_is_locked(item.user_project):}}
+                            <span class="label">
+                                {{=T(str(item.user_project.assignation_status.name))}}
+                            </span>
+                            {{else:}}
+                            <span class="label label-success">{{=T('Active')}}</span>
+                            {{pass}}
+                        </div>
+                    </span>
+                </a>
+            </div>
+        </div>
+        <div id="i{{=item.user_project.id}}"
+             class="accordion-body collapse">
+            <div class="accordion-inner" style="overflow:auto;">
+                <div class="row-fluid reports">
+                    <div class="well span12">
+                        <h3>
+                            {{=T('Reports')}}
+                        </h3>
+                        <table style="width:100%;" class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th colspan="5">
+                                    {{=T('Information')}}
+                                    </th>
+                                    <th colspan="2">
+                                    {{=T('Approval')}}
+                                    </th>
+                                    <th>
+                                    {{=T('Actions')}}
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        {{=T('Name')}}
+                                    </th>
+                                    <th>
+                                        {{=T('Created Date')}} <br />
+                                        ({{=T('Year-Month-Day')}})
+                                    </th>
+                                    <th>
+                                        {{=T('Delivery Dates')}}
+                                    </th>
+                                    <th>
+                                        {{=T('Status')}}
+                                    </th>
+                                    <th>
+                                        {{=T('Score')}}
+                                    </th>
+                                    <th>
+                                        {{=T('Immediate Boss')}}
+                                    </th>
+                                    <th>
+                                        {{=T('DTT')}}
+                                    </th>
+                                    <th>
+                                        {{=T('Actions')}}
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{average_report_scoring = 0}}
+                                {{average_report_scoring_general = 0}}
+                                {{reports = item.user_project.report.select()}}
+                                {{average_report_count = len(reports)}}
+                                {{for report in reports:}}
+                                {{restriction = db.report_restriction(report.report_restriction)}}
+                                <tr>
+                                    <td>
+                                        {{=restriction.name}}
+                                    </td>
+                                    <td>
+                                        {{=report.created}}
+                                    </td>
+                                    <td>
+                                        {{=restriction.start_date}} - {{=restriction.end_date}}
+                                    </td>
+                                    <td>
+                                        {{=T(report.status['name'])}}
+                                    </td>
+                                    <td>
+                                        {{=report.score or 0}}
+                                    </td>
+                                    <td>
+                                        {{if report.score == report.min_score and report.min_score !=0  \
+                                            and report.min_score != None:}}
+                                            <span class="label label-warning">{{=T('Aproved with minimum')}}</span>
+                                        {{elif report.score > report.min_score:}}
+                                            <span class="label label-success">{{=T('Aproved')}}</span>
+                                        {{elif report.min_score !=0 and report.min_score != None:}}
+                                            <span class="label label-important">{{=T('Failed')}}</span>
+                                            {{ if report.never_delivered:}}
+                                                {{=T('Never delivered')}}
+                                            {{ pass}}
+                                        {{else:}}
+                                            <span class="label label-info">{{=T('Grade pending')}}</span>
+                                        {{pass}}
+                                        {{if report.teacher_comment != None:}}
+                                            {{if len(report.teacher_comment) > 0:}}
+                                                <div id="modal-comment-{{=report.id}}" class="modal hide fade modal-comment">
+                                                  <div class="modal-header">
+                                                    <button type="button" class="close" 
+                                                    data-dismiss="modal" aria-hidden="true">
+                                                    &times;</button>
+                                                    <h3>{{=T('Teacher comment')}}</h3>
+                                                  </div>
+                                                  <div class="modal-body">
+                                                    <p>{{=(report.teacher_comment)}}</p>
+                                                  </div>
+                                                  <div class="modal-footer">
+                                                    <a class="btn" data-dismiss="modal" 
+                                                    aria-hidden="true">{{=T('Close')}}</a>
+                                                  </div>
+                                                </div>
+                                                <i class="teacher-comment icon-exclamation-sign"
+                                                   data-toggle="modal"
+                                                   data-target="#modal-comment-{{=report.id}}"
+                                                    data-placement="top"
+                                                    title="{{=T('Click to see teacher comment')}}"></i>
+                                            {{pass}}
+                                        {{pass}}
+                                    </td>
+                                    <td>
+                                        {{if report.dtt_approval is None:}}
+                                        <span class="label">{{=T('Approval Pending')}}</span>
+                                        {{elif report.dtt_approval is True:}}
+                                        <span class="label label-success">{{=T('Approved')}}</span>
+                                        {{else:}}
+                                        <span class="label label-important">{{=T('Not Approved')}}</span>
+                                        {{pass}}
+                                    </td>
+                                    {{if report.score: average_report_scoring_general += report.score}}
+                                    {{if report.score and report.dtt_approval: average_report_scoring += report.score}}
+                                    <td>
+                                    
+                                        <a class="btn"
+                                           href="{{=URL('student',
+                                                 'report/view',
+                                                 vars=dict(report=report.id))}}">
+                                            <span class="icon-eye-open"></span>
+                                            {{=T('View Report')}}
+                                        </a>
+                                        {{if not cpfecys.assignation_is_locked(item.user_project):}}
+                                        {{if (report.status['name'] == 'Draft') \
+                                        or (report.status['name'] == 'Recheck') \
+                                        and is_indate_range(report):}}
+                                        {{if report.dtt_approval is None or report.dtt_approval==True:}}
+                                        <a class="btn"
+                                           href="{{=URL('student',
+                                                 'report/edit',
+                                                 vars=dict(report=report.id))}}">
+                                            <span class="icon-edit"></span>
+                                            {{=T('Edit Report')}}
+                                        </a>
+                                        {{pass}}
+                                        {{pass}}
+                                    {{pass}}
+                                    </td>
+                                </tr>
+                                {{pass}}
+                                {{if not cpfecys.assignation_is_locked(item.user_project):}}
+                                    {{cperiod_year = cpfecys.current_year_period()}}
+                                    {{for available_report in  \
+                                    available_reports(cperiod_year).select():}}
+                                        {{if to_be_created(available_report, \
+                                        item.user_project):}}
+                                        <tr class="info">
+                                            <td>
+                                              {{=available_report.name}}
+                                            </td>
+                                            <td>
+                                              {{=T('Pending')}}
+                                            </td>
+                                            <td>
+                                              {{=str(available_report.start_date) \
+                                                + ' - ' + \
+                                                    str(available_report.end_date)}}
+                                            </td>
+                                            <td>
+                                              {{=T('Pending')}}
+                                            </td>
+                                            <td>
+                                              0
+                                            </td>
+                                            <td>
+                                              <div class="label label-info">
+                                                {{=T('Grade pending')}}
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="label">
+                                                {{=T('Pending')}}
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <a class="btn btn-info" 
+                                              href="{{=URL('student','report/create', \
+                                              vars=dict(assignation = \
+                                              item.user_project.id, report_restriction = \
+                                              available_report.id))}}">
+                                                <span class="icon-plus"></span>
+                                                {{=T('Create Report')}}
+                                              </a>
+                                            </td>
+                                        </tr>
+                                        {{pass}}
+                                    {{pass}}
+                                {{pass}}
+                            </tbody>
+                        </table>
+                        <div class="span12">
+                            <div class="span6">
+                                <small><strong>{{=T('Average Score')}}:</strong>
+                                {{if average_report_count > 0:}}
+                                    {{=average_report_scoring_general/average_report_count}}
+                                {{else:}}
+                                    0
+                                    {{pass}}</small><br />
+                                <strong>{{=T('Average Score Approved by DTT')}}:</strong>
+                                {{if average_report_count > 0:}}
+                                    {{=average_report_scoring/average_report_count}}
+                                {{else:}}
+                                    0
+                                {{pass}}
+                            </div>
+                            <div class="span6">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span12 well">
+                    <h3>
+                        {{=T('Deliverable Items')}}
+                        
+                    </h3>
+                        {{for pyear in assignation_range(item):}}
+                         <h5>{{=T(pyear.period.name)}} - {{=pyear.yearp}}</h5>
+                         <table style="width:100%;" class="table table-striped table-bordered">
+                          <thead>
+                              <tr>
+                                  <th>
+                                      {{=T('Name')}}
+                                  </th>
+                                  <th>
+                                      {{=T('Created')}}
+                                      ({{=T('Year-Month-Day')}})
+                                  </th>
+                                  <th>
+                                  {{=T('Previously anulated')}}
+                                  </th>
+                                  <th>
+                                      {{=T('Actions')}}
+                                  </th>
+                              </tr>
+                          </thead>
+                          <tbody>
+
+                          {{for item_restriction in \
+                          available_item_restriction(pyear, item
+                          ).select():}}
+                           {{if restriction_project_exception(\
+                           item_restriction.item_restriction, \
+                           item.project).count() == 0:}}
+                            <!--Iterated period is same as current-->
+                            {{if cpfecys.current_year_period().id == \
+                             pyear.id:}}
+                             {{instance = items_instance( \
+                             item_restriction.item_restriction, \
+                             item)}}
+                             {{if instance.count() > 0:}}
+                                {{instance = instance.select().first()}}
+                              <tr>
+                                <td>
+                                {{=item_restriction.item_restriction.name}}
+                                </td>
+                                <td>
+                                {{=T(instance.created.period.name)}} {{=instance.created.yearp}}
+                                </td>
+                                <td>
+                                {{for disabled in has_disabled_items(pyear, \
+                                  item_restriction.item_restriction, \
+                                  item).select():}}
+                                  <div id="modal-disabled-{{=disabled.id}}" class="modal hide fade modal-comment">
+                                                  <div class="modal-header">
+                                                    <button type="button" class="close" 
+                                                    data-dismiss="modal" aria-hidden="true">
+                                                    &times;</button>
+                                                    <h3>{{=T('Admin comment')}}</h3>
+                                                  </div>
+                                                  <div class="modal-body">
+                                                    <p>
+                                                    {{=T(disabled.created.period.name)}} 
+                                                    {{=disabled.created.yearp}}
+                                                    </p>
+                                                    <p>{{=disabled.admin_comment \
+                                                    or T('No comment')}}</p>
+                                                  </div>
+                                                  <div class="modal-footer">
+                                                    <a class="btn" data-dismiss="modal" 
+                                                    aria-hidden="true">{{=T('Close')}}</a>
+                                                  </div>
+                                                </div>
+                                                <i class="teacher-comment icon-exclamation-sign"
+                                                   data-toggle="modal"
+                                                   data-target="#modal-disabled-{{=disabled.id}}"
+                                                    data-placement="top"
+                                                    title="{{=T('Click to see teacher comment')}}"></i>
+                                {{pass}}
+                                </td>
+                                <td>
+                                {{if \
+                                instance.item_restriction.item_type.name == \
+                                "Activity":}}
+                                {{if instance.done_activity:}}
+                                    <div class="label label-info">
+                                        {{=T('Done')}}
+                                    </div>
+                                {{pass}}
+                                {{elif \
+                                instance.item_restriction.item_type.name == \
+                                "Grade Activity":}}
+                                {{label = 'important'}}
+                                {{graded_info = T('Failed')}}
+                                {{if instance.score >= instance.min_score:}}
+                                    {{label = 'success'}}
+                                    {{graded_info = T('Approved')}}
+                                {{pass}}
+                                <div class="label label-{{=label}}">
+                                    {{=T('Score')}}: {{=instance.score or 0}},
+                                    {{=graded_info}}
+                                </div>
+                                {{else:}}
+                                    {{if instance.uploaded_file:}}
+                                <a class="btn" href="{{=URL('cpfecys/student', 'download', instance.uploaded_file)}}">
+                                <span class="icon-eye-open"></span>
+                                {{=T('View Item')}}
+                                </a>
+                                    {{pass}}
+                                    {{if not cpfecys.assignation_is_locked(item.user_project):}}
+                                        {{if instance.created == cyear_period:}}
+                                        <a href="{{=URL('student',
+                                                 'item/edit',
+                                            vars=dict(period = cyear_period.id,restriction=item_restriction.item_restriction.id,
+                                                 assignation=item.user_project.id, item=instance.id))}}" class="btn">
+                                            <span class="icon-edit"></span>
+                                            {{=T('Edit Item')}}
+                                        </a>
+                                        {{pass}}
+                                    {{pass}}
+                                {{pass}}
+                                {{if instance.is_active != True:}}
+                                <div class="label label-important">
+                                {{=T('Rejected by DTT')}}
+                                </div>
+                                {{pass}}
+                                </td>
+                              </tr>
+                             {{else:}}
+                                {{if not \ 
+                                cpfecys.assignation_is_locked( \
+                                item.user_project) and \
+                                restriction_in_limit_days(
+                                item_restriction.item_restriction):}}
+                                <tr>
+                                  <td>
+                                  {{=item_restriction.item_restriction.name}}
+                                  </td>
+                                  {{if \
+                                  item_restriction.item_restriction.item_type.name == \
+                                  "Activity" or \
+                                  item_restriction.item_restriction.item_type.name == \
+                                  "Grade Activity":}}
+                                  <td>
+                                  {{=T('Grading Pending')}}
+                                  </td>
+                                  <td></td>
+                                  <td>
+                                  {{=T('None, the grading is in process, if \
+                                  you meet the criteria, your grade will apear \
+                                  here')}}
+                                  </td>
+                                  {{else:}}
+                                  <td>
+                                    <div class="label label-info">
+                                    {{=T('Pending')}}, {{=T('Last day')}}:
+                                    {{=calculate_last_day( \
+                                    item_restriction.item_restriction)}}
+                                    </div>
+                                  </td>
+                                  <td>
+                                    {{for disabled in has_disabled_items(pyear, \
+                                      item_restriction.item_restriction, \
+                                      item).select():}}
+                                      <div id="modal-disabled-{{=disabled.id}}" class="modal hide fade modal-comment">
+                                                  <div class="modal-header">
+                                                    <button type="button" class="close" 
+                                                    data-dismiss="modal" aria-hidden="true">
+                                                    &times;</button>
+                                                    <h3>{{=T('Admin comment')}}</h3>
+                                                  </div>
+                                                  <div class="modal-body">
+                                                    <p>
+                                                    {{=T(disabled.created.period.name)}} 
+                                                    {{=disabled.created.yearp}}
+                                                    </p>
+                                                    <p>{{=disabled.admin_comment \
+                                                    or T('No comment')}}</p>
+                                                  </div>
+                                                  <div class="modal-footer">
+                                                    <a class="btn" data-dismiss="modal" 
+                                                    aria-hidden="true">{{=T('Close')}}</a>
+                                                  </div>
+                                                </div>
+                                                <i class="teacher-comment icon-exclamation-sign"
+                                                   data-toggle="modal"
+                                                   data-target="#modal-disabled-{{=disabled.id}}"
+                                                    data-placement="top"
+                                                    title="{{=T('Click to see teacher comment')}}"></i>
+                                    {{pass}}
+                                  </td>
+                                  <td>
+                                  <a href="{{=URL('student',
+                                         'item/create',
+                                         vars=dict(
+                                         restriction=item_restriction.item_restriction.id,
+                                         assignation=item.user_project.id,
+                                         period=pyear.id, 
+                                         proyect=item.project.area_level))}}"
+                                   class="btn">
+                                    <span class="icon-plus"></span>
+                                    {{=T('Create Item')}}
+                                    <small>{{=item_restriction.item_restriction.name}}</small>
+                                  </a>
+                                  </td>
+                                  {{pass}}
+                                </tr>
+                                {{else:}}
+                                <tr>
+                                  <td>
+                                  {{=item_restriction.item_restriction.name}}
+                                  </td>
+                                  <td>
+                                    <div class="label label-important">
+                                    {{=T('Missing')}}, {{=T('Last day was')}}:
+                                    {{=calculate_last_day( \
+                                    item_restriction.item_restriction)}}
+                                    </div>
+                                  </td>
+                                  <td>
+                                      {{for disabled in has_disabled_items(pyear, \
+                                      item_restriction.item_restriction, \
+                                      item).select():}}
+                                      <div id="modal-disabled-{{=disabled.id}}" class="modal hide fade modal-comment">
+                                                      <div class="modal-header">
+                                                        <button type="button" class="close" 
+                                                        data-dismiss="modal" aria-hidden="true">
+                                                        &times;</button>
+                                                        <h3>{{=T('Admin comment')}}</h3>
+                                                      </div>
+                                                      <div class="modal-body">
+                                                        <p>
+                                                        {{=T(disabled.created.period.name)}} 
+                                                        {{=disabled.created.yearp}}
+                                                        </p>
+                                                        <p>{{=disabled.admin_comment \
+                                                        or T('No comment')}}</p>
+                                                      </div>
+                                                      <div class="modal-footer">
+                                                        <a class="btn" data-dismiss="modal" 
+                                                        aria-hidden="true">{{=T('Close')}}</a>
+                                                      </div>
+                                                    </div>
+                                                    <i class="teacher-comment icon-exclamation-sign"
+                                                       data-toggle="modal"
+                                                       data-target="#modal-disabled-{{=disabled.id}}"
+                                                        data-placement="top"
+                                                        title="{{=T('Click to see teacher comment')}}"></i>
+                                    {{pass}}
+                                  </td>
+                                  <td>
+                                  <div  class="label label-important">
+                                  {{=T('No actions available')}}
+                                  </div>
+                                  </td>
+                                </tr>
+                                {{pass}}
+                             {{pass}}
+                            {{else:}}
+                            <!--Iterated period is different as current-->
+                            {{if pyear.id > item_restriction.item_restriction.period:}}
+                                {{instance = \
+                                get_item(item_restriction.item_restriction, \
+                                item)}}
+                                {{if instance.count() > 0:}}
+                                {{instance = instance.select().first()}}
+                                <tr>
+                                    <td>
+                                    {{=item_restriction.item_restriction.name}}
+                                    </td>
+                                    <td>
+                                    {{=T(instance.created.period.name)}} {{=instance.created.yearp}}
+                                    </td>
+                                    <td></td>
+                                    <td>
+                                    <a class="btn" href="{{=URL('cpfecys/student', 'download', instance.uploaded_file)}}">
+                                    <span class="icon-eye-open"></span>
+                                    {{=T('View Item')}}
+                                    </a>
+                                    </td>
+                                </tr>
+                                {{else:}}
+                                <tr>
+                                    <td>
+                                    {{=item_restriction.item_restriction.name}}
+                                    </td>
+                                    <td>
+                                        <div class='label label-important'>
+                                            {{=T('Missing Item')}}
+                                        </div>
+                                    </td>
+                                    <td></td>
+                                    <td>
+                                        <div class='label label-important'>
+                                            {{=T('No actions available')}}
+                                        </div>
+                                    </a>
+                                    
+                                    </td>
+                                </tr>
+                                {{pass}}
+                            {{pass}}
+                           {{pass}}
+                          {{pass}}
+                          {{pass}}
+                          </tbody>
+                        </table>
+                        {{pass}}
+                    </div>
+                </div>
+                {{if cpfecys.assignation_is_locked(item.user_project):}}
+                <div class="row-fluid">
+                    <div class="span12 well">
+                        <h3>
+                            {{=T('Assignation Status')}}
+                            <span class="label">
+                                {{=T(str(item.user_project.assignation_status.name))}}
+                            </span>
+                        </h3>
+                        {{=item.user_project.assignation_comment}}
+                    </div>
+                </div>
+                {{pass}}
+            </div>
+        </div>
+        {{pass}}
+    </div>
+    {{if assignation_finished and (total_assignations>0):}}
+        <div>
+            <h2>
+            {{=T('Generate Final Practice Certification')}}
+            </h2>
+            <a class="btn btn-success" href="{{=URL('certificate', 'index.pdf',vars = dict(user=auth.user.id) )}}">{{=T('Generate Certification')}}</a>
+        </div>
+    {{pass}}
+</div>
+<script type="text/javascript">
+    $(function(){
+        $('.teacher-comment').tooltip();
+    })
+</script>
+{{if request.is_local:}}
+{{=response.toolbar()}}
+{{pass}}

@@ -1,0 +1,93 @@
+(dp1
+S'repository_answer'
+p2
+(dp3
+S'sortable'
+p4
+I4
+sS'sql'
+p5
+S'INT, INDEX repository_answer__idx (repository_answer), FOREIGN KEY (repository_answer) REFERENCES repository_answer (id) ON DELETE CASCADE'
+p6
+sS'length'
+p7
+I512
+sS'notnull'
+p8
+I01
+sS'unique'
+p9
+I00
+sS'type'
+p10
+S'reference repository_answer'
+p11
+ssS'question_repository'
+p12
+(dp13
+g4
+I3
+sg5
+S'INT, INDEX question_repository__idx (question_repository), FOREIGN KEY (question_repository) REFERENCES question_repository (id) ON DELETE CASCADE'
+p14
+sg7
+I512
+sg8
+I01
+sg9
+I00
+sg10
+S'reference question_repository'
+p15
+ssS'total_count'
+p16
+(dp17
+g4
+I5
+sg5
+S'INT NOT NULL'
+p18
+sg7
+I512
+sg8
+I01
+sg9
+I00
+sg10
+S'integer'
+p19
+ssS'evaluation_result'
+p20
+(dp21
+g4
+I2
+sg5
+S'INT, INDEX evaluation_result__idx (evaluation_result), FOREIGN KEY (evaluation_result) REFERENCES evaluation_result (id) ON DELETE CASCADE'
+p22
+sg7
+I512
+sg8
+I01
+sg9
+I00
+sg10
+S'reference evaluation_result'
+p23
+ssS'id'
+p24
+(dp25
+g4
+I1
+sg5
+S'INT AUTO_INCREMENT NOT NULL'
+p26
+sg7
+I512
+sg8
+I00
+sg9
+I00
+sg10
+S'id'
+p27
+ss.

@@ -1,0 +1,757 @@
+timestamp: 2015-09-12T12:41:30.629085
+CREATE TABLE auth_user(
+    id INT AUTO_INCREMENT NOT NULL,
+    first_name VARCHAR(128),
+    last_name VARCHAR(128),
+    email VARCHAR(512),
+    username VARCHAR(128),
+    password VARCHAR(512),
+    registration_key VARCHAR(512),
+    reset_password_key VARCHAR(512),
+    registration_id VARCHAR(512),
+    phone VARCHAR(16) NOT NULL,
+    home_address VARCHAR(500) NOT NULL,
+    working CHAR(1),
+    company_name VARCHAR(200),
+    work_address VARCHAR(500),
+    work_phone VARCHAR(500),
+    uv_token VARCHAR(64),
+    data_updated CHAR(1),
+    load_alerted CHAR(1),
+    photo VARCHAR(512),
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T12:42:31.443613
+CREATE TABLE auth_user(
+    id INT AUTO_INCREMENT NOT NULL,
+    first_name VARCHAR(128),
+    last_name VARCHAR(128),
+    email VARCHAR(512),
+    username VARCHAR(128),
+    password VARCHAR(512),
+    registration_key VARCHAR(512),
+    reset_password_key VARCHAR(512),
+    registration_id VARCHAR(512),
+    phone VARCHAR(16) NOT NULL,
+    home_address VARCHAR(500) NOT NULL,
+    working CHAR(1),
+    company_name VARCHAR(200),
+    work_address VARCHAR(500),
+    work_phone VARCHAR(500),
+    uv_token VARCHAR(64),
+    data_updated CHAR(1),
+    load_alerted CHAR(1),
+    photo VARCHAR(512),
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T12:43:08.270973
+CREATE TABLE tesis_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T12:43:31.143996
+CREATE TABLE tesis_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T12:44:31.243705
+CREATE TABLE tesis_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T12:45:31.824996
+CREATE TABLE tesis_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T12:46:31.484245
+CREATE TABLE tesis_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T12:47:31.245210
+CREATE TABLE tesis_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T12:48:13.652704
+CREATE TABLE tesis_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T12:48:15.866069
+CREATE TABLE tesis_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T12:48:31.334263
+CREATE TABLE tesis_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T12:48:56.559212
+CREATE TABLE tesis_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T12:48:59.616974
+CREATE TABLE tesis_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T12:49:10.892622
+CREATE TABLE tesis_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T12:49:13.642483
+CREATE TABLE tesis_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T12:49:16.348142
+CREATE TABLE tesis_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T12:49:31.748623
+CREATE TABLE tesis_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T12:49:41.062718
+CREATE TABLE tesis_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T12:49:44.503590
+CREATE TABLE tesis_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T12:49:49.879007
+CREATE TABLE tesis_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T12:50:31.767299
+CREATE TABLE tesis_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T12:51:31.300001
+CREATE TABLE tesis_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T12:52:31.978637
+CREATE TABLE tesis_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T12:53:14.575631
+CREATE TABLE tesis_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T12:53:31.322205
+CREATE TABLE tesis_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T12:53:52.056150
+CREATE TABLE tesis_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T12:54:31.362726
+CREATE TABLE tesis_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T12:55:04.586826
+CREATE TABLE tesis_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T12:55:31.914147
+CREATE TABLE tesis_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T12:56:31.558643
+CREATE TABLE tesis_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T12:57:31.141657
+CREATE TABLE tesis_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T12:58:31.450770
+CREATE TABLE tesis_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T12:59:31.986051
+CREATE TABLE tesis_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T13:00:31.788254
+CREATE TABLE tesis_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T13:01:31.395175
+CREATE TABLE tesis_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T13:02:31.707610
+CREATE TABLE tesis_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T13:03:29.922452
+CREATE TABLE tesis_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T13:03:31.088724
+CREATE TABLE tesis_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T13:03:37.976802
+CREATE TABLE tesis_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T13:03:39.224188
+CREATE TABLE tesis_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T13:03:47.819179
+CREATE TABLE tesis_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T13:04:02.465392
+CREATE TABLE tesis_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T13:04:31.144458
+CREATE TABLE tesis_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T13:04:41.022486
+CREATE TABLE tesis_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T13:05:31.733459
+CREATE TABLE tesis_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T13:06:31.448051
+CREATE TABLE tesis_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T13:07:31.160167
+CREATE TABLE tesis_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T13:07:42.026922
+CREATE TABLE tesis_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T13:08:22.188245
+CREATE TABLE tesis_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T13:08:31.247812
+CREATE TABLE tesis_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T13:09:31.975108
+CREATE TABLE tesis_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T13:10:32.196969
+CREATE TABLE tesis_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T13:11:31.057852
+CREATE TABLE tesis_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T13:12:31.735834
+CREATE TABLE tesis_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T13:13:31.075794
+CREATE TABLE tesis_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2015-09-12T13:13:31.089286
+CREATE TABLE tesis_modality(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    filenormative VARCHAR(512),
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2015-09-12T13:13:31.106331
+CREATE TABLE tesis_research_areas(
+    id INT AUTO_INCREMENT NOT NULL,
+    parent_research_area INT, INDEX parent_research_area__idx (parent_research_area), FOREIGN KEY (parent_research_area) REFERENCES tesis_research_areas (id) ON DELETE CASCADE,
+    name VARCHAR(255) NOT NULL,
+    description LONGTEXT,
+    file1 VARCHAR(512),
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2015-09-12T13:13:31.124971
+CREATE TABLE tesis_tutor(
+    id INT AUTO_INCREMENT NOT NULL,
+    firstname VARCHAR(255) NOT NULL,
+    lastname VARCHAR(255),
+    Professionalid INT,
+    Profession VARCHAR(255),
+    specialty LONGTEXT,
+    address LONGTEXT,
+    phone INT,
+    email VARCHAR(50),
+    cv VARCHAR(512),
+    file1 VARCHAR(512),
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2015-09-12T13:13:31.144192
+CREATE TABLE tesis_adviser(
+    id INT AUTO_INCREMENT NOT NULL,
+    firstname VARCHAR(255) NOT NULL,
+    lastname VARCHAR(255),
+    Professionalid INT,
+    Profession VARCHAR(255),
+    specialty LONGTEXT,
+    address LONGTEXT,
+    phone INT,
+    email VARCHAR(50),
+    cv VARCHAR(512),
+    file1 VARCHAR(512),
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2015-09-12T13:13:31.155645
+CREATE TABLE tesis_asigned_topics(
+    id INT AUTO_INCREMENT NOT NULL,
+    student VARCHAR(50) NOT NULL,
+    tutor INT, INDEX tutor__idx (tutor), FOREIGN KEY (tutor) REFERENCES tesis_tutor (id) ON DELETE CASCADE,
+    adviser INT, INDEX adviser__idx (adviser), FOREIGN KEY (adviser) REFERENCES tesis_adviser (id) ON DELETE CASCADE,
+    topic_name LONGTEXT NOT NULL,
+    topic_modality INT, INDEX topic_modality__idx (topic_modality), FOREIGN KEY (topic_modality) REFERENCES tesis_modality (id) ON DELETE CASCADE,
+    topic_area INT, INDEX topic_area__idx (topic_area), FOREIGN KEY (topic_area) REFERENCES tesis_research_areas (id) ON DELETE CASCADE,
+    topic_description LONGTEXT,
+    topic_protocol VARCHAR(512),
+    file1 VARCHAR(512),
+    topic_date_approval DATE,
+    topic_date_validity DATE,
+    topic_date_reactivation DATE,
+    status INT, INDEX status__idx (status), FOREIGN KEY (status) REFERENCES tesis_status (id) ON DELETE CASCADE,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2015-09-12T13:13:31.190967
+CREATE TABLE eps_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T13:13:32.750064
+CREATE TABLE eps_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T13:13:48.811130
+CREATE TABLE eps_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T13:14:31.217847
+CREATE TABLE eps_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T13:15:32.019550
+CREATE TABLE eps_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T13:16:31.439974
+CREATE TABLE eps_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2015-09-12T13:17:31.288558
+CREATE TABLE eps_status(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2015-09-12T13:17:31.300429
+CREATE TABLE eps_period(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2015-09-12T13:17:31.314044
+CREATE TABLE eps_period_year(
+    id INT AUTO_INCREMENT NOT NULL,
+    period INT, INDEX period__idx (period), FOREIGN KEY (period) REFERENCES eps_period (id) ON DELETE CASCADE,
+    yearp INT NOT NULL,
+    start_date DATE NOT NULL,
+    end_date DATE NOT NULL,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2015-09-12T13:17:31.329431
+CREATE TABLE eps_modality(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    filenormative VARCHAR(512),
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2015-09-12T13:17:31.345939
+CREATE TABLE eps_activity(
+    id INT AUTO_INCREMENT NOT NULL,
+    modality INT, INDEX modality__idx (modality), FOREIGN KEY (modality) REFERENCES eps_modality (id) ON DELETE CASCADE,
+    orden INT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description LONGTEXT,
+    enable_virtual CHAR(1),
+    file1 VARCHAR(512),
+    file2 VARCHAR(512),
+    file3 VARCHAR(512),
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2015-09-12T13:17:31.364712
+CREATE TABLE eps_institution(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    unit VARCHAR(255),
+    description LONGTEXT,
+    address LONGTEXT,
+    phone INT,
+    email VARCHAR(50),
+    owner_name VARCHAR(255) NOT NULL,
+    owner_phone INT,
+    owner_email VARCHAR(50),
+    file1 VARCHAR(512),
+    file2 VARCHAR(512),
+    file3 VARCHAR(512),
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2015-09-12T13:17:31.373628
+CREATE TABLE eps_assignment(
+    id INT AUTO_INCREMENT NOT NULL,
+    status INT, INDEX status__idx (status), FOREIGN KEY (status) REFERENCES eps_status (id) ON DELETE CASCADE,
+    modality INT, INDEX modality__idx (modality), FOREIGN KEY (modality) REFERENCES eps_modality (id) ON DELETE CASCADE,
+    period INT, INDEX period__idx (period), FOREIGN KEY (period) REFERENCES eps_period_year (id) ON DELETE CASCADE,
+    student VARCHAR(50) NOT NULL,
+    project LONGTEXT NOT NULL,
+    institution INT, INDEX institution__idx (institution), FOREIGN KEY (institution) REFERENCES eps_institution (id) ON DELETE CASCADE,
+    adviser VARCHAR(255),
+    supervisor VARCHAR(255),
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2015-09-12T13:17:31.398703
+CREATE TABLE eps_activity_calendar(
+    id INT AUTO_INCREMENT NOT NULL,
+    activity INT, INDEX activity__idx (activity), FOREIGN KEY (activity) REFERENCES eps_activity (id) ON DELETE CASCADE,
+    period_year INT, INDEX period_year__idx (period_year), FOREIGN KEY (period_year) REFERENCES eps_period_year (id) ON DELETE CASCADE,
+    date_assign DATE,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2015-09-12T13:17:31.416826
+CREATE TABLE eps_files_enable_virtual(
+    id INT AUTO_INCREMENT NOT NULL,
+    activity INT, INDEX activity__idx (activity), FOREIGN KEY (activity) REFERENCES eps_activity (id) ON DELETE CASCADE,
+    assign INT, INDEX assign__idx (assign), FOREIGN KEY (assign) REFERENCES eps_assignment (id) ON DELETE CASCADE,
+    files VARCHAR(512),
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2015-09-12T13:17:31.435577
+CREATE TABLE eps_tracking_activity(
+    id INT AUTO_INCREMENT NOT NULL,
+    activity INT, INDEX activity__idx (activity), FOREIGN KEY (activity) REFERENCES eps_activity (id) ON DELETE CASCADE,
+    assign INT, INDEX assign__idx (assign), FOREIGN KEY (assign) REFERENCES eps_assignment (id) ON DELETE CASCADE,
+    validated CHAR(1),
+    observations LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2015-09-12T13:17:31.452718
+CREATE TABLE eps_tracking(
+    id INT AUTO_INCREMENT NOT NULL,
+    activity INT, INDEX activity__idx (activity), FOREIGN KEY (activity) REFERENCES eps_activity (id) ON DELETE CASCADE,
+    assign INT, INDEX assign__idx (assign), FOREIGN KEY (assign) REFERENCES eps_assignment (id) ON DELETE CASCADE,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2016-07-18T05:28:12.974739
+CREATE TABLE user_user(
+    id INT AUTO_INCREMENT NOT NULL,
+    lastname VARCHAR(512),
+    firstname VARCHAR(512),
+    username VARCHAR(512),
+    password VARCHAR(512),
+    phone VARCHAR(512),
+    email VARCHAR(512),
+    external_uid VARCHAR(512),
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+faked!
+timestamp: 2016-07-18T05:28:13.037962
+ALTER TABLE front_notification ADD image_file VARCHAR(512);
+faked!
+success!
+timestamp: 2016-12-09T20:16:19.406736
+CREATE TABLE period_type(
+    id INT AUTO_INCREMENT NOT NULL,
+    description VARCHAR(100),
+    isVariable CHAR(1),
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+faked!
+timestamp: 2016-12-09T20:16:19.414114
+CREATE TABLE period_detail(
+    id INT AUTO_INCREMENT NOT NULL,
+    description VARCHAR(100) UNIQUE,
+    date_start DATETIME,
+    date_finish DATETIME,
+    date_start_semester DATE,
+    date_finish_semester DATE,
+    timeout_income_notes INT NOT NULL,
+    min_average INT,
+    max_average INT,
+    percentaje_income_activity INT,
+    period_type INT, INDEX period_type__idx (period_type), FOREIGN KEY (period_type) REFERENCES period_type (id) ON DELETE CASCADE,
+    period INT, INDEX period__idx (period), FOREIGN KEY (period) REFERENCES period (id) ON DELETE CASCADE,
+    period_active CHAR(1),
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+faked!
+timestamp: 2016-12-09T20:16:19.415838
+ALTER TABLE link ADD period_type INT, ADD INDEX period_type__idx (period_type), ADD FOREIGN KEY (period_type) REFERENCES period_type (id) ON DELETE CASCADE;
+faked!
+success!
+timestamp: 2016-12-09T20:16:19.420633
+ALTER TABLE front_notification ADD period_type INT, ADD INDEX period_type__idx (period_type), ADD FOREIGN KEY (period_type) REFERENCES period_type (id) ON DELETE CASCADE;
+faked!
+success!
+timestamp: 2016-12-09T20:16:19.427174
+ALTER TABLE uploaded_file ADD period_type INT, ADD INDEX period_type__idx (period_type), ADD FOREIGN KEY (period_type) REFERENCES period_type (id) ON DELETE CASCADE;
+faked!
+success!
+timestamp: 2016-12-09T20:16:19.435553
+CREATE TABLE report_restriction_period(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(50) NOT NULL,
+    period INT, INDEX period__idx (period), FOREIGN KEY (period) REFERENCES period_detail (id) ON DELETE CASCADE,
+    start_report DATE NOT NULL,
+    end_report DATE NOT NULL,
+    start_date DATE NOT NULL,
+    end_date DATE NOT NULL,
+    is_enabled CHAR(1),
+    is_final CHAR(1),
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+faked!
+timestamp: 2016-12-09T20:16:19.436966
+ALTER TABLE area_report_requirement ADD period_type INT, ADD INDEX period_type__idx (period_type), ADD FOREIGN KEY (period_type) REFERENCES period_type (id) ON DELETE CASCADE;
+faked!
+timestamp: 2016-12-09T20:16:19.456283
+ALTER TABLE item_restriction ADD period_type INT, ADD INDEX period_type__idx (period_type), ADD FOREIGN KEY (period_type) REFERENCES period_type (id) ON DELETE CASCADE;
+faked!
+success!
+timestamp: 2016-12-09T20:16:19.514343
+CREATE TABLE course_limit_exception_period(
+    id INT AUTO_INCREMENT NOT NULL,
+    project INT, INDEX project__idx (project), FOREIGN KEY (project) REFERENCES project (id) ON DELETE CASCADE,
+    period_repet CHAR(1) NOT NULL,
+    period INT, INDEX period__idx (period), FOREIGN KEY (period) REFERENCES period_detail (id) ON DELETE CASCADE,
+    date_finish DATETIME NOT NULL,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+faked!
+timestamp: 2016-12-09T20:16:19.515492
+CREATE TABLE course_laboratory_exception_period(
+    id INT AUTO_INCREMENT NOT NULL,
+    project INT, INDEX project__idx (project), FOREIGN KEY (project) REFERENCES project (id) ON DELETE CASCADE,
+    period INT, INDEX period__idx (period), FOREIGN KEY (period) REFERENCES period_detail (id) ON DELETE CASCADE,
+    t_edit_lab CHAR(1) NOT NULL,
+    s_edit_course CHAR(1) NOT NULL,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+faked!
+timestamp: 2016-12-09T20:16:19.562107
+CREATE TABLE evaluation_period(
+    id INT AUTO_INCREMENT NOT NULL,
+    date_start DATE NOT NULL,
+    date_finish DATE NOT NULL,
+    period_repeat CHAR(1) NOT NULL,
+    description LONGTEXT,
+    period INT, INDEX period__idx (period), FOREIGN KEY (period) REFERENCES period_detail (id) ON DELETE CASCADE,
+    repository_evaluation INT, INDEX repository_evaluation__idx (repository_evaluation), FOREIGN KEY (repository_evaluation) REFERENCES repository_evaluation (id) ON DELETE CASCADE,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+faked!
+timestamp: 2016-12-09T20:16:19.575590
+ALTER TABLE course_report_exception ADD period_type INT, ADD INDEX period_type__idx (period_type), ADD FOREIGN KEY (period_type) REFERENCES period_type (id) ON DELETE CASCADE;
+faked!

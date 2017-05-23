@@ -1,0 +1,82 @@
+(dp1
+S'area_level'
+p2
+(dp3
+S'sortable'
+p4
+I3
+sS'sql'
+p5
+S'INT, INDEX area_level__idx (area_level), FOREIGN KEY (area_level) REFERENCES area_level (id) ON DELETE CASCADE'
+p6
+sS'length'
+p7
+I512
+sS'notnull'
+p8
+I00
+sS'unique'
+p9
+I00
+sS'type'
+p10
+S'reference area_level'
+p11
+ssS'report_requirement'
+p12
+(dp13
+g4
+I2
+sg5
+S'INT, INDEX report_requirement__idx (report_requirement), FOREIGN KEY (report_requirement) REFERENCES report_requirement (id) ON DELETE CASCADE'
+p14
+sg7
+I512
+sg8
+I00
+sg9
+I00
+sg10
+S'reference report_requirement'
+p15
+ssS'id'
+p16
+(dp17
+g4
+I1
+sg5
+S'INT AUTO_INCREMENT NOT NULL'
+p18
+sg7
+I512
+sg8
+I00
+sg9
+I00
+sg10
+S'id'
+p19
+ssS'period_type'
+p20
+(dp21
+S'length'
+p22
+I512
+sS'unique'
+p23
+I00
+sS'sortable'
+p24
+I4
+sS'sql'
+p25
+S'INT, INDEX period_type__idx (period_type), FOREIGN KEY (period_type) REFERENCES period_type (id) ON DELETE CASCADE'
+p26
+sS'notnull'
+p27
+I00
+sS'type'
+p28
+S'reference period_type'
+p29
+ss.

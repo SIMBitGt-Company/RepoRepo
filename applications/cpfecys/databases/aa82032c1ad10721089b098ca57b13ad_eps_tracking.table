@@ -1,0 +1,58 @@
+(dp1
+S'assign'
+p2
+(dp3
+S'length'
+p4
+I512
+sS'unique'
+p5
+I00
+sS'sortable'
+p6
+I3
+sS'sql'
+p7
+S'INT, INDEX assign__idx (assign), FOREIGN KEY (assign) REFERENCES eps_assignment (id) ON DELETE CASCADE'
+p8
+sS'notnull'
+p9
+I01
+sS'type'
+p10
+S'reference eps_assignment'
+p11
+ssS'id'
+p12
+(dp13
+g4
+I512
+sg5
+I00
+sg6
+I1
+sg7
+S'INT AUTO_INCREMENT NOT NULL'
+p14
+sg9
+I00
+sg10
+g12
+ssS'activity'
+p15
+(dp16
+g4
+I512
+sg5
+I00
+sg6
+I2
+sg7
+S'INT, INDEX activity__idx (activity), FOREIGN KEY (activity) REFERENCES eps_activity (id) ON DELETE CASCADE'
+p17
+sg9
+I01
+sg10
+S'reference eps_activity'
+p18
+ss.

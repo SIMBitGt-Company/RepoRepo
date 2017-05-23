@@ -1,0 +1,109 @@
+(dp1
+S'evaluation_question'
+p2
+(dp3
+S'length'
+p4
+I512
+sS'unique'
+p5
+I00
+sS'sortable'
+p6
+I3
+sS'sql'
+p7
+S'INT, INDEX evaluation_question__idx (evaluation_question), FOREIGN KEY (evaluation_question) REFERENCES evaluation_question (id) ON DELETE CASCADE'
+p8
+sS'notnull'
+p9
+I01
+sS'type'
+p10
+S'reference evaluation_question'
+p11
+ssS'evaluation_template'
+p12
+(dp13
+g4
+I512
+sg5
+I00
+sg6
+I2
+sg7
+S'INT, INDEX evaluation_template__idx (evaluation_template), FOREIGN KEY (evaluation_template) REFERENCES evaluation_template (id) ON DELETE CASCADE'
+p14
+sg9
+I01
+sg10
+S'reference evaluation_template'
+p15
+ssS'question_type'
+p16
+(dp17
+g4
+I512
+sg5
+I00
+sg6
+I6
+sg7
+S'INT, INDEX question_type__idx (question_type), FOREIGN KEY (question_type) REFERENCES question_type (id) ON DELETE CASCADE'
+p18
+sg9
+I01
+sg10
+S'reference question_type'
+p19
+ssS'obligatory'
+p20
+(dp21
+g4
+I512
+sg5
+I00
+sg6
+I4
+sg7
+S'CHAR(1) NOT NULL'
+p22
+sg9
+I01
+sg10
+S'boolean'
+p23
+ssS'answer_type'
+p24
+(dp25
+g4
+I512
+sg5
+I00
+sg6
+I5
+sg7
+S'INT, INDEX answer_type__idx (answer_type), FOREIGN KEY (answer_type) REFERENCES answer_type (id) ON DELETE CASCADE'
+p26
+sg9
+I01
+sg10
+S'reference answer_type'
+p27
+ssS'id'
+p28
+(dp29
+g4
+I512
+sg5
+I00
+sg6
+I1
+sg7
+S'INT AUTO_INCREMENT NOT NULL'
+p30
+sg9
+I00
+sg10
+g28
+ss.

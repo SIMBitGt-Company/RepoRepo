@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/cron
+END
+crontab.example
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/cron/crontab.example
+END
+crontab
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/cron/crontab
+END

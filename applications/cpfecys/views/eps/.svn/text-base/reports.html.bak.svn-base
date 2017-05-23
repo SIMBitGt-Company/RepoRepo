@@ -1,0 +1,30 @@
+{{extend 'template.html'}}
+<h1>{{=T('Consultas')}}</h1>
+
+<div class="tabbable">
+    <ul class="nav nav-tabs">
+            <li class="active">
+                <a href="#data{{=1}}" data-toggle="tab">
+                    Estudiantes Asignados
+                </a>
+            </li>
+            <li>
+                <a href="#data{{=2}}" data-toggle="tab">
+                    Instituciones
+                </a>
+            </li>
+            <li>
+                <a href="#data{{=3}}" data-toggle="tab">
+                    Estudiantes
+                </a>
+            </li>        
+     </ul>
+    <div class="tab-content">
+        <div  class="tab-pane active" id="data{{=1}}">
+                {{=LOAD('eps', 'sqlform_grid_students', ajax=True)}}
+        </div>
+        <div  class="tab-pane" id="data{{=2}}">
+                {{=LOAD('eps', 'sqlform_grid_institutions', ajax=True)}}
+        </div>
+    </div>
+</div>

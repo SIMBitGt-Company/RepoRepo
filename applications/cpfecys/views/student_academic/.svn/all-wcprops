@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/repoDTT/!svn/ver/90/trunk/cpfecys/views/student_academic
+END
+example_upload.html
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/student_academic/example_upload.html
+END
+attendance_list.html
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/student_academic/attendance_list.html
+END
+student_validation_parameters.html
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/student_academic/student_validation_parameters.html
+END
+photo.load
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/student_academic/photo.load
+END
+academic_assignation.html
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/repoDTT/!svn/ver/90/trunk/cpfecys/views/student_academic/academic_assignation.html
+END
+academic.html
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/student_academic/academic.html
+END
+academic_assignation_upload.html
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/repoDTT/!svn/ver/41/trunk/cpfecys/views/student_academic/academic_assignation_upload.html
+END
+photo.html
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/student_academic/photo.html
+END
+student_courses.html
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/student_academic/student_courses.html
+END
+student_validation_parameters_fields.html
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/student_academic/student_validation_parameters_fields.html
+END

@@ -1,0 +1,65 @@
+(dp1
+S'project'
+p2
+(dp3
+S'sortable'
+p4
+I2
+sS'sql'
+p5
+S'INT, INDEX project__idx (project), FOREIGN KEY (project) REFERENCES project (id) ON DELETE CASCADE'
+p6
+sS'length'
+p7
+I512
+sS'notnull'
+p8
+I01
+sS'unique'
+p9
+I01
+sS'type'
+p10
+S'reference project'
+p11
+ssS'id'
+p12
+(dp13
+g4
+I1
+sg5
+S'INT AUTO_INCREMENT NOT NULL'
+p14
+sg7
+I512
+sg8
+I00
+sg9
+I00
+sg10
+S'id'
+p15
+ssS'period_type'
+p16
+(dp17
+S'length'
+p18
+I512
+sS'unique'
+p19
+I00
+sS'sortable'
+p20
+I3
+sS'sql'
+p21
+S'INT, INDEX period_type__idx (period_type), FOREIGN KEY (period_type) REFERENCES period_type (id) ON DELETE CASCADE'
+p22
+sS'notnull'
+p23
+I01
+sS'type'
+p24
+S'reference period_type'
+p25
+ss.

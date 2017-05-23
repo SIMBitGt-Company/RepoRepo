@@ -1,0 +1,101 @@
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/include
+END
+log-final-metrics.html
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/include/log-final-metrics.html
+END
+display-report-hours.html
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/include/display-report-hours.html
+END
+log-metrics-activity.html
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/include/log-metrics-activity.html
+END
+delete-helper.html
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/include/delete-helper.html
+END
+log-future-activity.html
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/include/log-future-activity.html
+END
+display-line-chart.html
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/include/display-line-chart.html
+END
+display-report-log.html
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/include/display-report-log.html
+END
+display-report-metric.html
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/include/display-report-metric.html
+END
+report-header.html
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/include/report-header.html
+END
+report-hours-activity.html
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/include/report-hours-activity.html
+END
+display-report-header.html
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/include/display-report-header.html
+END
+log-desertion-activity.html
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/include/log-desertion-activity.html
+END
+display-report-log-future.html
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/include/display-report-log-future.html
+END
+display-final-report.html
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/include/display-final-report.html
+END
+display-report-desertion.html
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/include/display-report-desertion.html
+END
+log-activity.html
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/repoDTT/!svn/ver/2/trunk/cpfecys/views/include/log-activity.html
+END
