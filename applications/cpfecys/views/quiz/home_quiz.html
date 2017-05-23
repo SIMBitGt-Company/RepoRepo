@@ -1,0 +1,81 @@
+{{extend 'template.html'}}
+</head>
+<div class="row-fluid">
+	{{if auth.has_membership('Super-Administrator') or (auth.has_membership('Ecys-Administrator') & ecys_var == True):}}
+    <div  style="overflow:auto;" class="well">
+    {{else:}}
+    	<div  style="overflow:auto;">
+    {{pass}}
+        
+		<center>
+			{{if auth.has_membership('Super-Administrator') or (auth.has_membership('Ecys-Administrator') & ecys_var == True):}}
+		    <h2>{{=T('Academic Control')}}
+				<br>
+				<small>{{=T(periodo.period.name)}} {{=str(periodo.yearp)}}</small>
+	        </h2>
+		    {{else:}}
+		    <h2>Menu Evaluciones
+		    	{{if (auth.has_membership('Super-Administrator') == False )and (auth.has_membership('Ecys-Administrator') == False) :}}
+		    	<a onclick="javascript:introJs().setOptions({ 'skipLabel': '{{=T('Skip')}}', 'nextLabel': '{{=T('Next')}}', 'prevLabel': '{{=T('Previous')}}', 'doneLabel': '{{=T('Exit')}}' }).start();" href='javascript:void(0);' class="btn btn-primary" >
+				  <span class="icon-white icon-question-sign"></span>
+				</a>
+				{{pass}}
+				<br>
+				<small>{{=T(periodo.period.name)}} {{=str(periodo.yearp)}}</small>
+	        </h2>
+		    {{pass}}
+    	</center>
+    </div>
+
+	<div class="navbar" data-step=1 data-intro="Div para agregar preguntas" {{pass}} >
+			<div class="navbar-inner">
+				<a style="cursor:pointer;"><center><h4>Gestion de Evaluciones tipo cuestionario</h4></center></a>
+			</div>
+	</div>
+	<!--el curso es: {{=course}} el perido es: {{=period}}-->
+	<div class="well" id="div_seleccionar_tipo_pregunta">
+	<center>
+	<table>
+	<tr>
+		<td width="20%" data-intro="Al seleccionar esta opcion podra crear una nueva actividad de tipo quiz"
+		{{pass}}
+		>
+			<center>
+				<a class="btn" href="{{=URL('quiz', 'create_quiz', vars=dict( project = course, period=period))}}" style="height:32px; width:32px;">
+					<img src="{{=URL('static','images')}}/academic_control/quiz.png" height="32" width="32">
+				</a><br>
+				<a  href="{{=URL('quiz', 'create_quiz', vars=dict(project = course, period=period))}}">
+					Crear 
+				</a>
+			</center>
+		</td>
+		<td width="20%" data-intro="Al seleccionar esta opcion podra crear una nueva actividad de tipo quiz"
+		{{pass}}
+		>
+			<center>
+				<a class="btn" href="{{=URL('quiz', 'consult_quiz', vars=dict( project = course, period=period))}}" style="height:32px; width:32px;">
+					<img src="{{=URL('static','images')}}/academic_control/quiz.png" height="32" width="32">
+				</a><br>
+				<a  href="{{=URL('quiz', 'consult_quiz', vars=dict(project = course, period=period))}}">
+					Consultar
+				</a>
+			</center>
+		</td>
+		<td width="20%" data-intro="Al seleccionar esta opcion podra crear una nueva actividad de tipo quiz"
+		{{pass}}
+		>
+			<center>
+				<a class="btn" href="{{=URL('quiz', 'reportes', vars=dict( project = course, period=period))}}" style="height:32px; width:32px;">
+					<img src="{{=URL('static','images')}}/academic_control/quiz.png" height="32" width="32">
+				</a><br>
+				<a  href="{{=URL('quiz', 'reportes', vars=dict(project = course, period=period))}}">
+					Reportes
+				</a>
+			</center>
+		</td>
+		</tr>
+		
+	</table>
+	</center>
+	</div>
+</div>

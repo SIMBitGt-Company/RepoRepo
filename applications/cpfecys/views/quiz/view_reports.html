@@ -1,0 +1,119 @@
+{{extend 'template.html'}}
+<script type="text/javascript">
+$(function () {
+    $('#container').highcharts({
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false
+        },
+        title: {
+            text: 'Reporte de estudiantes que ganaron/perdieron o no se examinaron'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    color: '#000000',
+                    connectorColor: '#000000',
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                }
+            }
+        },
+        series: [{
+            type: 'pie',
+            name: 'Grafica de evaluacion',
+            data: [
+                ['Ganaron',   31.74],
+                ['Perdieron',       14.28],
+                {
+                    name: 'No se examinaron',
+                    y: 53.96,
+                    sliced: true,
+                    selected: true
+                },
+            ]
+        }]
+    });
+});
+    
+
+        </script>
+
+<script type="text/javascript" src="{{=URL('static','js/highcharts/js/highcharts.js')}}"></script>
+<script type="text/javascript" src="{{=URL('static','js/highcharts/js/modules/exporting.js')}}"></script>
+
+<script type="text/javascript">
+$(document).ready(
+      
+      function(){
+
+    $("#btTomar").click(function(){
+        window.location.href = "http://"+document.domain+":8000/cpfecys/quiz/viewer_quiz";
+    });
+});
+
+
+</script>
+</head>
+<div class="row-fluid">
+    <center>
+        <h2>Reportes de evaluaciones
+            <a onclick="javascript:introJs().setOptions({ 'skipLabel': '{{=T('Skip')}}', 'nextLabel': '{{=T('Next')}}', 'prevLabel': '{{=T('Previous')}}', 'doneLabel': '{{=T('Exit')}}' }).start();" href='javascript:void(0);' class="btn btn-primary" >
+              <span class="icon-white icon-question-sign"></span>
+            </a>
+            <br>
+            <small>{{=T(periodo.period.name)}} {{=str(periodo.yearp)}}</small>
+        </h2>
+    </center>
+</div>
+{{if course == '93':}}
+<div class="navbar" data-step=1 data-intro="Div para agregar preguntas">
+
+            <div class="navbar-inner">
+                <a style="cursor:pointer;"><center><h4>Reportes de evaluacion</h4></center></a>
+            </div>
+</div>
+<div class="well" id="div_seleccionar_tipo_pregunta">
+<table class="table">
+    <thead>
+        <tr>
+        <th><center>MEDIA</center></th>
+        <th><center>MODA</center></th>
+        <th><center>MEDIANA</center></th>
+        <th><center>MEJOR NOTA</center></th>
+        <th><center>PEOR NOTA</center></th>
+        <th><center>TOTAL EXAMINADOS</center></th>
+        <th><center>%</center></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+        <td><center>67.82</center></td>
+        <td><center>66.66</center></td>
+        <td><center>66.66<center></td>
+        <td><center>100</center></td>
+        <td><center>33.33</center></td>
+        <td><center>29</center></td>
+        <td><center>46.03%</center></td>
+        </tr>
+    </tbody>
+    </table>
+</div>
+<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+{{else:}}
+<div class="navbar" data-step=1 data-intro="Div para agregar preguntas">
+
+            <div class="navbar-inner">
+                <a style="cursor:pointer;"><center><h4>No hay reportes disponibles</h4></center></a>
+            </div>
+</div>
+<div class="well" id="div_seleccionar_tipo_pregunta">
+
+</div>
+{{pass}}

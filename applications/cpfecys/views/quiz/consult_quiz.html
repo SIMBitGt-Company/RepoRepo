@@ -1,0 +1,64 @@
+{{extend 'template.html'}}
+<!--{{=auth.user.id}}
+{{=project.project_id}}
+{{for e in a:}}
+    {{="el primero\n"}}
+    {{=e}}
+    
+{{pass}}-->
+
+<script type="text/javascript">
+$(document).ready(
+      
+      function(){
+
+	$("#btActive").click(function(){
+        alert("La evaluacion estara activa hasta que usted seleccione la opcion de descativar.");
+    });
+});
+
+
+</script>
+
+</head>
+<div class="row-fluid">
+	<center>
+	    <h2>Mis Evaluaciones
+	    	{{if (auth.has_membership('Super-Administrator') == False )and (auth.has_membership('Ecys-Administrator') == False) :}}
+	    	<a onclick="javascript:introJs().setOptions({ 'skipLabel': '{{=T('Skip')}}', 'nextLabel': '{{=T('Next')}}', 'prevLabel': '{{=T('Previous')}}', 'doneLabel': '{{=T('Exit')}}' }).start();" href='javascript:void(0);' class="btn btn-primary" >
+			  <span class="icon-white icon-question-sign"></span>
+			</a>
+			{{pass}}
+			<br>
+			<small>{{=T(periodo.period.name)}} {{=str(periodo.yearp)}}</small>
+        </h2>
+	</center>
+</div>
+
+<!--div class="well" id="div_seleccionar_tipo_pregunta"-->
+	<table class="table">
+	<thead>
+		<tr>
+		<th><center>ID DE USUARIO</center></th>
+		<th><center>ID DE QUIZ</center></th>
+		<th><center>CURSO</center></th>
+		<th><center>ESTADO</center></th>
+		<th><center>ACTIVAR/DESACTIVAR</center></th>
+		</tr>
+	</thead>
+	<tbody>
+	{{for quiz in a:}}
+		<tr>
+		<td><center>{{=quiz.split(':',6)[1]}}</center></td>
+		<td><center>{{=quiz.split(':',6)[5]}}</center></td>
+		<td><center>{{=quiz.split(':',6)[3]}}<center></td>
+		<td><center>Inactivo</center></td>
+		<td>
+		<center>
+			<button id="btActive" type="button" class="btn btn-success">Activar</button>
+		</center>
+		</td>
+		</tr>
+	</tbody>
+	{{pass}}
+	</table>

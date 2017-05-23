@@ -1,0 +1,91 @@
+{{extend 'template.html'}}
+<script type="text/javascript" src="{{=URL('static','js/quiz-js/quiz.js')}}"></script>
+<script type="text/javascript" src="{{=URL('static','js/quiz-js/super.js')}}"></script>
+<script type="text/javascript">
+var idp=1;
+var idr=1;
+var respuesta;
+var preguntas = [];
+function GetID() 
+{
+    //alert(idp);
+    idp+=1;
+}
+
+function GetIDR() 
+{
+    //alert(idr);
+    idr+=1;
+}
+
+</script>
+</head>
+<div class="row-fluid">
+	<input type="hidden" id="userid" name="{{=auth.user.id}}">
+	<input type="hidden" id="project_id" name="{{=project.project_id}}">
+	<input type="hidden" id="period_id" name="{{=idperiodoc}}">
+	<input type="hidden" id="id_project" name="{{=idproject}}">
+	{{if auth.has_membership('Super-Administrator') or (auth.has_membership('Ecys-Administrator') & ecys_var == True):}}
+    <div  style="overflow:auto;" class="well">
+    {{else:}}
+    	<div  style="overflow:auto;">
+    {{pass}}
+		
+		<!--table >
+			<tr>
+				<td width="30%">
+				</td>
+				<td>					
+											
+				</td>
+			</tr>
+		</table-->
+        
+		<center>
+			{{if auth.has_membership('Super-Administrator') or (auth.has_membership('Ecys-Administrator') & ecys_var == True):}}
+		    <h2>{{=T('Academic Control')}}
+				<br>
+				<small>{{=T(periodo.period.name)}} {{=str(periodo.yearp)}}</small>
+	        </h2>
+		    {{else:}}
+		    <h2>{{=T('Crear Evalucion')}}
+		    	{{if (auth.has_membership('Super-Administrator') == False )and (auth.has_membership('Ecys-Administrator') == False) :}}
+		    	<a onclick="javascript:introJs().setOptions({ 'skipLabel': '{{=T('Skip')}}', 'nextLabel': '{{=T('Next')}}', 'prevLabel': '{{=T('Previous')}}', 'doneLabel': '{{=T('Exit')}}' }).start();" href='javascript:void(0);' class="btn btn-primary" >
+				  <span class="icon-white icon-question-sign"></span>
+				</a>
+				{{pass}}
+				<br>
+				<small>{{=T(periodo.period.name)}} {{=str(periodo.yearp)}}</small>
+	        </h2>
+		    {{pass}}
+    	</center>
+    </div>
+	<form>
+	<ol id="contenedorDePreguntas">
+    </ol>
+    </form>
+    <br>
+	<div class="navbar" data-step=1 data-intro="Div para agregar preguntas" {{pass}} >
+			<div class="navbar-inner">
+				<a style="cursor:pointer;"><center><h4>Agregar Pregunta al Cuestionario</h4></center></a>
+			</div>
+	</div>
+	<div class="well" id="div_seleccionar_tipo_pregunta">
+		<button id="btAddTipo1" type="button" class="btn btn-success">+ Opcion Multiple</button>
+		<button id="btAddTipo2" type="button" class="btn btn-info">+ Falso/Verdadero</button>
+		<button id="btAddTipo3" type="button" class="btn btn-warning">+ Respuesta Corta</button>
+	</div>
+	<button id="btnContinuar" class="btn btn-large btn-primary" type="button"><i class="icon-circle-arrow-right icon-white"></i></button>
+
+	<div class="navbar" data-step=1 data-intro="Div para agregar preguntas" {{pass}} >
+			<div class="navbar-inner">
+				<a style="cursor:pointer;"><center><h4>Lester</h4></center></a>
+			</div>
+	</div>
+	<div class="well" id="div_seleccionar_tipo_pregunta">
+		<button id="btAddTipo1" type="button" class="btn btn-inverse"><i class="icon-film icon-white"></i></button>
+		
+	</div>
+
+
+</div>
