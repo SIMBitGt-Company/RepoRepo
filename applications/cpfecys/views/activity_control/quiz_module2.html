@@ -1,0 +1,19 @@
+<!-- Codigo Modulo quiz estudiante. Autor Dayton Garica  -->
+<tr>
+    <td width="20%"
+    {{if var_do==True:}}
+        data-step="{{step_count+=1}}{{=step_count}}" data-intro="Al seleccionar esta opcion podra crear una nueva actividad de tipo quiz"
+    {{pass}}
+    >
+        <center>
+            <a class="btn" href="{{=URL('quiz', 'take_quiz', vars=dict( project = course.academic_course_assignation.assignation.id, period=periodo.id))}}" style="height:32px; width:32px;">
+                <img src="{{=URL('static','images')}}/academic_control/quiz.png" height="32" width="32">
+            </a><br>
+            <a href="{{=URL('quiz', 'take_quiz', vars=dict( project = course.academic_course_assignation.assignation.id, period=periodo.id))}}">
+                Evaluaciones
+            </a>
+        </center>
+    </td>
+{{pass}}
+</tr>
+<!-- Finaliza Codigo Modulo quiz Estudiante. Autor Dayton Garica  -->
