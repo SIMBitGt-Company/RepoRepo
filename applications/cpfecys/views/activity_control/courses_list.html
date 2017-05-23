@@ -453,6 +453,21 @@
 										</a>
 									</center>
 								</td>
+								<td width="20%"
+								{{if var_do==True:}}
+									data-step="{{step_count+=1}}{{=step_count}}" data-intro="Al seleccionar esta opción podrá realizar las evaluaciones 360 que esten activas."
+								{{pass}}
+								>
+
+									<center>
+										<a class="btn" href="{{=URL('evaluation', 'evaluation_list', vars=dict( project = course.user_project.project, period=periodo.id))}}" style="height:32px; width:32px;">
+											<img src="{{=URL('static','images')}}/academic_control/verification5.png" height="32" width="32">
+										</a><br>
+										<a  href="{{=URL('evaluation', 'evaluation_list', vars=dict(project = course.user_project.project, period=periodo.id))}}">
+											{{=T('Performance Evaluations')}} 360
+										</a>
+									</center>
+								</td>
 								<!-- CODIGO DEL MODULO QUIZ-->
 									{{include 'activity_control/quiz_module.html'}}
 								<!-- CODIGO DEL MODULO QUIZ-->
