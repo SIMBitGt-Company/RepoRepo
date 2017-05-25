@@ -78,7 +78,7 @@ def aumentarPregunta():
 @auth.requires_login()
 def obtenerQuiz():
     import redis
-    r = redis.StrictRedis();
+    r = redis.StrictRedis(host='45.55.93.186', port=6379, db=0);
     r.incr("idquiz");
     idq = '{"value":"'+r.get("idquiz")+'"}';
     return idq;
@@ -86,7 +86,7 @@ def obtenerQuiz():
 @auth.requires_login()
 def GuardarQuiz():
     import redis
-    r = redis.StrictRedis();
+    r = redis.StrictRedis(host='45.55.93.186', port=6379, db=0);
     ide = request.vars['id']
     preguntas = request.vars['jsonquiz']
     curso = request.vars['project']
